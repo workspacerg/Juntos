@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/new/MenuInterface">
+        <file>Ressouces/settings2-512.png</file>
+        <file>Ressouces/comments-512.png</file>
+        <file>Ressouces/F-512.png</file>
+        <file>Ressouces/list-512.png</file>
+        <file>Ressouces/outline-512.png</file>
+        <file>Ressouces/settings-512.png</file>
+        <file>Ressouces/J-512.png</file>
+    </qresource>
+</RCC>
