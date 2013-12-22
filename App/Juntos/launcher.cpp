@@ -1,0 +1,133 @@
+#include "launcher.h"
+#include "ui_launcher.h"
+
+Launcher::Launcher(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::Launcher)
+{
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///  STYLE-SHEET
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    QString styleMenu = ("background-color: rgb(45, 186, 166); height: 160; border: none;");
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    ///  Taille
+    this->setMinimumWidth(1000);
+    this->setMinimumHeight(700);
+
+    menu->setMaximumWidth(100);
+
+    Menu1->setStyleSheet(styleMenu);
+    Menu2->setStyleSheet(styleMenu);
+    Menu3->setStyleSheet(styleMenu);
+    Menu4->setStyleSheet(styleMenu);
+    Menu5->setStyleSheet(styleMenu);
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    ///  Couleur
+    menu->setStyleSheet("background-color: rgb(45, 186, 166);");
+
+    body->setStyleSheet("background-color: ;");
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    ///  Alignement & marge
+    Titre->setAlignment(Qt::AlignHCenter);
+    mainLayout->setContentsMargins(0,0,0,0);
+
+    mainLayout->setColumnMinimumWidth(0, 10);
+    mainLayout->setSpacing(0);
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    ///  Font
+    Titre->setFont(QFont("helvetica", 45));
+
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    ///  MISE EN PLACE DE LA FENETRE PRINCIPAL
+    this->setWindowTitle("");
+    this->setStyleSheet("background-color: white;");
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///  MISE EN PLACE DES LAYOUT
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    ///  Principal
+    firstPage->setLayout(mainLayout);
+    mainLayout->addWidget(body, 0,  1 , 10, 1);
+    mainLayout->addWidget(menu, 0,  0 , 10, 1);
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    ///  Menu
+    menu->setLayout(menuLayout);
+    menuLayout->setHorizontalSpacing(20);
+    menuLayout->addWidget(Menu1,    2, 0, 1, 1);
+    menuLayout->addWidget(Menu2,    3, 0, 1, 1);
+    menuLayout->addWidget(Menu3,    4, 0, 1, 1);
+    menuLayout->addWidget(Menu4,    5, 0, 1, 1);
+    menuLayout->addWidget(Menu5,    6, 0, 1, 1);
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    ///  Body
+    //body->setLayout(mainBodyLayout);
+    //mainBodyLayout->addWidget(Titre,0,0,1,10);
+    emit showAccueil();
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    ///  LANCEMENT
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    this->setCentralWidget(firstPage);
+
+    // Connexion signals / slots
+    QObject::connect(Menu1, SIGNAL(clicked()), this, SLOT(showAccueil()));
+    QObject::connect(Menu2, SIGNAL(clicked()), this, SLOT(showTicket()));
+    QObject::connect(Menu3, SIGNAL(clicked()), this, SLOT(showTask()));
+    QObject::connect(Menu4, SIGNAL(clicked()), this, SLOT(showMessage()));
+    QObject::connect(Menu5, SIGNAL(clicked()), this, SLOT(showPreference()));
+
+}
+
+Launcher::~Launcher()
+{
+    delete ui;
+}
+
+void Launcher::showAccueil()
+{
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    ///  Body
+    body->setLayout(mainBodyLayout);
+    Titre->setText("Juntos");
+    mainBodyLayout->addWidget(Titre,0,0,1,10);
+}
+
+void Launcher::showTicket()
+{
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    ///  Body
+    body->setLayout(mainBodyLayout);
+    Titre->setText("Ticket");
+    mainBodyLayout->addWidget(Titre,0,0,1,10);
+}
+
+void Launcher::showTask()
+{
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    ///  Body
+    body->setLayout(mainBodyLayout);
+    Titre->setText("Task");
+    mainBodyLayout->addWidget(Titre,0,0,1,10);
+}
+
+void Launcher::showMessage()
+{
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    ///  Body
+    body->setLayout(mainBodyLayout);
+    Titre->setText("Messages");
+    mainBodyLayout->addWidget(Titre,0,0,1,10);
+}
+
+void Launcher::showPreference()
+{
+
+}
+
