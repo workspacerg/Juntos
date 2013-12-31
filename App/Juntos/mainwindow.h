@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "uiacceuil.h"
 
 namespace Ui {
 class MainWindow;
@@ -14,6 +15,9 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    uiAcceuil *PageAccueil ;
+
 
 private slots:
     void on_mAccueil_clicked();
@@ -28,6 +32,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
+
+
+
 
     void hideAll();
 };

@@ -7,7 +7,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    PageAccueil = new uiAcceuil ;
+
     emit on_mAccueil_clicked();
+
+
 
 }
 
@@ -18,26 +22,32 @@ MainWindow::~MainWindow()
 
 void MainWindow::hideAll()
 {
+
     ui->cAccueil->hide();
     ui->cPref->hide();
     ui->cTask->hide();
     ui->cTicket->hide();
+
 }
 
 
 void MainWindow::on_mAccueil_clicked()
 {
+
     this->hideAll();
     ui->TitreBody->setText("Juntos");
+    ui->cAccueil->layout()->addWidget(PageAccueil);
     ui->cAccueil->show();
 
 }
 
 void MainWindow::on_mTask_clicked()
 {
+
     this->hideAll();
     ui->TitreBody->setText("Task");
     ui->cTask->show();
+
 }
 
 void MainWindow::on_mTicket_clicked()
@@ -61,3 +71,4 @@ void MainWindow::on_mMessages_clicked()
     ui->TitreBody->setText("Messages");
 
 }
+

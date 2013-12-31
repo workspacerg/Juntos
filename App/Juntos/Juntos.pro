@@ -13,11 +13,17 @@ TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    uiacceuil.cpp \
+    ../cprojet.cpp \
+    cprojet.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    uiacceuil.h \
+    cprojet.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    uiacceuil.ui
 
 RESOURCES += \
     Images.qrc
