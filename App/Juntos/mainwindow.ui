@@ -344,15 +344,7 @@
             <property name="enabled">
              <bool>true</bool>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_6">
-             <item>
-              <widget class="QLabel" name="label_2">
-               <property name="text">
-                <string>Tâches</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            <layout class="QVBoxLayout" name="verticalLayout_6"/>
            </widget>
           </item>
           <item>
@@ -360,15 +352,7 @@
             <property name="enabled">
              <bool>true</bool>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_7">
-             <item>
-              <widget class="QLabel" name="label_3">
-               <property name="text">
-                <string>Préférence</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            <layout class="QVBoxLayout" name="verticalLayout_7"/>
            </widget>
           </item>
           <item>

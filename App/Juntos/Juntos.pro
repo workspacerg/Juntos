@@ -15,18 +15,20 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     uiacceuil.cpp \
-    ../cprojet.cpp \
     cprojet.cpp \
-    uitask.cpp
+    uitask.cpp \
+    uipref.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
     cprojet.h \
-    uitask.h
+    uitask.h \
+    uipref.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \
-    uitask.ui
+    uitask.ui \
+    uipref.ui
 
 RESOURCES += \
     Images.qrc

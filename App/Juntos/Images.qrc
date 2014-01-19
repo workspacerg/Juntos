@@ -10,5 +10,8 @@
         <file>Ressouces/add_database-512.png</file>
         <file>Ressouces/delete_database-512.png</file>
         <file>Ressouces/plus-512.png</file>
+        <file>Ressouces/box-minus@2x.png</file>
+        <file>Ressouces/box-plus@2x.png</file>
+        <file>Ressouces/cloud-minus@2x.png</file>
     </qresource>
 </RCC>

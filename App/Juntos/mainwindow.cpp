@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     PageAccueil = new uiAcceuil ;
     PageTask    = new uiTask    ;
+    PagePref    = new uiPref    ;
 
     emit on_mAccueil_clicked();
 
@@ -45,7 +46,8 @@ void MainWindow::on_mTask_clicked()
 {
 
     this->hideAll();
-    ui->TitreBody->setText("Task");
+    ui->TitreBody->setText("Liste des tâches");
+    ui->cTask->layout()->addWidget(PageTask);
     ui->cTask->show();
 
 }
@@ -62,6 +64,7 @@ void MainWindow::on_mPreference_clicked()
 {
     this->hideAll();
     ui->TitreBody->setText("Préférence");
+    ui->cPref->layout()->addWidget(PagePref);
     ui->cPref->show();
 }
 
