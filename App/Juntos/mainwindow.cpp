@@ -8,8 +8,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 
     PageAccueil = new uiAcceuil ;
+    PageTask    = new uiTask    ;
 
     emit on_mAccueil_clicked();
+
 
 }
 

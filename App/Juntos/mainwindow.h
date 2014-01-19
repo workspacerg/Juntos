@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "uiacceuil.h"
+#include "uitask.h"
 
 namespace Ui {
 class MainWindow;
@@ -16,7 +17,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
-    uiAcceuil *PageAccueil ;
+    uiAcceuil   *PageAccueil    ;
+    uiTask      *PageTask       ;
 
 
 private slots:
