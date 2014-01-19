@@ -2,6 +2,7 @@
 #define UIACCEUIL_H
 
 #include <QWidget>
+#include "cprojet.h"
 
 namespace Ui {
 class uiAcceuil;

@@ -11,8 +11,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     emit on_mAccueil_clicked();
 
-
-
 }
 
 MainWindow::~MainWindow()
