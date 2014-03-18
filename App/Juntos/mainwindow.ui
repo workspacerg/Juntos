@@ -360,15 +360,7 @@
             <property name="enabled">
              <bool>true</bool>
             </property>
-            <layout class="QVBoxLayout" name="verticalLayout_8">
-             <item>
-              <widget class="QLabel" name="label_4">
-               <property name="text">
-                <string>Bug</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
+            <layout class="QVBoxLayout" name="verticalLayout_8"/>
            </widget>
           </item>
          </layout>

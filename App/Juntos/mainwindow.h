@@ -5,6 +5,7 @@
 #include "uiacceuil.h"
 #include "uitask.h"
 #include "uipref.h"
+#include "uiticket.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,6 +22,7 @@ public:
     uiAcceuil   *PageAccueil    ;
     uiTask      *PageTask       ;
     uiPref      *PagePref       ;
+    uiTicket    *PageTicket     ;
 
 
 private slots:

@@ -10,7 +10,7 @@ MainWindow::MainWindow(QWidget *parent) :
     PageAccueil = new uiAcceuil ;
     PageTask    = new uiTask    ;
     PagePref    = new uiPref    ;
-
+    PageTicket  = new uiTicket  ;
     emit on_mAccueil_clicked();
 
 
@@ -56,7 +56,7 @@ void MainWindow::on_mTicket_clicked()
 {
     this->hideAll();
     ui->TitreBody->setText("Ticket");
-
+    ui->cTicket->layout()->addWidget(PageTicket);
     ui->cTicket->show();
 }
 

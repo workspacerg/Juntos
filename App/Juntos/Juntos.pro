@@ -17,18 +17,21 @@ SOURCES += main.cpp\
     uiacceuil.cpp \
     cprojet.cpp \
     uitask.cpp \
-    uipref.cpp
+    uipref.cpp \
+    uiticket.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
     cprojet.h \
     uitask.h \
-    uipref.h
+    uipref.h \
+    uiticket.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \
     uitask.ui \
-    uipref.ui
+    uipref.ui \
+    uiticket.ui
 
 RESOURCES += \
     Images.qrc
