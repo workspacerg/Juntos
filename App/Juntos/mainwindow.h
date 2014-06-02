@@ -6,6 +6,8 @@
 #include "uitask.h"
 #include "uipref.h"
 #include "uiticket.h"
+#include "uitest.h"
+#include "uifile.h"
 
 namespace Ui {
 class MainWindow;
@@ -23,6 +25,8 @@ public:
     uiTask      *PageTask       ;
     uiPref      *PagePref       ;
     uiTicket    *PageTicket     ;
+    uiTest      *PageTest       ;
+    uiFile      *PageFile       ;
 
 
 private slots:
@@ -36,11 +40,12 @@ private slots:
 
     void on_mMessages_clicked();
 
+    void on_mTest_clicked();
+
+    void on_mFile_clicked();
+
 private:
     Ui::MainWindow *ui;
-
-
-
 
     void hideAll();
 };

@@ -400,47 +400,92 @@
        </item>
        <item>
         <widget class="QWidget" name="contenue" native="true">
-         <layout class="QVBoxLayout" name="verticalLayout_4">
-          <item>
-           <widget class="QWidget" name="cFile" native="true">
-            <layout class="QVBoxLayout" name="verticalLayout_10"/>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="cTest" native="true">
-            <layout class="QVBoxLayout" name="verticalLayout_9"/>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="cAccueil" native="true">
-            <layout class="QVBoxLayout" name="verticalLayout_5"/>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="cTask" native="true">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_6"/>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="cPref" native="true">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_7"/>
-           </widget>
-          </item>
-          <item>
-           <widget class="QWidget" name="cTicket" native="true">
-            <property name="enabled">
-             <bool>true</bool>
-            </property>
-            <layout class="QVBoxLayout" name="verticalLayout_8"/>
-           </widget>
-          </item>
-         </layout>
+         <widget class="QWidget" name="cAccueil" native="true">
+          <property name="geometry">
+           <rect>
+            <x>9</x>
+            <y>288</y>
+            <width>18</width>
+            <height>18</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_5"/>
+         </widget>
+         <widget class="QWidget" name="cTask" native="true">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="geometry">
+           <rect>
+            <x>9</x>
+            <y>428</y>
+            <width>18</width>
+            <height>18</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_6"/>
+         </widget>
+         <widget class="QWidget" name="cPref" native="true">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="geometry">
+           <rect>
+            <x>9</x>
+            <y>568</y>
+            <width>18</width>
+            <height>18</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_7"/>
+         </widget>
+         <widget class="QWidget" name="cTicket" native="true">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="geometry">
+           <rect>
+            <x>9</x>
+            <y>707</y>
+            <width>18</width>
+            <height>18</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_8"/>
+         </widget>
+         <widget class="QWidget" name="cTest" native="true">
+          <property name="geometry">
+           <rect>
+            <x>9</x>
+            <y>149</y>
+            <width>18</width>
+            <height>18</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_9"/>
+         </widget>
+         <widget class="QWidget" name="cFile" native="true">
+          <property name="geometry">
+           <rect>
+            <x>9</x>
+            <y>9</y>
+            <width>18</width>
+            <height>18</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_10"/>
+         </widget>
+         <widget class="QWidget" name="cMessage" native="true">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>18</width>
+            <height>18</height>
+           </rect>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_11"/>
+         </widget>
         </widget>
        </item>
       </layout>

@@ -11,9 +11,11 @@ MainWindow::MainWindow(QWidget *parent) :
     PageTask    = new uiTask    ;
     PagePref    = new uiPref    ;
     PageTicket  = new uiTicket  ;
+    PageTest    = new uiTest    ;
+    PageFile    = new uiFile    ;
+
+
     emit on_mAccueil_clicked();
-
-
 }
 
 MainWindow::~MainWindow()
@@ -25,9 +27,11 @@ void MainWindow::hideAll()
 {
 
     ui->cAccueil->hide();
-    ui->cPref->hide();
-    ui->cTask->hide();
-    ui->cTicket->hide();
+    ui->cPref->hide()   ;
+    ui->cTask->hide()   ;
+    ui->cTicket->hide() ;
+    ui->cTest->hide()   ;
+    ui->cFile->hide()   ;
 
 }
 
@@ -75,3 +79,19 @@ void MainWindow::on_mMessages_clicked()
 
 }
 
+
+void MainWindow::on_mTest_clicked()
+{
+    this->hideAll();
+    ui->TitreBody->setText("Test");
+    ui->cTest->layout()->addWidget(PageTest);
+    ui->cTest->show();
+}
+
+void MainWindow::on_mFile_clicked()
+{
+    this->hideAll();
+    ui->TitreBody->setText("File");
+    ui->cTest->layout()->addWidget(PageFile);
+    ui->cTest->show();
+}
