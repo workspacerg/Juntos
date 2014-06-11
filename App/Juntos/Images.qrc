@@ -13,5 +13,7 @@
         <file>Ressouces/box-minus@2x.png</file>
         <file>Ressouces/box-plus@2x.png</file>
         <file>Ressouces/cloud-minus@2x.png</file>
+        <file>Ressouces/air_force-64.png</file>
+        <file>Ressouces/folder-64.png</file>
     </qresource>
 </RCC>
