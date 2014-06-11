@@ -37,7 +37,6 @@ FORMS    += mainwindow.ui \
     uipref.ui \
     uiticket.ui \
     uiTest.ui \
-    uitest.ui \
     uiFile.ui
 
 RESOURCES += \
