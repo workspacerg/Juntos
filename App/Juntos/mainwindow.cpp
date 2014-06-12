@@ -16,11 +16,23 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
     emit on_mAccueil_clicked();
+
+    // Centre de notifiaction
+    Notif = new notification();
+    QObject::connect(PageAccueil, SIGNAL(notifiactionNewProject(QString, QString)), this, SLOT(displayNotification(QString, QString)));
+
+
 }
 
 MainWindow::~MainWindow()
 {
+    delete Notif;
     delete ui;
+}
+
+void MainWindow::displayNotification(QString titre, QString content)
+{
+    Notif->sendNotification(titre, content, 12000);
 }
 
 void MainWindow::hideAll()

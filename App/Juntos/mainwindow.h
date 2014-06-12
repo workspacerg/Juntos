@@ -8,6 +8,7 @@
 #include "uiticket.h"
 #include "uitest.h"
 #include "uifile.h"
+#include "notification.h"
 
 namespace Ui {
 class MainWindow;
@@ -27,6 +28,11 @@ public:
     uiTicket    *PageTicket     ;
     uiTest      *PageTest       ;
     uiFile      *PageFile       ;
+
+    notification *Notif ;
+
+ public slots:
+    void displayNotification(QString, QString);
 
 
 private slots:
