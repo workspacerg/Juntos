@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     uipref.cpp \
     uiticket.cpp \
     uitest.cpp \
-    uifile.cpp
+    uifile.cpp \
+    notification.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -29,7 +30,8 @@ HEADERS  += mainwindow.h \
     uipref.h \
     uiticket.h \
     uitest.h \
-    uifile.h
+    uifile.h \
+    notification.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \
@@ -41,3 +43,7 @@ FORMS    += mainwindow.ui \
 
 RESOURCES += \
     Images.qrc
+
+OTHER_FILES += \
+    ../../../../../Google Drive/Workspace/ESGI/Ressource/windows8_icons.zip \
+    icon.png

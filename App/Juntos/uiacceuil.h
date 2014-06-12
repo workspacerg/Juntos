@@ -16,6 +16,8 @@ public:
     explicit uiAcceuil(QWidget *parent = 0);
     ~uiAcceuil();
 
+signals:
+    void notifiactionNewProject(QString, QString);
 
 private slots:
     void on_addProject_clicked();

@@ -12,8 +12,6 @@ uiAcceuil::uiAcceuil(QWidget *parent) :
     ui(new Ui::uiAcceuil)
 {
 
-
-
     ui->setupUi(this);
     ui->BoiteDeCreation->hide();
     BtCreation = false ;
@@ -69,8 +67,7 @@ void uiAcceuil::on_PBCreate_clicked()
     ui->tableWidgetPtoject->setItem(LastRow, 0, new QTableWidgetItem(Projet->getNomProjet()));
     ui->tableWidgetPtoject->setItem(LastRow, 1, new QTableWidgetItem(Projet->getDescProjet()));
 
-
-
+    emit notifiactionNewProject("Création de projet", "Le projet " + Projet->getNomProjet() + " à été crée avec succès");
 
 }
 
