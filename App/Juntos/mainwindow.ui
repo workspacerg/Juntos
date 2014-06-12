@@ -212,7 +212,7 @@
          </property>
          <property name="icon">
           <iconset resource="Images.qrc">
-           <normaloff>:/new/MenuInterface/Ressouces/comments-512.png</normaloff>:/new/MenuInterface/Ressouces/comments-512.png</iconset>
+           <normaloff>:/new/MenuInterface/Ressouces/air_force-64.png</normaloff>:/new/MenuInterface/Ressouces/air_force-64.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -285,7 +285,7 @@
          </property>
          <property name="icon">
           <iconset resource="Images.qrc">
-           <normaloff>:/new/MenuInterface/Ressouces/comments-512.png</normaloff>:/new/MenuInterface/Ressouces/comments-512.png</iconset>
+           <normaloff>:/new/MenuInterface/Ressouces/folder-64.png</normaloff>:/new/MenuInterface/Ressouces/folder-64.png</iconset>
          </property>
          <property name="iconSize">
           <size>

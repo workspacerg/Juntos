@@ -92,6 +92,6 @@ void MainWindow::on_mFile_clicked()
 {
     this->hideAll();
     ui->TitreBody->setText("File");
-    ui->cTest->layout()->addWidget(PageFile);
-    ui->cTest->show();
+    ui->cFile->layout()->addWidget(PageFile);
+    ui->cFile->show();
 }
