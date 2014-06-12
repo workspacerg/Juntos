@@ -30,6 +30,7 @@ uiAcceuil::uiAcceuil(QWidget *parent) :
 
 uiAcceuil::~uiAcceuil()
 {
+
     delete ui;
 }
 

@@ -3,7 +3,7 @@
 notification::notification()
 {
     notifyIcon = new QSystemTrayIcon();
-    notifyIcon->setIcon(QIcon(":/new/MenuInterface/Ressouces/F-512.png"));
+    notifyIcon->setIcon(QIcon(":/new/MenuInterface/Ressouces/ai-512.png"));
     notifyIcon->show();
 }
 
