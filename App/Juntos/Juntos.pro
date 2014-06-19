@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += sql # On rajoute SQL
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -21,7 +22,8 @@ SOURCES += main.cpp\
     uiticket.cpp \
     uitest.cpp \
     uifile.cpp \
-    notification.cpp
+    notification.cpp \
+    bdd.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -31,7 +33,8 @@ HEADERS  += mainwindow.h \
     uiticket.h \
     uitest.h \
     uifile.h \
-    notification.h
+    notification.h \
+    bdd.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \

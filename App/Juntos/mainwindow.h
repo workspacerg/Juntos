@@ -9,6 +9,7 @@
 #include "uitest.h"
 #include "uifile.h"
 #include "notification.h"
+#include "bdd.h"
 
 namespace Ui {
 class MainWindow;
@@ -17,6 +18,10 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
+    BDD *myBDD ;
+
+
 
 public:
     explicit MainWindow(QWidget *parent = 0);
@@ -31,9 +36,11 @@ public:
 
     notification *Notif ;
 
+
+
  public slots:
     void displayNotification(QString, QString);
-
+    void connectBDD();
 
 private slots:
     void on_mAccueil_clicked();

@@ -1,11 +1,14 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QSettings>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+
 
     PageAccueil = new uiAcceuil ;
     PageTask    = new uiTask    ;
@@ -14,20 +17,33 @@ MainWindow::MainWindow(QWidget *parent) :
     PageTest    = new uiTest    ;
     PageFile    = new uiFile    ;
 
-
     emit on_mAccueil_clicked();
 
     // Centre de notifiaction
     Notif = new notification();
     QObject::connect(PageAccueil, SIGNAL(notifiactionNewProject(QString, QString)), this, SLOT(displayNotification(QString, QString)));
 
+    myBDD = new BDD();
+    emit connectBDD();
+    QObject::connect(PagePref, SIGNAL(newParamConnect()), this, SLOT(connectBDD()));
+
 
 }
+
 
 MainWindow::~MainWindow()
 {
     delete Notif;
     delete ui;
+}
+
+void MainWindow::connectBDD()
+{
+
+    if(!myBDD->connectDB())
+       ui->statusBar->showMessage("la connexion à échoué");
+    else
+       ui->statusBar->showMessage("Vous êtes connecté");
 }
 
 void MainWindow::displayNotification(QString titre, QString content)

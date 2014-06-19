@@ -25,12 +25,12 @@
         </font>
        </property>
        <property name="text">
-        <string>Adresse du serveur </string>
+        <string>Type BDD</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="bddType">
        <property name="minimumSize">
         <size>
          <width>500</width>
@@ -59,7 +59,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_4">
+      <widget class="QLineEdit" name="bddName">
        <property name="minimumSize">
         <size>
          <width>500</width>
@@ -83,12 +83,12 @@
         </font>
        </property>
        <property name="text">
-        <string>Nom d'utilisateur</string>
+        <string>User BDD</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_3">
+      <widget class="QLineEdit" name="bddUser">
        <property name="minimumSize">
         <size>
          <width>500</width>
@@ -112,12 +112,12 @@
         </font>
        </property>
        <property name="text">
-        <string>Password</string>
+        <string>Password BDD</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lineEdit_2">
+      <widget class="QLineEdit" name="bddPass">
        <property name="minimumSize">
         <size>
          <width>500</width>
