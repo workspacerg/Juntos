@@ -40,10 +40,21 @@ MainWindow::~MainWindow()
 void MainWindow::connectBDD()
 {
 
-    if(!myBDD->connectDB())
-       ui->statusBar->showMessage("la connexion à échoué");
+    if(myBDD->connectDB() &&  myBDD->verifUser())
+    {
+       ui->statusBar->showMessage("Vous êts connecté");
+       ui->menu->show();
+       emit on_mAccueil_clicked();
+    }
     else
-       ui->statusBar->showMessage("Vous êtes connecté");
+    {
+       ui->statusBar->showMessage("la connexion à échoué");
+
+       ui->menu->hide();
+
+       emit on_mPreference_clicked();
+    }
+
 }
 
 void MainWindow::displayNotification(QString titre, QString content)
