@@ -4,17 +4,23 @@
 #include <QWidget>
 #include <QString>
 
-class CProjet : public QWidget
+class CProjet
 {
-    Q_OBJECT
+
 public:
-    explicit CProjet(QWidget *parent = 0);
+
+    CProjet(QString nom, QString descr);
+    CProjet(const CProjet &Source);
+
 
     QString getNomProjet() const;
     void setNomProjet(const QString &value);
 
     QString getDescProjet() const;
     void setDescProjet(const QString &value);
+
+
+
 
 signals:
 

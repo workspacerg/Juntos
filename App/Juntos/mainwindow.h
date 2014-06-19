@@ -18,14 +18,17 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+private:
 
     BDD *myBDD ;
+    CProjet * currentPro ;
+    notification *Notif ;
 
+    Ui::MainWindow *ui;
+    void hideAll();
 
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
 
     uiAcceuil   *PageAccueil    ;
     uiTask      *PageTask       ;
@@ -34,33 +37,23 @@ public:
     uiTest      *PageTest       ;
     uiFile      *PageFile       ;
 
-    notification *Notif ;
+    explicit MainWindow(QWidget *parent = 0);
+    ~MainWindow();
 
-
-
- public slots:
+public slots:
     void displayNotification(QString, QString);
     void connectBDD();
 
 private slots:
     void on_mAccueil_clicked();
-
     void on_mTask_clicked();
-
     void on_mTicket_clicked();
-
     void on_mPreference_clicked();
-
     void on_mMessages_clicked();
-
     void on_mTest_clicked();
-
     void on_mFile_clicked();
 
-private:
-    Ui::MainWindow *ui;
 
-    void hideAll();
 };
 
 #endif // MAINWINDOW_H

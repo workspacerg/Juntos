@@ -1,12 +1,19 @@
 #include "cprojet.h"
 
-CProjet::CProjet(QWidget *parent) :
-    QWidget(parent)
+
+CProjet::CProjet(QString nom, QString descr)
 {
 
-    NomProjet   = "vide"    ;
-    DescProjet  = ""        ;
+    NomProjet   = nom    ;
+    DescProjet  = descr  ;
 
+}
+
+CProjet::CProjet(const CProjet &Source)
+{
+
+    NomProjet   = Source.getNomProjet()  ;
+    DescProjet  = Source.getDescProjet() ;
 
 }
 

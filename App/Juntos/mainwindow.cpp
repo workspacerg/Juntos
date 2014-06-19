@@ -28,6 +28,8 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(PagePref, SIGNAL(newParamConnect()), this, SLOT(connectBDD()));
 
 
+
+
 }
 
 
@@ -45,6 +47,10 @@ void MainWindow::connectBDD()
        ui->statusBar->showMessage("Vous êts connecté");
        ui->menu->show();
        emit on_mAccueil_clicked();
+
+
+       PageAccueil->loadTable(myBDD->loadProject());
+
     }
     else
     {

@@ -38,18 +38,33 @@ bool BDD::connectDB()
 
 bool BDD::verifUser()
 {
-
         QSqlQuery query;
-
         if(query.exec("SELECT * FROM `user` WHERE `login` = '"+login+"' AND `keypass` ='"+password+"'"))
         {
             while(query.next())
             {
+
+
+
                 return true;
             }
         }
 
         return false;
+}
+
+vector<CProjet> BDD::loadProject()
+{
+    QSqlQuery query;
+    if(query.exec("Select * FROM project where id in (SELECT `idProject` FROM `userinproject` WHERE `idUser` = (select id from user where login = 'rgabel'))"))
+    {
+        while(query.next())
+        {
+           projects.push_back(CProjet(query.value(1).toString(),query.value(2).toString()));
+        }
+    }
+
+    return projects;
 }
 
 

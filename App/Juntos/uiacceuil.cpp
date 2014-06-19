@@ -11,7 +11,6 @@ uiAcceuil::uiAcceuil(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::uiAcceuil)
 {
-
     ui->setupUi(this);
     ui->BoiteDeCreation->hide();
     BtCreation = false ;
@@ -25,18 +24,30 @@ uiAcceuil::uiAcceuil(QWidget *parent) :
     ui->tableWidgetPtoject->setHorizontalHeaderLabels(test);
     ui->tableWidgetPtoject->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidgetPtoject->setStyleSheet("QTableView {selection-Background-color: rgb(45, 186, 166); }");
-
 }
 
 uiAcceuil::~uiAcceuil()
 {
-
     delete ui;
+}
+
+void uiAcceuil::loadTable(vector<CProjet> Source)
+{
+
+    ui->tableWidgetPtoject->clearContents();
+    ui->tableWidgetPtoject->setRowCount(0);
+
+    for(CProjet& item : Source)
+    {
+        int LastRow = ui->tableWidgetPtoject->rowCount();
+        ui->tableWidgetPtoject->insertRow(LastRow);
+        ui->tableWidgetPtoject->setItem(LastRow, 0, new QTableWidgetItem(item.getNomProjet()));
+        ui->tableWidgetPtoject->setItem(LastRow, 1, new QTableWidgetItem(item.getDescProjet()));
+    }
 }
 
 void uiAcceuil::on_addProject_clicked()
 {
-
     ////////////////////////////////////////////////////////////////////////////////
     ///     Mecanisme d'affichage de la boite de creation
     if (BtCreation == false){
@@ -48,20 +59,14 @@ void uiAcceuil::on_addProject_clicked()
          ui->BoiteDeCreation->hide();
          BtCreation = false ;
     }
-
 }
-
-
-
 
 void uiAcceuil::on_PBCreate_clicked()
 {
     ui->BoiteDeCreation->hide();
     BtCreation = false ;
 
-    CProjet *Projet                     = new CProjet;
-    Projet->setNomProjet(ui->LENom->text());
-    Projet->setDescProjet(ui->TEDescr->toPlainText());
+    CProjet * Projet  = new CProjet(ui->LENom->text(), ui->TEDescr->toPlainText());
 
     int LastRow = ui->tableWidgetPtoject->rowCount();
     ui->tableWidgetPtoject->insertRow(LastRow);
@@ -74,7 +79,5 @@ void uiAcceuil::on_PBCreate_clicked()
 
 void uiAcceuil::on_PBDelProject_clicked()
 {
-
-
     ui->tableWidgetPtoject->removeRow(ui->tableWidgetPtoject->currentRow()) ;
 }

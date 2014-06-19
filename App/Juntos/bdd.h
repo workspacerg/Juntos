@@ -7,6 +7,10 @@
 #include <qstring.h>
 #include <QSettings>
 #include <QtSql/QSqlQuery>
+#include "cprojet.h"
+#include <vector>
+
+using namespace std;
 
 class BDD
 {
@@ -20,11 +24,14 @@ class BDD
             QString login ;
             QString password;
 
+            vector<CProjet> projects ;
+
 public:
 
     BDD();
     bool connectDB();
     bool verifUser();
+    vector<CProjet> loadProject();
 
 };
 
