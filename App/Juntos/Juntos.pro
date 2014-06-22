@@ -27,7 +27,8 @@ SOURCES += main.cpp\
     notification.cpp \
     bdd.cpp \
     settings.cpp \
-    addpeopledialog.cpp
+    addpeopledialog.cpp \
+    cuser.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -40,7 +41,8 @@ HEADERS  += mainwindow.h \
     notification.h \
     bdd.h \
     settings.h \
-    addpeopledialog.h
+    addpeopledialog.h \
+    cuser.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \
