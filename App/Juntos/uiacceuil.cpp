@@ -17,6 +17,9 @@ uiAcceuil::uiAcceuil(QWidget *parent) :
 
     ui->tableWidgetPtoject->verticalHeader()->setVisible(false);
     ui->tableWidgetPtoject->setShowGrid(false);
+
+    ui->addPeople->hide();
+
     QStringList test            ;
     test <<"Nom"<<"Description"  ;
     ui->tableWidgetPtoject->setColumnCount(2);
@@ -93,6 +96,6 @@ void uiAcceuil::on_updTable_clicked()
 
 void uiAcceuil::on_tableWidgetPtoject_itemDoubleClicked(QTableWidgetItem *item)
 {
-    item->row();
+    ui->addPeople->show();
     emit sigSelectCurrentPro(CProjet(ui->tableWidgetPtoject->item( item->row() , 0)->text() , ui->tableWidgetPtoject->item( item->row() , 1)->text() ));
 }
