@@ -21,11 +21,13 @@ class MainWindow : public QMainWindow
 private:
 
     BDD *myBDD ;
-    CProjet * currentPro ;
+    CProjet * currentProject ;
     notification *Notif ;
 
     Ui::MainWindow *ui;
     void hideAll();
+    void enableAllFunction();
+    void disableAllFunction();
 
 
 public:

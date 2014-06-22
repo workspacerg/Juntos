@@ -15,6 +15,10 @@ MainWindow::MainWindow(QWidget *parent) :
     PageTest    = new uiTest    ;
     PageFile    = new uiFile    ;
 
+    disableAllFunction();
+
+
+
     emit on_mAccueil_clicked();
 
     // Centre de notifiaction
@@ -90,6 +94,26 @@ void MainWindow::displayNotification(QString titre, QString content)
 
 // pragma ui
 
+
+void MainWindow::enableAllFunction(){
+
+    ui->mTask->setEnabled(true);
+    ui->mTest->setEnabled(true);
+    ui->mTicket->setEnabled(true);
+    ui->mMessages->setEnabled(true);
+    ui->mFile->setEnabled(true);
+
+}
+
+void MainWindow::disableAllFunction(){
+
+    ui->mTask->setEnabled(false);
+    ui->mTest->setEnabled(false);
+    ui->mTicket->setEnabled(false);
+    ui->mMessages->setEnabled(false);
+    ui->mFile->setEnabled(false);
+
+}
 
 void MainWindow::hideAll()
 {
