@@ -26,7 +26,8 @@ SOURCES += main.cpp\
     uifile.cpp \
     notification.cpp \
     bdd.cpp \
-    settings.cpp
+    settings.cpp \
+    addpeopledialog.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -38,7 +39,8 @@ HEADERS  += mainwindow.h \
     uifile.h \
     notification.h \
     bdd.h \
-    settings.h
+    settings.h \
+    addpeopledialog.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \
@@ -46,7 +48,8 @@ FORMS    += mainwindow.ui \
     uipref.ui \
     uiticket.ui \
     uiTest.ui \
-    uiFile.ui
+    uiFile.ui \
+    addpeopledialog.ui
 
 RESOURCES += \
     Images.qrc
