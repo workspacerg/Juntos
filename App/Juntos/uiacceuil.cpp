@@ -90,3 +90,9 @@ void uiAcceuil::on_updTable_clicked()
 {
     emit sigLoadTable();
 }
+
+void uiAcceuil::on_tableWidgetPtoject_itemDoubleClicked(QTableWidgetItem *item)
+{
+    item->row();
+    emit sigSelectCurrentPro(CProjet(ui->tableWidgetPtoject->item( item->row() , 0)->text() , ui->tableWidgetPtoject->item( item->row() , 1)->text() ));
+}

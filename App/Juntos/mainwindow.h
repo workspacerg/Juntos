@@ -48,6 +48,7 @@ public slots:
     void loadTableProject();
     void addProject(CProjet);
     void delProject(CProjet source);
+    void selCurrentProject(CProjet source);
 
 private slots:
     void on_mAccueil_clicked();

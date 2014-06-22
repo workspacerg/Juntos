@@ -206,7 +206,23 @@
     </widget>
    </item>
    <item>
-    <widget class="QTableWidget" name="tableWidgetPtoject"/>
+    <widget class="QTableWidget" name="tableWidgetPtoject">
+     <property name="enabled">
+      <bool>true</bool>
+     </property>
+     <property name="accessibleName">
+      <string/>
+     </property>
+     <property name="accessibleDescription">
+      <string/>
+     </property>
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+    </widget>
    </item>
   </layout>
  </widget>
