@@ -32,6 +32,8 @@ public:
     bool connectDB();
     bool verifUser();
     vector<CProjet> loadProject();
+    bool addProject(CProjet source);
+    void delProject(CProjet source);
 
 };
 

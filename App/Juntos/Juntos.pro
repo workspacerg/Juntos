@@ -25,7 +25,8 @@ SOURCES += main.cpp\
     uitest.cpp \
     uifile.cpp \
     notification.cpp \
-    bdd.cpp
+    bdd.cpp \
+    settings.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -36,7 +37,8 @@ HEADERS  += mainwindow.h \
     uitest.h \
     uifile.h \
     notification.h \
-    bdd.h
+    bdd.h \
+    settings.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \

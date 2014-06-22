@@ -23,19 +23,26 @@ private:
     vector<CProjet> projects ;
     Ui::uiAcceuil *ui;
 
+
 public:
     explicit uiAcceuil(QWidget *parent = 0);
     ~uiAcceuil();
-
     void loadTable(vector<CProjet> Source);
+
 
 private slots:
     void on_addProject_clicked();
     void on_PBCreate_clicked();
     void on_PBDelProject_clicked();
 
+    void on_updTable_clicked();
+
 signals:
     void notifiactionNewProject(QString, QString);
+    void sigLoadTable();
+    void sigAddPro(CProjet);
+    void sigDelPro(CProjet);
+
 
 };
 

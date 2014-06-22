@@ -1,5 +1,5 @@
 #include "bdd.h"
-
+#include <QMessageBox>
 
 #define q2c(string) string.toStdString()
 
@@ -44,8 +44,6 @@ bool BDD::verifUser()
             while(query.next())
             {
 
-
-
                 return true;
             }
         }
@@ -53,10 +51,14 @@ bool BDD::verifUser()
         return false;
 }
 
+
+
 vector<CProjet> BDD::loadProject()
 {
+    projects.clear();
+
     QSqlQuery query;
-    if(query.exec("Select * FROM project where id in (SELECT `idProject` FROM `userinproject` WHERE `idUser` = (select id from user where login = 'rgabel'))"))
+    if(query.exec("Select * FROM project where id in (SELECT `idProject` FROM `userinproject` WHERE `idUser` = (select id from user where login =  '"+login+"'))"))
     {
         while(query.next())
         {
@@ -66,5 +68,36 @@ vector<CProjet> BDD::loadProject()
 
     return projects;
 }
+
+bool BDD::addProject(CProjet source)
+{
+
+    QSqlQuery query;
+
+    if(query.exec("INSERT INTO `project` (`id`, `name`, `description`, `dateBegin`, `dateEnd`) VALUES (NULL, '"+source.getNomProjet()+"', '"+source.getDescProjet()+"', NULL, NULL)"))
+    {
+        if(query.exec("INSERT INTO `userinproject` (`id`, `idUser`, `idProject`) VALUES (NULL, (SELECT id FROM `user` WHERE `login` = '"+login+"'), (SELECT id FROM `project` ORDER BY `id` DESC LIMIT 1 ) )"))
+        {
+
+
+            return true ;
+        }
+    }
+
+    return false;
+
+}
+
+void BDD::delProject(CProjet source)
+{
+    QSqlQuery query;
+
+    if( query.exec("DELETE FROM `project` WHERE `name` = '"+source.getNomProjet()+"'") )
+    {
+
+    }
+}
+
+
 
 

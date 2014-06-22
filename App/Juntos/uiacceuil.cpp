@@ -34,8 +34,10 @@ uiAcceuil::~uiAcceuil()
 void uiAcceuil::loadTable(vector<CProjet> Source)
 {
 
-    ui->tableWidgetPtoject->clearContents();
-    ui->tableWidgetPtoject->setRowCount(0);
+    while (ui->tableWidgetPtoject->rowCount() > 0)
+    {
+        ui->tableWidgetPtoject->removeRow(0);
+    }
 
     for(CProjet& item : Source)
     {
@@ -66,18 +68,25 @@ void uiAcceuil::on_PBCreate_clicked()
     ui->BoiteDeCreation->hide();
     BtCreation = false ;
 
-    CProjet * Projet  = new CProjet(ui->LENom->text(), ui->TEDescr->toPlainText());
+    emit sigAddPro(CProjet(ui->LENom->text(), ui->TEDescr->toPlainText()));
+   // emit notifiactionNewProject("Création de projet", "Le projet " + Projet->getNomProjet() + " à été crée avec succès");
 
-    int LastRow = ui->tableWidgetPtoject->rowCount();
-    ui->tableWidgetPtoject->insertRow(LastRow);
-    ui->tableWidgetPtoject->setItem(LastRow, 0, new QTableWidgetItem(Projet->getNomProjet()));
-    ui->tableWidgetPtoject->setItem(LastRow, 1, new QTableWidgetItem(Projet->getDescProjet()));
-
-    emit notifiactionNewProject("Création de projet", "Le projet " + Projet->getNomProjet() + " à été crée avec succès");
+    ui->LENom->clear();
+    ui->TEDescr->clear();
 
 }
 
 void uiAcceuil::on_PBDelProject_clicked()
 {
-    ui->tableWidgetPtoject->removeRow(ui->tableWidgetPtoject->currentRow()) ;
+
+    if(ui->tableWidgetPtoject->currentRow() != -1  )
+    {
+        emit sigDelPro(CProjet(ui->tableWidgetPtoject->item(ui->tableWidgetPtoject->currentRow() , 0)->text() , ui->tableWidgetPtoject->item(ui->tableWidgetPtoject->currentRow() , 1)->text() ));
+    }
+
+}
+
+void uiAcceuil::on_updTable_clicked()
+{
+    emit sigLoadTable();
 }

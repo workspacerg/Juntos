@@ -43,6 +43,9 @@ public:
 public slots:
     void displayNotification(QString, QString);
     void connectBDD();
+    void loadTableProject();
+    void addProject(CProjet);
+    void delProject(CProjet source);
 
 private slots:
     void on_mAccueil_clicked();

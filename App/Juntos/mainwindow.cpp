@@ -8,8 +8,6 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
-
     PageAccueil = new uiAcceuil ;
     PageTask    = new uiTask    ;
     PagePref    = new uiPref    ;
@@ -23,12 +21,15 @@ MainWindow::MainWindow(QWidget *parent) :
     Notif = new notification();
     QObject::connect(PageAccueil, SIGNAL(notifiactionNewProject(QString, QString)), this, SLOT(displayNotification(QString, QString)));
 
+    // Base de donnée
     myBDD = new BDD();
     emit connectBDD();
     QObject::connect(PagePref, SIGNAL(newParamConnect()), this, SLOT(connectBDD()));
 
-
-
+    // ACCEUIL
+    QObject::connect(PageAccueil, SIGNAL(sigLoadTable()), this, SLOT(loadTableProject()));
+    QObject::connect(PageAccueil, SIGNAL(sigAddPro(CProjet)), this, SLOT(addProject(CProjet)));
+    QObject::connect(PageAccueil, SIGNAL(sigDelPro(CProjet)), this, SLOT(delProject(CProjet)));
 
 }
 
@@ -49,17 +50,36 @@ void MainWindow::connectBDD()
        emit on_mAccueil_clicked();
 
 
-       PageAccueil->loadTable(myBDD->loadProject());
+       emit loadTableProject();
 
     }
     else
     {
        ui->statusBar->showMessage("la connexion à échoué");
-
        ui->menu->hide();
-
        emit on_mPreference_clicked();
     }
+
+}
+
+void MainWindow::loadTableProject()
+{
+
+    PageAccueil->loadTable(myBDD->loadProject());
+
+}
+
+void MainWindow::addProject(CProjet source)
+{
+    myBDD->addProject(CProjet(source.getNomProjet(), source.getDescProjet()));
+    emit  loadTableProject();
+}
+
+void MainWindow::delProject(CProjet source)
+{
+
+    myBDD->delProject(source);
+    emit  loadTableProject();
 
 }
 
@@ -68,15 +88,18 @@ void MainWindow::displayNotification(QString titre, QString content)
     Notif->sendNotification(titre, content, 12000);
 }
 
+// pragma ui
+
+
 void MainWindow::hideAll()
 {
 
-    ui->cAccueil->hide();
-    ui->cPref->hide()   ;
-    ui->cTask->hide()   ;
-    ui->cTicket->hide() ;
-    ui->cTest->hide()   ;
-    ui->cFile->hide()   ;
+    ui->cAccueil->hide() ;
+    ui->cPref->hide()    ;
+    ui->cTask->hide()    ;
+    ui->cTicket->hide()  ;
+    ui->cTest->hide()    ;
+    ui->cFile->hide()    ;
 
 }
 
