@@ -17,6 +17,9 @@ uiAcceuil::uiAcceuil(QWidget *parent) :
 
     ui->tableWidgetPtoject->verticalHeader()->setVisible(false);
     ui->tableWidgetPtoject->setShowGrid(false);
+
+    ui->addPeople->hide();
+
     QStringList test            ;
     test <<"Nom"<<"Description"  ;
     ui->tableWidgetPtoject->setColumnCount(2);
@@ -88,11 +91,23 @@ void uiAcceuil::on_PBDelProject_clicked()
 
 void uiAcceuil::on_updTable_clicked()
 {
+
     emit sigLoadTable();
+
+
+
 }
 
 void uiAcceuil::on_tableWidgetPtoject_itemDoubleClicked(QTableWidgetItem *item)
 {
-    item->row();
+    ui->addPeople->show();
     emit sigSelectCurrentPro(CProjet(ui->tableWidgetPtoject->item( item->row() , 0)->text() , ui->tableWidgetPtoject->item( item->row() , 1)->text() ));
+}
+
+void uiAcceuil::on_addPeople_clicked()
+{
+
+    peopleInProject = new addPeopleDialog ;
+    peopleInProject->show();
+
 }

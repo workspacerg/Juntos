@@ -17,5 +17,7 @@
         <file>Ressouces/folder-64.png</file>
         <file>Ressouces/ai-512.png</file>
         <file>Ressouces/available_updates-512.png</file>
+        <file>Ressouces/add_user-512.png</file>
+        <file>Ressouces/dnd-512.png</file>
     </qresource>
 </RCC>

@@ -3,6 +3,10 @@
 
 #include <QWidget>
 #include <QString>
+#include <vector>
+#include "cuser.h"
+
+using namespace std;
 
 class CProjet
 {
@@ -21,16 +25,15 @@ public:
 
 
 
+    vector<cUser> getUsers() const;
+    void setUsers(const vector<cUser> &value);
 
-signals:
-
-public slots:
 
 private:
 
     QString NomProjet       ;
     QString DescProjet      ;
-
+    vector<cUser> users     ;
 
 };
 

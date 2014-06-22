@@ -93,6 +93,7 @@ void MainWindow::selCurrentProject(CProjet source)
     currentProject = new CProjet(source.getNomProjet(), source.getDescProjet());
     enableAllFunction();
     ui->statusBar->showMessage("Current project is : " + currentProject->getNomProjet());
+
 }
 
 void MainWindow::displayNotification(QString titre, QString content)

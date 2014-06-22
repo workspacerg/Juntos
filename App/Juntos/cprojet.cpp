@@ -39,6 +39,16 @@ void CProjet::setDescProjet(const QString &value)
 {
     DescProjet = value;
 }
+vector<cUser> CProjet::getUsers() const
+{
+    return users;
+}
+
+void CProjet::setUsers(const vector<cUser> &value)
+{
+    users = value;
+}
+
 
 
 
