@@ -15,6 +15,10 @@ MainWindow::MainWindow(QWidget *parent) :
     PageTest    = new uiTest    ;
     PageFile    = new uiFile    ;
 
+    disableAllFunction();
+
+
+
     emit on_mAccueil_clicked();
 
     // Centre de notifiaction
@@ -30,6 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(PageAccueil, SIGNAL(sigLoadTable()), this, SLOT(loadTableProject()));
     QObject::connect(PageAccueil, SIGNAL(sigAddPro(CProjet)), this, SLOT(addProject(CProjet)));
     QObject::connect(PageAccueil, SIGNAL(sigDelPro(CProjet)), this, SLOT(delProject(CProjet)));
+    QObject::connect(PageAccueil, SIGNAL(sigSelectCurrentPro(CProjet)), this, SLOT(selCurrentProject(CProjet)));
 
 }
 
@@ -83,6 +88,13 @@ void MainWindow::delProject(CProjet source)
 
 }
 
+void MainWindow::selCurrentProject(CProjet source)
+{
+    currentProject = new CProjet(source.getNomProjet(), source.getDescProjet());
+    enableAllFunction();
+    ui->statusBar->showMessage("Current project is : " + currentProject->getNomProjet());
+}
+
 void MainWindow::displayNotification(QString titre, QString content)
 {
     Notif->sendNotification(titre, content, 12000);
@@ -90,6 +102,26 @@ void MainWindow::displayNotification(QString titre, QString content)
 
 // pragma ui
 
+
+void MainWindow::enableAllFunction(){
+
+    ui->mTask->setEnabled(true);
+    ui->mTest->setEnabled(true);
+    ui->mTicket->setEnabled(true);
+    ui->mMessages->setEnabled(true);
+    ui->mFile->setEnabled(true);
+
+}
+
+void MainWindow::disableAllFunction(){
+
+    ui->mTask->setEnabled(false);
+    ui->mTest->setEnabled(false);
+    ui->mTicket->setEnabled(false);
+    ui->mMessages->setEnabled(false);
+    ui->mFile->setEnabled(false);
+
+}
 
 void MainWindow::hideAll()
 {

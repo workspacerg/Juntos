@@ -21,11 +21,13 @@ class MainWindow : public QMainWindow
 private:
 
     BDD *myBDD ;
-    CProjet * currentPro ;
+    CProjet * currentProject ;
     notification *Notif ;
 
     Ui::MainWindow *ui;
     void hideAll();
+    void enableAllFunction();
+    void disableAllFunction();
 
 
 public:
@@ -46,6 +48,7 @@ public slots:
     void loadTableProject();
     void addProject(CProjet);
     void delProject(CProjet source);
+    void selCurrentProject(CProjet source);
 
 private slots:
     void on_mAccueil_clicked();

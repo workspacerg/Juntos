@@ -5,6 +5,7 @@
 #include "cprojet.h"
 #include <iostream>
 #include <vector>
+#include <QTableWidgetItem>
 
 using namespace std;
 
@@ -34,14 +35,15 @@ private slots:
     void on_addProject_clicked();
     void on_PBCreate_clicked();
     void on_PBDelProject_clicked();
-
     void on_updTable_clicked();
+    void on_tableWidgetPtoject_itemDoubleClicked(QTableWidgetItem *item);
 
 signals:
     void notifiactionNewProject(QString, QString);
     void sigLoadTable();
     void sigAddPro(CProjet);
     void sigDelPro(CProjet);
+    void sigSelectCurrentPro(CProjet);
 
 
 };
