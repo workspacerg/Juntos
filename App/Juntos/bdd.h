@@ -7,8 +7,10 @@
 #include <qstring.h>
 #include <QSettings>
 #include <QtSql/QSqlQuery>
+#include <QDebug>
 #include "cprojet.h"
 #include <vector>
+#include "cuser.h"
 
 using namespace std;
 
@@ -24,6 +26,7 @@ class BDD
             QString login ;
             QString password;
 
+
             vector<CProjet> projects ;
 
 public:
@@ -34,6 +37,8 @@ public:
     vector<CProjet> loadProject();
     bool addProject(CProjet source);
     void delProject(CProjet source);
+    CProjet getInfoProjet(CProjet source);
+    vector<cUser> getParticipant(int);
 
 };
 

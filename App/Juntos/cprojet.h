@@ -14,6 +14,9 @@ class CProjet
 public:
 
     CProjet(QString nom, QString descr);
+
+    CProjet( int id, QString nom, QString descr);
+
     CProjet(const CProjet &Source);
 
 
@@ -29,8 +32,14 @@ public:
     void setUsers(const vector<cUser> &value);
 
 
+    int getId() const;
+    void setId(int value);
+
+    void addUser(cUser source);
+
 private:
 
+    int id                  ;
     QString NomProjet       ;
     QString DescProjet      ;
     vector<cUser> users     ;

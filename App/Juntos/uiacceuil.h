@@ -6,7 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <QTableWidgetItem>
-#include "addpeopledialog.h"
+
 
 using namespace std;
 
@@ -25,7 +25,6 @@ private:
 
     vector<CProjet> projects ;
     Ui::uiAcceuil *ui;
-    addPeopleDialog * peopleInProject;
 
 
 public:
@@ -40,7 +39,6 @@ private slots:
     void on_PBDelProject_clicked();
     void on_updTable_clicked();
     void on_tableWidgetPtoject_itemDoubleClicked(QTableWidgetItem *item);
-
     void on_addPeople_clicked();
 
 signals:
@@ -49,6 +47,7 @@ signals:
     void sigAddPro(CProjet);
     void sigDelPro(CProjet);
     void sigSelectCurrentPro(CProjet);
+    void sigGetParticipant();
 
 
 };

@@ -102,12 +102,12 @@ void uiAcceuil::on_tableWidgetPtoject_itemDoubleClicked(QTableWidgetItem *item)
 {
     ui->addPeople->show();
     emit sigSelectCurrentPro(CProjet(ui->tableWidgetPtoject->item( item->row() , 0)->text() , ui->tableWidgetPtoject->item( item->row() , 1)->text() ));
+
 }
 
 void uiAcceuil::on_addPeople_clicked()
 {
 
-    peopleInProject = new addPeopleDialog ;
-    peopleInProject->show();
+    emit sigGetParticipant();
 
 }

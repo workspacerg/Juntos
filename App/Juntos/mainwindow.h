@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QDebug>
 #include "uiacceuil.h"
 #include "uitask.h"
 #include "uipref.h"
@@ -10,6 +11,7 @@
 #include "uifile.h"
 #include "notification.h"
 #include "bdd.h"
+#include "addpeopledialog.h"
 
 namespace Ui {
 class MainWindow;
@@ -38,6 +40,7 @@ public:
     uiTicket    *PageTicket     ;
     uiTest      *PageTest       ;
     uiFile      *PageFile       ;
+    addPeopleDialog *pagePeople ;
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -49,6 +52,7 @@ public slots:
     void addProject(CProjet);
     void delProject(CProjet source);
     void selCurrentProject(CProjet source);
+    void getParticipant();
 
 private slots:
     void on_mAccueil_clicked();

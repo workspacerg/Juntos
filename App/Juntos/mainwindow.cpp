@@ -35,6 +35,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(PageAccueil, SIGNAL(sigAddPro(CProjet)), this, SLOT(addProject(CProjet)));
     QObject::connect(PageAccueil, SIGNAL(sigDelPro(CProjet)), this, SLOT(delProject(CProjet)));
     QObject::connect(PageAccueil, SIGNAL(sigSelectCurrentPro(CProjet)), this, SLOT(selCurrentProject(CProjet)));
+    QObject::connect(PageAccueil, SIGNAL(sigGetParticipant()), this, SLOT(getParticipant()));
 
 }
 
@@ -90,9 +91,32 @@ void MainWindow::delProject(CProjet source)
 
 void MainWindow::selCurrentProject(CProjet source)
 {
-    currentProject = new CProjet(source.getNomProjet(), source.getDescProjet());
+    //currentProject = new CProjet(source.getNomProjet(), source.getDescProjet());
+
+    currentProject = new CProjet(myBDD->getInfoProjet(source));
     enableAllFunction();
-    ui->statusBar->showMessage("Current project is : " + currentProject->getNomProjet());
+
+    qDebug() << currentProject->getId();
+    qDebug() << currentProject->getNomProjet();
+    qDebug() << currentProject->getDescProjet();
+
+    ui->statusBar->showMessage(" Current project is : "  +  currentProject->getNomProjet());
+
+}
+
+void MainWindow::getParticipant()
+{
+       vector<cUser> listUser = myBDD->getParticipant(currentProject->getId());
+
+       for(cUser item : listUser)
+       {
+           qDebug() << item.getLogin();
+           currentProject->addUser(item);
+       }
+
+       pagePeople = new addPeopleDialog();
+       pagePeople->loadParticipant(currentProject->getUsers());
+       pagePeople->show();
 
 }
 

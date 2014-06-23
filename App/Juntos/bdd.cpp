@@ -57,12 +57,16 @@ vector<CProjet> BDD::loadProject()
 {
     projects.clear();
 
-    QSqlQuery query;
+
+    // Chargement des projet
+
+     QSqlQuery query;
     if(query.exec("Select * FROM project where id in (SELECT `idProject` FROM `userinproject` WHERE `idUser` = (select id from user where login =  '"+login+"'))"))
     {
         while(query.next())
         {
-           projects.push_back(CProjet(query.value(1).toString(),query.value(2).toString()));
+           projects.push_back(CProjet(query.value(0).toInt(),query.value(1).toString(),query.value(2).toString()));
+
         }
     }
 
@@ -96,6 +100,47 @@ void BDD::delProject(CProjet source)
     {
 
     }
+}
+
+CProjet  BDD::getInfoProjet(CProjet  source)
+{
+
+
+    QSqlQuery query;
+   if(query.exec("Select * FROM project where name='"+ source.getNomProjet() +"'"))
+   {
+       while(query.next())
+       {
+            return CProjet(query.value(0).toInt(),query.value(1).toString(),query.value(2).toString());
+       }
+
+   }
+
+     return CProjet(0,"Erreur","Erreur lors de la récuperation");
+
+}
+
+vector<cUser> BDD::getParticipant(int idPro)
+{
+
+    vector<cUser> usr ;
+
+    QString idString = QString::number(idPro);
+
+    QSqlQuery query;
+    if(query.exec("SELECT DISTINCT login, mail  FROM `user`  Inner join `userinproject` up on `user`.id = up.idUser   inner join `project` pr on up.idProject = pr.id  where pr.id = '"+ idString +"' "))
+    {
+        while(query.next())
+        {
+           qDebug() << query.value(0).toString() ;
+           qDebug() << query.value(1).toString() ;
+           usr.push_back(cUser(query.value(0).toString(),query.value(1).toString()));
+
+        }
+    }
+
+    return usr;
+
 }
 
 

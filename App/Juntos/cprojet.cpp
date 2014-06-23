@@ -9,9 +9,17 @@ CProjet::CProjet(QString nom, QString descr)
 
 }
 
+CProjet::CProjet(int id, QString nom, QString descr)
+{
+    this->id = id;
+    NomProjet   = nom    ;
+    DescProjet  = descr  ;
+}
+
 CProjet::CProjet(const CProjet &Source)
 {
 
+    id = Source.getId();
     NomProjet   = Source.getNomProjet()  ;
     DescProjet  = Source.getDescProjet() ;
 
@@ -48,6 +56,21 @@ void CProjet::setUsers(const vector<cUser> &value)
 {
     users = value;
 }
+int CProjet::getId() const
+{
+    return id;
+}
+
+void CProjet::setId(int value)
+{
+    id = value;
+}
+
+void CProjet::addUser(cUser source)
+{
+    users.push_back(source);
+}
+
 
 
 
