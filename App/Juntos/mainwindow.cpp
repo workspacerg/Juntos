@@ -116,6 +116,12 @@ void MainWindow::getParticipant()
 
        pagePeople = new addPeopleDialog();
        pagePeople->loadParticipant(currentProject->getUsers());
+
+       // Verifier droit admin du projet
+       // si false cache la bar de modification
+
+
+
        pagePeople->show();
 
 }
