@@ -80,7 +80,7 @@ bool BDD::addProject(CProjet source)
 
     if(query.exec("INSERT INTO `project` (`id`, `name`, `description`) VALUES (NULL, '"+source.getNomProjet()+"', '"+source.getDescProjet()+"')"))
     {
-        if(query.exec("INSERT INTO `userinproject` (`id`, `idUser`, `idProject`) VALUES (NULL, (SELECT id FROM `user` WHERE `login` = '"+login+"'), (SELECT id FROM `project` ORDER BY `id` DESC LIMIT 1 ) )"))
+        if(query.exec("INSERT INTO `userinproject` (`id`, `idUser`, `idProject`, `admin`) VALUES (NULL, (SELECT id FROM `user` WHERE `login` = '"+login+"'), (SELECT id FROM `project` ORDER BY `id` DESC LIMIT 1 ) , 1 )"))
         {
 
 
@@ -141,6 +141,28 @@ vector<cUser> BDD::getParticipant(int idPro)
 
     return usr;
 
+}
+
+bool BDD::checkAdmin(int idPro)
+{
+
+
+    QString idString = QString::number(idPro);
+
+    QSqlQuery query;
+
+   if(query.exec("SELECT *  FROM `user`  Inner join `userinproject` up on `user`.id = up.idUser   inner join `project` pr on up.idProject = pr.id  where pr.id = '"+ idString +"' and  up.admin = 1  and user.login = '"+login+"' "))
+   {
+
+       while (query.next()) {
+            return true;
+       }
+
+   }
+   else
+       qDebug() << "error sql : " << query.lastError().text();
+
+   return false;
 }
 
 

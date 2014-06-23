@@ -28,6 +28,11 @@ addPeopleDialog::~addPeopleDialog()
 void addPeopleDialog::loadParticipant(vector<cUser> usr)
 {
 
+    while (ui->tableWidget->rowCount() > 0)
+    {
+        ui->tableWidget->removeRow(0);
+    }
+
     for(cUser item : usr)
     {
 
@@ -44,4 +49,12 @@ void addPeopleDialog::loadParticipant(vector<cUser> usr)
 
 
 
+}
+
+void addPeopleDialog::disableModification()
+{
+    ui->modCenter->setEnabled(false);
+    ui->add->hide();
+    ui->dell->hide();
+    ui->lineEdit->hide();
 }

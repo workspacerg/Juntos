@@ -108,6 +108,7 @@ void MainWindow::getParticipant()
 {
        vector<cUser> listUser = myBDD->getParticipant(currentProject->getId());
 
+       currentProject->clearUser();
        for(cUser item : listUser)
        {
            qDebug() << item.getLogin();
@@ -119,6 +120,10 @@ void MainWindow::getParticipant()
 
        // Verifier droit admin du projet
        // si false cache la bar de modification
+       if(!myBDD->checkAdmin(currentProject->getId()))
+       {
+             pagePeople->disableModification();
+       }
 
 
 

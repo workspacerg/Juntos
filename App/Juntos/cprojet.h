@@ -37,6 +37,8 @@ public:
 
     void addUser(cUser source);
 
+    void clearUser();
+
 private:
 
     int id                  ;

@@ -22,11 +22,11 @@ class addPeopleDialog : public QDialog
 public:
     explicit addPeopleDialog(QWidget *parent = 0 );
     ~addPeopleDialog();
-
+ Ui::addPeopleDialog *ui;
     void loadParticipant(vector<cUser>);
-
+void disableModification();
 private:
-    Ui::addPeopleDialog *ui;
+
     vector<cUser> users;
 };
 

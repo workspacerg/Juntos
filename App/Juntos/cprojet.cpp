@@ -71,6 +71,11 @@ void CProjet::addUser(cUser source)
     users.push_back(source);
 }
 
+void CProjet::clearUser()
+{
+    users.clear();
+}
+
 
 
 

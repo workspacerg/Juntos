@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <QtSql/QSqlDatabase>
+#include <QSqlError>
 #include <qstring.h>
 #include <QSettings>
 #include <QtSql/QSqlQuery>
@@ -39,6 +40,7 @@ public:
     void delProject(CProjet source);
     CProjet getInfoProjet(CProjet source);
     vector<cUser> getParticipant(int);
+    bool checkAdmin(int);
 
 };
 
