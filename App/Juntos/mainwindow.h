@@ -47,13 +47,17 @@ public:
 
 public slots:
     void displayNotification(QString, QString);
+    // BDD ------------------------------------------------------------------------------------------------------------------------------
     void connectBDD();
     void loadTableProject();
     void addProject(CProjet);
     void delProject(CProjet source);
     void selCurrentProject(CProjet source);
     void getParticipant();
+    void addPeopletoProject(QString);
+    void delPeopleToProject(QString);;
 
+    //     ------------------------------------------------------------------------------------------------------------------------------
 private slots:
     void on_mAccueil_clicked();
     void on_mTask_clicked();

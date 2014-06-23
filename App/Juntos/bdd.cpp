@@ -165,6 +165,24 @@ bool BDD::checkAdmin(int idPro)
    return false;
 }
 
+void BDD::addPeopleToProject(QString log, int idPro)
+{
+
+    QString idString = QString::number(idPro);
+    QSqlQuery query;
+
+    if(query.exec("INSERT INTO `userinproject` (`id`, `idUser`, `idProject`, `admin`) VALUES (NULL, (select id from user where login = '" + log + "' ), '"+ idString +"', '0')"))
+    {
+
+    }
+    else
+    {
+        qDebug() << "Erreur insert new people in project";
+    }
+
+
+}
+
 
 
 

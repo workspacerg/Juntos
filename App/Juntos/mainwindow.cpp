@@ -116,6 +116,7 @@ void MainWindow::getParticipant()
        }
 
        pagePeople = new addPeopleDialog();
+        QObject::connect(pagePeople, SIGNAL(sigAddUserToProject(QString)), this, SLOT(addPeopletoProject(QString)));
        pagePeople->loadParticipant(currentProject->getUsers());
 
        // Verifier droit admin du projet
@@ -128,6 +129,17 @@ void MainWindow::getParticipant()
 
 
        pagePeople->show();
+
+}
+
+void MainWindow::addPeopletoProject(QString usrToadd)
+{
+    myBDD->addPeopleToProject(usrToadd, currentProject->getId());
+    delete pagePeople;
+}
+
+void MainWindow::delPeopleToProject(QString)
+{
 
 }
 

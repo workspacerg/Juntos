@@ -41,6 +41,7 @@ public:
     CProjet getInfoProjet(CProjet source);
     vector<cUser> getParticipant(int);
     bool checkAdmin(int);
+    void addPeopleToProject( QString , int );
 
 };
 

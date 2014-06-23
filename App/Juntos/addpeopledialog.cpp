@@ -36,9 +36,6 @@ void addPeopleDialog::loadParticipant(vector<cUser> usr)
     for(cUser item : usr)
     {
 
-        qDebug() << "Load Participant in addpeopledialog";
-        qDebug() << item.getLogin();
-
         int LastRow = ui->tableWidget->rowCount();
         ui->tableWidget->insertRow(LastRow);
         ui->tableWidget->setItem(LastRow, 0, new QTableWidgetItem(item.getLogin()));
@@ -57,4 +54,15 @@ void addPeopleDialog::disableModification()
     ui->add->hide();
     ui->dell->hide();
     ui->lineEdit->hide();
+}
+
+void addPeopleDialog::on_add_clicked()
+{
+
+    emit sigAddUserToProject(ui->lineEdit->text());
+}
+
+void addPeopleDialog::on_dell_clicked()
+{
+
 }

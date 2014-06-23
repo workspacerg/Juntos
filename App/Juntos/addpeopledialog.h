@@ -25,9 +25,18 @@ public:
  Ui::addPeopleDialog *ui;
     void loadParticipant(vector<cUser>);
 void disableModification();
-private:
+private slots:
+void on_add_clicked();
 
+void on_dell_clicked();
+
+private:
     vector<cUser> users;
+
+signals:
+    void sigAddUserToProject(QString);
+    void delUserToProject(QString);
+
 };
 
 #endif // ADDPEOPLEDIALOG_H
