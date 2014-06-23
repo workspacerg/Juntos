@@ -74,7 +74,7 @@ bool BDD::addProject(CProjet source)
 
     QSqlQuery query;
 
-    if(query.exec("INSERT INTO `project` (`id`, `name`, `description`, `dateBegin`, `dateEnd`) VALUES (NULL, '"+source.getNomProjet()+"', '"+source.getDescProjet()+"', NULL, NULL)"))
+    if(query.exec("INSERT INTO `project` (`id`, `name`, `description`) VALUES (NULL, '"+source.getNomProjet()+"', '"+source.getDescProjet()+"')"))
     {
         if(query.exec("INSERT INTO `userinproject` (`id`, `idUser`, `idProject`) VALUES (NULL, (SELECT id FROM `user` WHERE `login` = '"+login+"'), (SELECT id FROM `project` ORDER BY `id` DESC LIMIT 1 ) )"))
         {
