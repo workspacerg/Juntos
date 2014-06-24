@@ -37,11 +37,12 @@ public:
     bool verifUser();
     vector<CProjet> loadProject();
     bool addProject(CProjet source);
-    void delProject(CProjet source);
+    bool delProject(CProjet source);
     CProjet getInfoProjet(CProjet source);
     vector<cUser> getParticipant(int);
     bool checkAdmin(int);
-    void addPeopleToProject( QString , int );
+    bool addPeopleToProject( QString , int );
+    bool delPeopletoProject( QString, int );
 
 };
 

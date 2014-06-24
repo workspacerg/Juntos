@@ -35,7 +35,7 @@ private:
 
 signals:
     void sigAddUserToProject(QString);
-    void delUserToProject(QString);
+    void sigDelUserToProject(QString);
 
 };
 

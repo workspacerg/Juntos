@@ -58,11 +58,17 @@ void addPeopleDialog::disableModification()
 
 void addPeopleDialog::on_add_clicked()
 {
+     if(ui->lineEdit->text() != ""){
+          emit sigAddUserToProject(ui->lineEdit->text());
+     }
 
-    emit sigAddUserToProject(ui->lineEdit->text());
 }
 
 void addPeopleDialog::on_dell_clicked()
 {
+    QString content = ui->lineEdit->text() ;
+    if(!content.isEmpty()){
+        emit sigDelUserToProject(ui->lineEdit->text());
+    }
 
 }

@@ -117,7 +117,9 @@ void MainWindow::getParticipant()
 
        pagePeople = new addPeopleDialog();
         QObject::connect(pagePeople, SIGNAL(sigAddUserToProject(QString)), this, SLOT(addPeopletoProject(QString)));
-       pagePeople->loadParticipant(currentProject->getUsers());
+        QObject::connect(pagePeople, SIGNAL(sigDelUserToProject(QString)), this, SLOT(delPeopleToProject(QString)));
+
+        pagePeople->loadParticipant(currentProject->getUsers());
 
        // Verifier droit admin du projet
        // si false cache la bar de modification
@@ -126,10 +128,7 @@ void MainWindow::getParticipant()
              pagePeople->disableModification();
        }
 
-
-
        pagePeople->show();
-
 }
 
 void MainWindow::addPeopletoProject(QString usrToadd)
@@ -138,9 +137,11 @@ void MainWindow::addPeopletoProject(QString usrToadd)
     delete pagePeople;
 }
 
-void MainWindow::delPeopleToProject(QString)
+void MainWindow::delPeopleToProject(QString usrToadd)
 {
-
+    qDebug() << "delPeopleToProject(QString usrToadd)" ;
+    myBDD->delPeopletoProject(usrToadd, currentProject->getId());
+    delete pagePeople;
 }
 
 void MainWindow::displayNotification(QString titre, QString content)

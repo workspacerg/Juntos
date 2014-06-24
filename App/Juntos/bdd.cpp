@@ -1,5 +1,6 @@
 #include "bdd.h"
 #include <QMessageBox>
+#include <QDebug>
 
 #define q2c(string) string.toStdString()
 
@@ -39,16 +40,39 @@ bool BDD::connectDB()
 bool BDD::verifUser()
 {
         QSqlQuery query;
-        if(query.exec("SELECT * FROM `user` WHERE `login` = '"+login+"' AND `keypass` ='"+password+"'"))
-        {
-            while(query.next())
-            {
 
-                return true;
+
+        if(query.exec("select check_param_user('"+login+"', '"+password+"')"))
+        {
+            while (query.next()) {
+               if(query.value(0).toInt() == 1)
+               {
+                   return true;
+               }
+               else
+               {
+                   return false;
+               }
             }
+
+
+        }else
+        {
+            qDebug() << query.lastError().text();
         }
 
         return false;
+
+        //        if(query.exec("SELECT * FROM `user` WHERE `login` = '"+login+"' AND `keypass` ='"+password+"'"))
+        //        {
+        //            while(query.next())
+        //            {
+        //                return true;
+        //            }
+        //        }
+
+        //        return false;
+
 }
 
 
@@ -61,7 +85,7 @@ vector<CProjet> BDD::loadProject()
     // Chargement des projet
 
      QSqlQuery query;
-    if(query.exec("Select * FROM project where id in (SELECT `idProject` FROM `userinproject` WHERE `idUser` = (select id from user where login =  '"+login+"'))"))
+    if(query.exec("SELECT pr.id , pr.name , pr.description FROM user u INNER JOIN userinproject up ON u.id = up.idUser INNER JOIN project pr ON up.idProject = pr.id where u.login = '"+ login +"'"))
     {
         while(query.next())
         {
@@ -78,28 +102,63 @@ bool BDD::addProject(CProjet source)
 
     QSqlQuery query;
 
-    if(query.exec("INSERT INTO `project` (`id`, `name`, `description`) VALUES (NULL, '"+source.getNomProjet()+"', '"+source.getDescProjet()+"')"))
+    if(query.exec("select insert_new_project('"+ source.getNomProjet() +"', '"+source.getDescProjet()+"' , '" + login + "')"))
     {
-        if(query.exec("INSERT INTO `userinproject` (`id`, `idUser`, `idProject`, `admin`) VALUES (NULL, (SELECT id FROM `user` WHERE `login` = '"+login+"'), (SELECT id FROM `project` ORDER BY `id` DESC LIMIT 1 ) , 1 )"))
-        {
 
-
-            return true ;
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
         }
-    }
 
-    return false;
+    }else
+    {
+        qDebug() << query.lastError().text();
+    }
+     return false;
+
+//    if(query.exec("INSERT INTO `project` (`id`, `name`, `description`) VALUES (NULL, '"+source.getNomProjet()+"', '"+source.getDescProjet()+"')"))
+//    {
+//        if(query.exec("INSERT INTO `userinproject` (`id`, `idUser`, `idProject`, `admin`) VALUES (NULL, (SELECT id FROM `user` WHERE `login` = '"+login+"'), (SELECT id FROM `project` ORDER BY `id` DESC LIMIT 1 ) , 1 )"))
+//        {
+
+
+//            return true ;
+//        }
+//    }
+
+//    return false;
 
 }
 
-void BDD::delProject(CProjet source)
+bool BDD::delProject(CProjet source)
 {
     QSqlQuery query;
 
-    if( query.exec("DELETE FROM `project` WHERE `name` = '"+source.getNomProjet()+"'") )
+    if(query.exec("select del_project('"+login+"','" + source.getNomProjet() +"')"))
     {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
 
+    }else
+    {
+        qDebug() << query.lastError().text();
     }
+     return false;
+
+
+//    if( query.exec("DELETE FROM `project` WHERE `name` = '"+source.getNomProjet()+"'") )
+//    {
+//    }
 }
 
 CProjet  BDD::getInfoProjet(CProjet  source)
@@ -145,41 +204,109 @@ vector<cUser> BDD::getParticipant(int idPro)
 
 bool BDD::checkAdmin(int idPro)
 {
-
-
     QString idString = QString::number(idPro);
 
     QSqlQuery query;
 
-   if(query.exec("SELECT *  FROM `user`  Inner join `userinproject` up on `user`.id = up.idUser   inner join `project` pr on up.idProject = pr.id  where pr.id = '"+ idString +"' and  up.admin = 1  and user.login = '"+login+"' "))
-   {
+    if(query.exec("select check_user_admin('"+login+"', '"+idString+"')"))
+    {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
 
-       while (query.next()) {
-            return true;
-       }
 
-   }
-   else
-       qDebug() << "error sql : " << query.lastError().text();
+    }else
+    {
+        qDebug() << query.lastError().text();
+    }
+     return false;
 
-   return false;
+//   if(query.exec("SELECT *  FROM `user`  Inner join `userinproject` up on `user`.id = up.idUser   inner join `project` pr on up.idProject = pr.id  where pr.id = '"+ idString +"' and  up.admin = 1  and user.login = '"+login+"' "))
+//   {
+
+//       while (query.next()) {
+//            return true;
+//       }
+
+//   }
+//   else
+//       qDebug() << "error sql : " << query.lastError().text();
+
+//   return false;
+
 }
 
-void BDD::addPeopleToProject(QString log, int idPro)
+bool BDD::addPeopleToProject(QString log, int idPro)
 {
 
     QString idString = QString::number(idPro);
     QSqlQuery query;
 
-    if(query.exec("INSERT INTO `userinproject` (`id`, `idUser`, `idProject`, `admin`) VALUES (NULL, (select id from user where login = '" + log + "' ), '"+ idString +"', '0')"))
+    if(query.exec("select insert_people_to_project('"+ login +"', '"+ log +"' , '"+idString+"' )"))
     {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
 
-    }
-    else
+    }else
     {
-        qDebug() << "Erreur insert new people in project";
+        qDebug() << query.lastError().text();
     }
+     return false;
 
+//    if(query.exec("INSERT INTO `userinproject` (`id`, `idUser`, `idProject`, `admin`) VALUES (NULL, (select id from user where login = '" + log + "' ), '"+ idString +"', '0')"))
+//    {
+
+//    }
+//    else
+//    {
+//        qDebug() << "Erreur insert new people in project";
+//    }
+
+
+}
+
+bool BDD::delPeopletoProject(QString log, int idPro)
+{
+
+    QString idString = QString::number(idPro);
+    QSqlQuery query;
+
+    if(query.exec("select del_user_project('"+ login +"', '"+ log +"', '"+ idString +"')"))
+    {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
+
+    }else
+    {
+        qDebug() << query.lastError().text();
+    }
+     return false;
+
+//    if(query.exec("DELETE FROM `userinproject` WHERE `idProject` =  '"+ idString +"' and `idUser` = (select id from user where login =  '" + log + "' )" ))
+//    {
+
+//    }
+//    else
+//    {
+//        qDebug() << "Erreur delete people in project";
+//    }
 
 }
 
