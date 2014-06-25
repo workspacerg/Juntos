@@ -37,6 +37,13 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(PageAccueil, SIGNAL(sigSelectCurrentPro(CProjet)), this, SLOT(selCurrentProject(CProjet)));
     QObject::connect(PageAccueil, SIGNAL(sigGetParticipant()), this, SLOT(getParticipant()));
 
+    // Ticket
+    QObject::connect(PageTicket, SIGNAL(displayFormAddBug()), this, SLOT(displayFormAddBug()));
+    QObject::connect(PageTicket, SIGNAL(displayFormDelBug()), this, SLOT(displayFormDelBug()));
+    QObject::connect(PageTicket, SIGNAL(displayFormUpdBug()), this, SLOT(displayFormUpdBug()));
+
+
+
 }
 
 
@@ -142,6 +149,21 @@ void MainWindow::delPeopleToProject(QString usrToadd)
     qDebug() << "delPeopleToProject(QString usrToadd)" ;
     myBDD->delPeopletoProject(usrToadd, currentProject->getId());
     delete pagePeople;
+}
+
+void MainWindow::displayFormAddBug()
+{
+
+}
+
+void MainWindow::displayFormDelBug()
+{
+
+}
+
+void MainWindow::displayFormUpdBug()
+{
+
 }
 
 void MainWindow::displayNotification(QString titre, QString content)

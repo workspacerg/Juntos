@@ -142,7 +142,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="addBug">
        <property name="text">
         <string/>
        </property>
@@ -162,7 +162,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="delBug">
        <property name="text">
         <string/>
        </property>

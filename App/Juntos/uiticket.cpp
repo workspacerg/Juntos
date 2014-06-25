@@ -56,3 +56,18 @@ void uiTicket::loadTable(vector<Ticket> Source)
 
 }
 
+
+void uiTicket::on_addBug_clicked()
+{
+   emit displayFormAddBug();
+}
+
+void uiTicket::on_delBug_clicked()
+{
+    emit displayFormDelBug();
+}
+
+void uiTicket::on_tableWidgetTicket_doubleClicked(const QModelIndex &index)
+{
+    emit displayFormUpdBug();
+}

@@ -57,7 +57,12 @@ public slots:
     void addPeopletoProject(QString);
     void delPeopleToProject(QString);;
 
-    //     ------------------------------------------------------------------------------------------------------------------------------
+    //  Ticket ------------------------------------------------------------------------------------------------------------------------------
+    void displayFormAddBug();
+    void displayFormDelBug();
+    void displayFormUpdBug();
+
+
 private slots:
     void on_mAccueil_clicked();
     void on_mTask_clicked();

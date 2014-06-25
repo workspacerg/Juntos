@@ -23,8 +23,21 @@ public:
 
     void loadTable(vector<Ticket>);
 
+private slots:
+    void on_addBug_clicked();
+    void on_delBug_clicked();
+    void on_tableWidgetTicket_doubleClicked(const QModelIndex &index);
+
 private:
     Ui::uiTicket *ui;
+
+
+signals:
+    void displayFormAddBug();
+    void displayFormDelBug();
+    void displayFormUpdBug();
+
+
 };
 
 #endif // UITICKET_H
