@@ -120,7 +120,11 @@
     </layout>
    </item>
    <item>
-    <widget class="QTableWidget" name="tableWidgetTicket"/>
+    <widget class="QTableWidget" name="tableWidgetTicket">
+     <property name="editTriggers">
+      <set>QAbstractItemView::NoEditTriggers</set>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">

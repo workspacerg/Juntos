@@ -72,7 +72,17 @@ void Ticket::setDev(const QString &value)
 {
     dev = value;
 }
-Ticket::Ticket(QString idT, QString nameT, QString descrT, QString createUser, QString dtCreate, QString setUserDt, QString devName)
+
+QString Ticket::getEtat() const
+{
+    return etat;
+}
+
+void Ticket::setEtat(const QString &value)
+{
+    etat = value;
+}
+Ticket::Ticket(QString idT, QString nameT, QString descrT, QString createUser, QString dtCreate, QString setUserDt, QString devName, QString etatTk)
 {
 
     idTicket = idT ;
@@ -82,5 +92,6 @@ Ticket::Ticket(QString idT, QString nameT, QString descrT, QString createUser, Q
     createDt =  dtCreate ;
     setUserDate = setUserDt ;
     dev = devName ;
+    etat = etatTk ;
 
 }

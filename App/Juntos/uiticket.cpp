@@ -16,7 +16,7 @@ uiTicket::uiTicket(QWidget *parent) :
     ui->tableWidgetTicket->verticalHeader()->setVisible(false);
     ui->tableWidgetTicket->setShowGrid(false);
 
-    ui->tableWidgetTicket->setColumnWidth(0, 100);
+    ui->tableWidgetTicket->setColumnWidth(0, 50);
 
 
     ui->tableWidgetTicket->horizontalHeader()->setStretchLastSection(true);
@@ -50,7 +50,8 @@ void uiTicket::loadTable(vector<Ticket> Source)
         ui->tableWidgetTicket->setItem(LastRow, 3, new QTableWidgetItem(item.getCreateDt()));
         ui->tableWidgetTicket->setItem(LastRow, 4, new QTableWidgetItem(item.getSetUserDate()));
         ui->tableWidgetTicket->setItem(LastRow, 5, new QTableWidgetItem(item.getDev()));
-        ui->tableWidgetTicket->setItem(LastRow, 8, new QTableWidgetItem(item.getDescrTicket()));
+        ui->tableWidgetTicket->setItem(LastRow, 6, new QTableWidgetItem(item.getEtat()));
+        ui->tableWidgetTicket->setItem(LastRow, 7, new QTableWidgetItem(item.getDescrTicket()));
     }
 
 }

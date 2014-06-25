@@ -16,12 +16,13 @@ class Ticket
     QString createDt;
     QString setUserDate;
     QString dev;
+    QString etat;
 
 
 
 public:
 
-    Ticket(QString idT, QString nameT, QString descrT , QString createUser , QString dtCreate , QString setUserDt , QString devName );
+    Ticket(QString idT, QString nameT, QString descrT , QString createUser , QString dtCreate , QString setUserDt , QString devName , QString etatTk );
 
     QString getIdTicket() const;
     void setIdTicket(const QString &value);
@@ -38,6 +39,8 @@ public:
     void setSetUserDate(const QString &value);
     QString getDev() const;
     void setDev(const QString &value);
+    QString getEtat() const;
+    void setEtat(const QString &value);
 };
 
 #endif // TICKET_H
