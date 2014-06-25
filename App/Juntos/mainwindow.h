@@ -67,6 +67,7 @@ public slots:
     void displayFormAddBug();
     void displayFormDelBug();
     void displayFormUpdBug();
+    void save_ticket_to_database(QString title, QString descr, QString user, QString etat);
 
 
 private slots:

@@ -52,6 +52,7 @@ public:
 
     // Ticket
     vector<Ticket> loadTicket(int);
+    bool add_ticket(QString title , QString descr , QString userToAssign, QString avancement , int idPro);
 
 
 };

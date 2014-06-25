@@ -153,22 +153,37 @@ void MainWindow::delPeopleToProject(QString usrToadd)
 
 void MainWindow::displayFormAddBug()
 {
+    vector<cUser> listUser = myBDD->getParticipant(currentProject->getId());
+
+    currentProject->clearUser();
+    for(cUser item : listUser)
+    {
+        currentProject->addUser(item);
+    }
 
     pageAddBug = new formAddBug();
+    pageAddBug->loadParticipant(currentProject->getUsers());
     pageAddBug->show();
 }
 
 void MainWindow::displayFormDelBug()
 {
 
-
     pageDelBug = new formDelBug();
     pageDelBug->show();
+    QObject::connect(pageAddBug, SIGNAL(savetodatabase(QString,QString,QString,QString)), this, SLOT(save_ticket_to_database(QString,QString,QString,QString)));
+
 }
 
 void MainWindow::displayFormUpdBug()
 {
 
+}
+
+void MainWindow::save_ticket_to_database(QString title ,QString descr ,QString user ,QString etat)
+{
+    myBDD->add_ticket(title , descr , user , etat , currentProject->getId());
+    delete pageAddBug;
 }
 
 void MainWindow::displayNotification(QString titre, QString content)
