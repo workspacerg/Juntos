@@ -20,7 +20,7 @@ class Ticket
 
 public:
 
-    Ticket(QString idT, QString nameT, QString descrT , QString createUser , QString dtCreate );
+    Ticket(QString idT, QString nameT, QString descrT , QString createUser , QString dtCreate , QString setUserDt );
 
     QString getIdTicket() const;
     void setIdTicket(const QString &value);

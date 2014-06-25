@@ -316,6 +316,8 @@ bool BDD::delPeopletoProject(QString log, int idPro)
 vector<Ticket> BDD::loadTicket( int idPro )
 {
 
+    tickets.clear();
+
     // Chargement des projet
 
     QSqlQuery query;
@@ -324,9 +326,9 @@ vector<Ticket> BDD::loadTicket( int idPro )
         while(query.next())
         {
 
-            tickets.push_back(Ticket(query.value(0).toString() , query.value(1).toString(), query.value(2).toString(), query.value(3).toString() ,  query.value(4).toString() ));
+            tickets.push_back(Ticket(query.value(0).toString() , query.value(1).toString(), query.value(2).toString(), query.value(3).toString() ,  query.value(4).toString() ,  query.value(5).toString() ));
 
-            qDebug()  << query.value(5).toString() ;
+
 
 
             //qDebug() << query.value(0).toString()<< query.value(1).toString() << query.value(2).toString()<< query.value(3).toString()<< query.value(4).toString()<< query.value(5).toString()<< query.value(6).toDateTime()<< query.value(7).toDateTime()<< query.value(8).toDateTime()<< query.value(9).toString()<< query.value(10).toString()<< query.value(11).toString();

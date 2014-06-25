@@ -8,9 +8,9 @@ uiTicket::uiTicket(QWidget *parent) :
     ui->setupUi(this);
 
     QStringList Titreheader            ;
-    Titreheader << "id" << "Ticket" << "Créateur" <<"Date d'ajout "<< " Assigné à "  << "Etat" << "Description" ;
+    Titreheader << "id" << "Ticket" << "Créateur" <<"Date d'ajout " << "Assigné le" << " Assigné à "  << "Etat" << "Description" ;
 
-    ui->tableWidgetTicket->setColumnCount(7);
+    ui->tableWidgetTicket->setColumnCount(8);
     ui->tableWidgetTicket->setHorizontalHeaderLabels(Titreheader);
 
     ui->tableWidgetTicket->verticalHeader()->setVisible(false);
@@ -48,7 +48,8 @@ void uiTicket::loadTable(vector<Ticket> Source)
         ui->tableWidgetTicket->setItem(LastRow, 1, new QTableWidgetItem(item.getNameTicket()));
         ui->tableWidgetTicket->setItem(LastRow, 2, new QTableWidgetItem(item.getCreateName()));
         ui->tableWidgetTicket->setItem(LastRow, 3, new QTableWidgetItem(item.getCreateDt()));
-        ui->tableWidgetTicket->setItem(LastRow, 7, new QTableWidgetItem(item.getDescrTicket()));
+        ui->tableWidgetTicket->setItem(LastRow, 4, new QTableWidgetItem(item.getSetUserDate()));
+        ui->tableWidgetTicket->setItem(LastRow, 8, new QTableWidgetItem(item.getDescrTicket()));
     }
 
 }

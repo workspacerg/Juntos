@@ -17,7 +17,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string/>
+   <string>Juntos</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <property name="layoutDirection">

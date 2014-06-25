@@ -62,7 +62,7 @@ void Ticket::setSetUserDate(const QString &value)
 {
     setUserDate = value;
 }
-Ticket::Ticket(QString idT, QString nameT, QString descrT, QString createUser, QString dtCreate)
+Ticket::Ticket(QString idT, QString nameT, QString descrT, QString createUser, QString dtCreate, QString setUserDt)
 {
 
     idTicket = idT ;
@@ -70,5 +70,6 @@ Ticket::Ticket(QString idT, QString nameT, QString descrT, QString createUser, Q
     descrTicket = descrT ;
     createName = createUser;
     createDt =  dtCreate ;
+    setUserDate = setUserDt ;
 
 }
