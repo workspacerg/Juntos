@@ -41,13 +41,34 @@ void Ticket::setCreateName(const QString &value)
 {
     createName = value;
 }
-Ticket::Ticket(QString idT, QString nameT, QString descrT, QString createUser)
+
+QString Ticket::getCreateDt() const
+{
+    return createDt;
+}
+
+void Ticket::setCreateDt(const QString &value)
+{
+    createDt = value;
+}
+
+
+QString Ticket::getSetUserDate() const
+{
+    return setUserDate;
+}
+
+void Ticket::setSetUserDate(const QString &value)
+{
+    setUserDate = value;
+}
+Ticket::Ticket(QString idT, QString nameT, QString descrT, QString createUser, QString dtCreate)
 {
 
     idTicket = idT ;
     nameTicket = nameT ;
     descrTicket = descrT ;
     createName = createUser;
-
+    createDt =  dtCreate ;
 
 }

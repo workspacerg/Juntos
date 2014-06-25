@@ -16,7 +16,7 @@ TEMPLATE = app
 CONFIG += c++11
 
 SOURCES += main.cpp\
-        mainwindow.cpp \
+    mainwindow.cpp \
     uiacceuil.cpp \
     cprojet.cpp \
     uitask.cpp \
