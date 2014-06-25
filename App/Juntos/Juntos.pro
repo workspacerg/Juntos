@@ -29,7 +29,7 @@ SOURCES += main.cpp\
     settings.cpp \
     addpeopledialog.cpp \
     cuser.cpp \
-    cticket.cpp
+    ticket.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -44,7 +44,7 @@ HEADERS  += mainwindow.h \
     settings.h \
     addpeopledialog.h \
     cuser.h \
-    cticket.h
+    ticket.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \

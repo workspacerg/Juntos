@@ -2,7 +2,7 @@
 #define UITICKET_H
 
 #include <QWidget>
-#include "cticket.h"
+#include "ticket.h"
 
 using namespace std;
 
@@ -18,10 +18,10 @@ public:
     explicit uiTicket(QWidget *parent = 0);
     ~uiTicket();
 
-    vector<CTicket> tickets;
+    vector<Ticket> tickets;
 
 
-    void loadTable(vector<CTicket>);
+    void loadTable(vector<Ticket>);
 
 private:
     Ui::uiTicket *ui;

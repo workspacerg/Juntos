@@ -12,7 +12,7 @@
 #include "cprojet.h"
 #include <vector>
 #include "cuser.h"
-#include "cticket.h"
+#include "ticket.h"
 
 using namespace std;
 
@@ -30,6 +30,9 @@ class BDD
 
 
             vector<CProjet> projects ;
+            vector<Ticket> tickets ;
+
+
 
 public:
 
@@ -48,7 +51,7 @@ public:
     bool delPeopletoProject( QString, int );
 
     // Ticket
-    vector<CTicket> loadTicket(int);
+    vector<Ticket> loadTicket(int);
 
 
 };
