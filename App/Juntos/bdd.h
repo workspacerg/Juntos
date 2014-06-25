@@ -12,6 +12,7 @@
 #include "cprojet.h"
 #include <vector>
 #include "cuser.h"
+#include "cticket.h"
 
 using namespace std;
 
@@ -35,14 +36,20 @@ public:
     BDD();
     bool connectDB();
     bool verifUser();
+    bool checkAdmin(int);
+
+    // Projet
     vector<CProjet> loadProject();
     bool addProject(CProjet source);
     bool delProject(CProjet source);
     CProjet getInfoProjet(CProjet source);
     vector<cUser> getParticipant(int);
-    bool checkAdmin(int);
     bool addPeopleToProject( QString , int );
     bool delPeopletoProject( QString, int );
+
+    // Ticket
+    vector<CTicket> loadTicket(int);
+
 
 };
 

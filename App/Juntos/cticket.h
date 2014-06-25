@@ -10,8 +10,11 @@ class CTicket
 
     QString idTicket;
     QString idProject;
+    QString nomProjet;
     QString idCreateBy;
     QString idAssignTo;
+    QString createName;
+    QString AssignToName;
 
 
     QString nameTicket;
@@ -25,6 +28,7 @@ class CTicket
 
 public:
     CTicket();
+    CTicket(QString idTicket, QString nomPro, QString nameTicket, QString descrTicket,  QString idCreateBy, QString createName, QDateTime createDate,  QDateTime assignDate, QDateTime endDate , QString idAssignTo,  QString AssignToName, QString etat );
 
     QString getIdTicket() const;
     void setIdTicket(const QString &value);
@@ -46,9 +50,8 @@ public:
     void setAssignDate(const QDateTime &value);
     QDateTime getEndDate() const;
     void setEndDate(const QDateTime &value);
-
-
-
+    QString getNomProjet() const;
+    void setNomProjet(const QString &value);
 };
 
 #endif // CTICKET_H

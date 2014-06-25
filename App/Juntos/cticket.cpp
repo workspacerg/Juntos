@@ -109,7 +109,37 @@ void CTicket::setEndDate(const QDateTime &value)
 
 // -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+QString CTicket::getNomProjet() const
+{
+    return nomProjet;
+}
+
+void CTicket::setNomProjet(const QString &value)
+{
+    nomProjet = value;
+}
 CTicket::CTicket()
 {
+
+}
+
+CTicket::CTicket(QString idTicket, QString nomPro, QString nameTicket, QString descrTicket, QString idCreateBy, QString createName, QDateTime createDate,  QDateTime assignDate, QDateTime endDate , QString idAssignTo,  QString AssignToName, QString etat)
+{
+
+    this->idTicket = idTicket;
+    this->idProject = idProject;
+    this->idCreateBy = idCreateBy;
+    this->idAssignTo = idAssignTo;
+    this->nameTicket = nameTicket;
+    this->descrTicket = descrTicket;
+    this->etat = etat;
+    this->createDate = createDate;
+    this->assignDate = assignDate;
+    this->endDate = endDate ;
+    this->createName = createName;
+    this->AssignToName = AssignToName;
+    this->nomProjet = nomPro ;
+
 
 }

@@ -29,21 +29,26 @@ uiTicket::~uiTicket()
     delete ui;
 }
 
-//void uiTicket::loadTable(vector<int> Source)
-//{
+void uiTicket::loadTable(vector<CTicket> Source)
+{
 
-//    while (ui->tableWidgetPtoject->rowCount() > 0)
-//    {
-//        ui->tableWidgetPtoject->removeRow(0);
-//    }
-
-//    for(CProjet& item : Source)
-//    {
-//        int LastRow = ui->tableWidgetTicket->rowCount();
-//        ui->tableWidgetTicket->insertRow(LastRow);
-//        ui->tableWidgetTicket->setItem(LastRow, 0, new QTableWidgetItem(item.getNomProjet()));
-//        ui->tableWidgetTicket->setItem(LastRow, 1, new QTableWidgetItem(item.getDescProjet()));
-//    }
+    tickets = Source ;
 
 
-//}
+    // Vide la table
+    while (ui->tableWidgetTicket->rowCount() > 0)
+    {
+        ui->tableWidgetTicket->removeRow(0);
+    }
+
+    // Charge la table
+    for(CTicket& item : Source)
+    {
+        int LastRow = ui->tableWidgetTicket->rowCount();
+        ui->tableWidgetTicket->insertRow(LastRow);
+        ui->tableWidgetTicket->setItem(LastRow, 0, new QTableWidgetItem(item.getIdTicket()));
+        ui->tableWidgetTicket->setItem(LastRow, 1, new QTableWidgetItem(item.getNameTicket()));
+    }
+
+}
+

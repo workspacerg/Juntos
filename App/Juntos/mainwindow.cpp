@@ -207,6 +207,12 @@ void MainWindow::on_mTask_clicked()
 
 void MainWindow::on_mTicket_clicked()
 {
+    // Update des tickets :
+
+
+    PageTicket->loadTable(myBDD->loadTicket(currentProject->getId()));
+
+
     this->hideAll();
     ui->TitreBody->setText("Ticket");
     ui->cTicket->layout()->addWidget(PageTicket);
