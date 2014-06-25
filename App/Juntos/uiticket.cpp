@@ -8,15 +8,15 @@ uiTicket::uiTicket(QWidget *parent) :
     ui->setupUi(this);
 
     QStringList Titreheader            ;
-    Titreheader <<"Ticket"<<"Date de résolution"<<"Assigné à " << "Description" ;
+    Titreheader << "id" << "Ticket" <<"Date d'ajout "<< " Assigné à "  << "Etat" << "Description" ;
 
-    ui->tableWidgetTicket->setColumnCount(4);
+    ui->tableWidgetTicket->setColumnCount(6);
     ui->tableWidgetTicket->setHorizontalHeaderLabels(Titreheader);
 
     ui->tableWidgetTicket->verticalHeader()->setVisible(false);
     ui->tableWidgetTicket->setShowGrid(false);
 
-    ui->tableWidgetTicket->setColumnWidth(0, 200);
+    ui->tableWidgetTicket->setColumnWidth(0, 100);
 
 
     ui->tableWidgetTicket->horizontalHeader()->setStretchLastSection(true);
@@ -28,3 +28,22 @@ uiTicket::~uiTicket()
 {
     delete ui;
 }
+
+//void uiTicket::loadTable(vector<int> Source)
+//{
+
+//    while (ui->tableWidgetPtoject->rowCount() > 0)
+//    {
+//        ui->tableWidgetPtoject->removeRow(0);
+//    }
+
+//    for(CProjet& item : Source)
+//    {
+//        int LastRow = ui->tableWidgetTicket->rowCount();
+//        ui->tableWidgetTicket->insertRow(LastRow);
+//        ui->tableWidgetTicket->setItem(LastRow, 0, new QTableWidgetItem(item.getNomProjet()));
+//        ui->tableWidgetTicket->setItem(LastRow, 1, new QTableWidgetItem(item.getDescProjet()));
+//    }
+
+
+//}

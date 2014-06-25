@@ -28,7 +28,8 @@ SOURCES += main.cpp\
     bdd.cpp \
     settings.cpp \
     addpeopledialog.cpp \
-    cuser.cpp
+    cuser.cpp \
+    cticket.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -42,7 +43,8 @@ HEADERS  += mainwindow.h \
     bdd.h \
     settings.h \
     addpeopledialog.h \
-    cuser.h
+    cuser.h \
+    cticket.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \
