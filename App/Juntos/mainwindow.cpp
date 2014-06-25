@@ -154,11 +154,16 @@ void MainWindow::delPeopleToProject(QString usrToadd)
 void MainWindow::displayFormAddBug()
 {
 
+    pageAddBug = new formAddBug();
+    pageAddBug->show();
 }
 
 void MainWindow::displayFormDelBug()
 {
 
+
+    pageDelBug = new formDelBug();
+    pageDelBug->show();
 }
 
 void MainWindow::displayFormUpdBug()

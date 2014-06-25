@@ -29,7 +29,9 @@ SOURCES += main.cpp\
     settings.cpp \
     addpeopledialog.cpp \
     cuser.cpp \
-    ticket.cpp
+    ticket.cpp \
+    formaddbug.cpp \
+    formdelbug.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -44,7 +46,9 @@ HEADERS  += mainwindow.h \
     settings.h \
     addpeopledialog.h \
     cuser.h \
-    ticket.h
+    ticket.h \
+    formaddbug.h \
+    formdelbug.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \
@@ -53,7 +57,9 @@ FORMS    += mainwindow.ui \
     uiticket.ui \
     uiTest.ui \
     uiFile.ui \
-    addpeopledialog.ui
+    addpeopledialog.ui \
+    formaddbug.ui \
+    formdelbug.ui
 
 RESOURCES += \
     Images.qrc

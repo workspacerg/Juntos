@@ -12,6 +12,8 @@
 #include "notification.h"
 #include "bdd.h"
 #include "addpeopledialog.h"
+#include "formaddbug.h"
+#include "formdelbug.h"
 
 namespace Ui {
 class MainWindow;
@@ -40,7 +42,11 @@ public:
     uiTicket    *PageTicket     ;
     uiTest      *PageTest       ;
     uiFile      *PageFile       ;
+
     addPeopleDialog *pagePeople ;
+
+    formAddBug *pageAddBug ;
+    formDelBug *pageDelBug ;
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
