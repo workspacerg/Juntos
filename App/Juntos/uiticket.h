@@ -34,7 +34,7 @@ private:
 
 signals:
     void displayFormAddBug();
-    void displayFormDelBug();
+    void displayFormDelBug(QString);
     void displayFormUpdBug();
 
 

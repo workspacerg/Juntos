@@ -65,8 +65,9 @@ public slots:
 
     //  Ticket ------------------------------------------------------------------------------------------------------------------------------
     void displayFormAddBug();
-    void displayFormDelBug();
+    void displayFormDelBug(QString idTk);
     void displayFormUpdBug();
+    void saveTicketToDatabase(QString , QString , QString , QString );
 
 
 private slots:

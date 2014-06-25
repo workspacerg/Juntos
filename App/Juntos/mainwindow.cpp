@@ -39,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Ticket
     QObject::connect(PageTicket, SIGNAL(displayFormAddBug()), this, SLOT(displayFormAddBug()));
-    QObject::connect(PageTicket, SIGNAL(displayFormDelBug()), this, SLOT(displayFormDelBug()));
+    QObject::connect(PageTicket, SIGNAL(displayFormDelBug(QString)), this, SLOT(displayFormDelBug(QString)));
     QObject::connect(PageTicket, SIGNAL(displayFormUpdBug()), this, SLOT(displayFormUpdBug()));
 
 
@@ -153,22 +153,37 @@ void MainWindow::delPeopleToProject(QString usrToadd)
 
 void MainWindow::displayFormAddBug()
 {
+    vector<cUser> listUser = myBDD->getParticipant(currentProject->getId());
+
+    currentProject->clearUser();
+    for(cUser item : listUser)
+    {
+        currentProject->addUser(item);
+    }
 
     pageAddBug = new formAddBug();
+    pageAddBug->loadParticipant(currentProject->getUsers());
+    QObject::connect(pageAddBug, SIGNAL(savetodatabase(QString,QString,QString,QString)), this, SLOT(saveTicketToDatabase(QString,QString,QString,QString)));
     pageAddBug->show();
 }
 
-void MainWindow::displayFormDelBug()
+void MainWindow::displayFormDelBug(QString idTk)
 {
-
-
-    pageDelBug = new formDelBug();
-    pageDelBug->show();
+    myBDD->del_ticket(idTk , currentProject->getId());
+    emit on_mTicket_clicked();
 }
 
 void MainWindow::displayFormUpdBug()
 {
 
+}
+
+void MainWindow::saveTicketToDatabase(QString title ,QString descr ,QString user ,QString etat)
+{
+    myBDD->add_ticket(title , descr , user , etat , currentProject->getId());
+
+    delete pageAddBug;
+    emit on_mTicket_clicked();
 }
 
 void MainWindow::displayNotification(QString titre, QString content)
