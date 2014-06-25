@@ -26,6 +26,7 @@ private:
 
 signals:
     void savetodatabase( QString, QString, QString, QString );
+
 private slots:
     void on_save_clicked();
 };

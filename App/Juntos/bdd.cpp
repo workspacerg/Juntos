@@ -363,6 +363,31 @@ bool BDD::add_ticket(QString title , QString descr , QString userToAssign, QStri
 
 }
 
+bool BDD::del_ticket(QString idTk , int idPro)
+{
+
+    QString idString = QString::number(idPro);
+    QSqlQuery query;
+
+    if(query.exec("select del_ticket('" + login + "' , '"+ idTk +"' , '"+ idString +"')"))
+    {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
+
+    }else
+    {
+        qDebug() << query.lastError().text();
+    }
+     return false;
+
+}
+
 
 
 

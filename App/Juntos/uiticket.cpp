@@ -64,7 +64,7 @@ void uiTicket::on_addBug_clicked()
 
 void uiTicket::on_delBug_clicked()
 {
-    emit displayFormDelBug();
+    emit displayFormDelBug(ui->tableWidgetTicket->item( ui->tableWidgetTicket->currentRow() , 0)->text());
 }
 
 void uiTicket::on_tableWidgetTicket_doubleClicked(const QModelIndex &index)

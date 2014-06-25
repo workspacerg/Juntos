@@ -40,5 +40,5 @@ void formAddBug::loadParticipant(vector<cUser> usr)
 void formAddBug::on_save_clicked()
 {
 
-    emit savetodatabase( ui->titleTicket->text(), ui->description->toPlainText() , ui->usrComboBox->currentText() , ui->etatComboBox->currentText() );
+    emit savetodatabase( ui->titleTicket->text() , ui->description->toPlainText() , ui->usrComboBox->currentText() , ui->etatComboBox->currentText() );
 }
