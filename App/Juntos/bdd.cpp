@@ -321,12 +321,12 @@ vector<Ticket> BDD::loadTicket( int idPro )
     // Chargement des projet
 
     QSqlQuery query;
-    if(query.exec("SELECT tk.id, tk.name, tk.description, u2.login, tk.dateLog,  tk.dateAssignTo, tk.dateDone ,tk.assignToUser , u.login as 'Dev' , e.name , tp.nom FROM task tk   INNER JOIN project pro ON pro.id = tk.idProject  INNER JOIN etat e ON e.id = tk.Etat  INNER JOIN type tp ON tp.id = tk.idType   INNER JOIN user u ON u.id = tk.assignToUser  INNER JOIN user u2 ON u2.id = tk.createBy  WHERE pro.id = 1 AND tp.nom = 'ticket';"))
+    if(query.exec("SELECT tk.id, tk.name, tk.description, u2.login, tk.dateLog,  tk.dateAssignTo , u.login as 'Dev' , e.name FROM task tk   INNER JOIN project pro ON pro.id = tk.idProject  INNER JOIN etat e ON e.id = tk.Etat  INNER JOIN type tp ON tp.id = tk.idType   INNER JOIN user u ON u.id = tk.assignToUser  INNER JOIN user u2 ON u2.id = tk.createBy  WHERE pro.id = 1 AND tp.nom = 'ticket';"))
     {
         while(query.next())
         {
 
-            tickets.push_back(Ticket(query.value(0).toString() , query.value(1).toString(), query.value(2).toString(), query.value(3).toString() ,  query.value(4).toString() ,  query.value(5).toString() ));
+            tickets.push_back(Ticket(query.value(0).toString() , query.value(1).toString(), query.value(2).toString(), query.value(3).toString() ,  query.value(4).toString() ,  query.value(5).toString() ,  query.value(6).toString() ));
 
 
 

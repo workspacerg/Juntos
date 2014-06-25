@@ -49,6 +49,7 @@ void uiTicket::loadTable(vector<Ticket> Source)
         ui->tableWidgetTicket->setItem(LastRow, 2, new QTableWidgetItem(item.getCreateName()));
         ui->tableWidgetTicket->setItem(LastRow, 3, new QTableWidgetItem(item.getCreateDt()));
         ui->tableWidgetTicket->setItem(LastRow, 4, new QTableWidgetItem(item.getSetUserDate()));
+        ui->tableWidgetTicket->setItem(LastRow, 5, new QTableWidgetItem(item.getDev()));
         ui->tableWidgetTicket->setItem(LastRow, 8, new QTableWidgetItem(item.getDescrTicket()));
     }
 
