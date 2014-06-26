@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Ticket
     QObject::connect(PageTicket, SIGNAL(displayFormAddBug()), this, SLOT(displayFormAddBug()));
     QObject::connect(PageTicket, SIGNAL(displayFormDelBug(QString)), this, SLOT(displayFormDelBug(QString)));
-    QObject::connect(PageTicket, SIGNAL(displayFormUpdBug(QString)), this, SLOT(displayFormUpdBug(QString)));
+    QObject::connect(PageTicket, SIGNAL(displayFormUpdBug(QString, QString)), this, SLOT(displayFormUpdBug(QString, QString)));
 
 
 
@@ -173,7 +173,7 @@ void MainWindow::displayFormDelBug(QString idTk)
     emit on_mTicket_clicked();
 }
 
-void MainWindow::displayFormUpdBug(QString idTk)
+void MainWindow::displayFormUpdBug(QString idTk , QString assign)
 {
     vector<cUser> listUser = myBDD->getParticipant(currentProject->getId());
 
@@ -185,7 +185,7 @@ void MainWindow::displayFormUpdBug(QString idTk)
 
     pageUpdBug = new formUpdBug();
     pageUpdBug->loadParticipant(currentProject->getUsers());
-    pageUpdBug->loadInfoTicket(myBDD->loadTicketDetail(idTk));
+    pageUpdBug->loadInfoTicket(myBDD->loadTicketDetail(idTk , assign ));
     QObject::connect(pageUpdBug, SIGNAL(save_upd_ticket(Ticket)), this, SLOT(updTicketToDatabase(Ticket)));
     pageUpdBug->show();
 }

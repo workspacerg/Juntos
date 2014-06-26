@@ -147,14 +147,8 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="mMessages">
+        <widget class="QPushButton" name="mTicket">
          <property name="minimumSize">
-          <size>
-           <width>90</width>
-           <height>70</height>
-          </size>
-         </property>
-         <property name="maximumSize">
           <size>
            <width>90</width>
            <height>70</height>
@@ -163,27 +157,24 @@
          <property name="font">
           <font>
            <family>Helvetica Neue</family>
+           <weight>50</weight>
            <italic>true</italic>
+           <bold>false</bold>
+           <kerning>true</kerning>
           </font>
-         </property>
-         <property name="styleSheet">
-          <string notr="true"/>
          </property>
          <property name="text">
           <string/>
          </property>
          <property name="icon">
           <iconset resource="Images.qrc">
-           <normaloff>:/new/MenuInterface/Ressouces/comments-512.png</normaloff>:/new/MenuInterface/Ressouces/comments-512.png</iconset>
+           <normaloff>:/new/MenuInterface/Ressouces/outline-512.png</normaloff>:/new/MenuInterface/Ressouces/outline-512.png</iconset>
          </property>
          <property name="iconSize">
           <size>
            <width>45</width>
            <height>40</height>
           </size>
-         </property>
-         <property name="default">
-          <bool>false</bool>
          </property>
          <property name="flat">
           <bool>true</bool>
@@ -229,8 +220,14 @@
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="mTicket">
+        <widget class="QPushButton" name="mMessages">
          <property name="minimumSize">
+          <size>
+           <width>90</width>
+           <height>70</height>
+          </size>
+         </property>
+         <property name="maximumSize">
           <size>
            <width>90</width>
            <height>70</height>
@@ -239,24 +236,27 @@
          <property name="font">
           <font>
            <family>Helvetica Neue</family>
-           <weight>50</weight>
            <italic>true</italic>
-           <bold>false</bold>
-           <kerning>true</kerning>
           </font>
+         </property>
+         <property name="styleSheet">
+          <string notr="true"/>
          </property>
          <property name="text">
           <string/>
          </property>
          <property name="icon">
           <iconset resource="Images.qrc">
-           <normaloff>:/new/MenuInterface/Ressouces/outline-512.png</normaloff>:/new/MenuInterface/Ressouces/outline-512.png</iconset>
+           <normaloff>:/new/MenuInterface/Ressouces/comments-512.png</normaloff>:/new/MenuInterface/Ressouces/comments-512.png</iconset>
          </property>
          <property name="iconSize">
           <size>
            <width>45</width>
            <height>40</height>
           </size>
+         </property>
+         <property name="default">
+          <bool>false</bool>
          </property>
          <property name="flat">
           <bool>true</bool>

@@ -52,7 +52,7 @@ public:
 
     // Ticket
     vector<Ticket> loadTicket(int);
-    Ticket loadTicketDetail(QString idTk);
+    Ticket loadTicketDetail(QString idTk, QString assign);
     bool add_ticket(QString title , QString descr , QString userToAssign, QString avancement , int idPro);
     bool del_ticket(QString idTk , int idPro);
     bool upd_ticket(Ticket source);

@@ -16,24 +16,11 @@ formAddBug::~formAddBug()
 void formAddBug::loadParticipant(vector<cUser> usr)
 {
 
-
-//    while (ui->tableWidget->rowCount() > 0)
-//    {
-//        ui->tableWidget->removeRow(0);
-//    }
-
+    ui->usrComboBox->addItem("");
     for(cUser item : usr)
     {
-
-//        int LastRow = ui->tableWidget->rowCount();
-//        ui->tableWidget->insertRow(LastRow);
-//        ui->tableWidget->setItem(LastRow, 0, new QTableWidgetItem(item.getLogin()));
-//        ui->tableWidget->setItem(LastRow, 1, new QTableWidgetItem(item.getMail()));
-
         ui->usrComboBox->addItem(item.getLogin());
-
     }
-
 
 }
 

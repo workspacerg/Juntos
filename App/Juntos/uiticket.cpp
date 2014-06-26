@@ -8,7 +8,7 @@ uiTicket::uiTicket(QWidget *parent) :
     ui->setupUi(this);
 
     QStringList Titreheader            ;
-    Titreheader << "id" << "Ticket" << "Créateur" <<"Date d'ajout " << "Assigné le" << " Assigné à "  << "Etat" << "Description" ;
+    Titreheader << "id" << "Ticket" << "Créateur" <<"Date d'ajout " << "modifié le" << " Assigné à "  << "Etat" << "Description" ;
 
     ui->tableWidgetTicket->setColumnCount(8);
     ui->tableWidgetTicket->setHorizontalHeaderLabels(Titreheader);
@@ -17,6 +17,8 @@ uiTicket::uiTicket(QWidget *parent) :
     ui->tableWidgetTicket->setShowGrid(false);
 
     ui->tableWidgetTicket->setColumnWidth(0, 50);
+    ui->tableWidgetTicket->setColumnWidth(3, 200);
+    ui->tableWidgetTicket->setColumnWidth(4, 200);
 
 
     ui->tableWidgetTicket->horizontalHeader()->setStretchLastSection(true);
@@ -69,5 +71,5 @@ void uiTicket::on_delBug_clicked()
 
 void uiTicket::on_tableWidgetTicket_itemDoubleClicked(QTableWidgetItem *item)
 {
-    emit displayFormUpdBug(ui->tableWidgetTicket->item( item->row() , 0)->text());
+    emit displayFormUpdBug(ui->tableWidgetTicket->item( item->row() , 0)->text() ,  ui->tableWidgetTicket->item( item->row() , 5)->text() );
 }

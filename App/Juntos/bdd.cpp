@@ -334,32 +334,75 @@ vector<Ticket> BDD::loadTicket( int idPro )
         }
     }
 
+    if(query.exec("SELECT tk.id, tk.name, tk.description, u2.login, tk.dateLog,  tk.dateAssignTo , e.name FROM task tk   INNER JOIN project pro ON pro.id = tk.idProject  INNER JOIN etat e ON e.id = tk.Etat  INNER JOIN type tp ON tp.id = tk.idType INNER JOIN user u2 ON u2.id = tk.createBy  WHERE pro.id = '"+idString+"' AND tp.nom = 'ticket' AND tk.assignToUser is null "))
+    {
+        while(query.next())
+        {
+
+            tickets.push_back(Ticket(query.value(0).toString() , query.value(1).toString(), query.value(2).toString(), query.value(3).toString() ,  query.value(4).toString() ,  query.value(5).toString() ,  "" ,  query.value(6).toString() ));
+
+
+        }
+    }
+
+
     return tickets;
 
 }
 
-Ticket BDD::loadTicketDetail(QString idTk)
+Ticket BDD::loadTicketDetail(QString idTk , QString assign )
 {
 
     Ticket bug;
 
     QSqlQuery query;
-    if(query.exec("select t.name , t.description, u.login, t.dateLog , t.dateDone , t.dateAssignTo , u2.login , e.name  from task t inner join Etat e on e.id = t.Etat inner join user u on u.id = t.createBy inner join user u2 on u2.id = t.assignToUser where t.id = '"+ idTk +"' "))
-    {
-        while(query.next())
-        {
-            bug.setIdTicket(idTk);
-            bug.setNameTicket(query.value(0).toString());
-            bug.setDescrTicket(query.value(1).toString());
-            bug.setCreateName(query.value(2).toString());
-            bug.setCreateDt(query.value(3).toString());
-            bug.setEndDate(query.value(4).toString());
-            bug.setSetUserDate(query.value(5).toString());
-            bug.setDev(query.value(6).toString());
-            bug.setEtat(query.value(7).toString());
 
+    if(assign == ""){
+
+        if(query.exec("select t.name , t.description, u.login, t.dateLog , t.dateDone , t.dateAssignTo , e.name  from task t inner join Etat e on e.id = t.Etat inner join user u on u.id = t.createBy  where t.id = '"+ idTk +"' "))
+        {
+            while(query.next())
+            {
+                bug.setIdTicket(idTk);
+                bug.setNameTicket(query.value(0).toString());
+                bug.setDescrTicket(query.value(1).toString());
+                bug.setCreateName(query.value(2).toString());
+                bug.setCreateDt(query.value(3).toString());
+                bug.setEndDate(query.value(4).toString());
+                bug.setSetUserDate(query.value(5).toString());
+                bug.setDev("");
+                bug.setEtat(query.value(6).toString());
+
+            }
+        }
+
+
+
+    }
+    else{
+
+        if(query.exec("select t.name , t.description, u.login, t.dateLog , t.dateDone , t.dateAssignTo , u2.login , e.name  from task t inner join Etat e on e.id = t.Etat inner join user u on u.id = t.createBy inner join user u2 on u2.id = t.assignToUser where t.id = '"+ idTk +"' "))
+        {
+            while(query.next())
+            {
+                bug.setIdTicket(idTk);
+                bug.setNameTicket(query.value(0).toString());
+                bug.setDescrTicket(query.value(1).toString());
+                bug.setCreateName(query.value(2).toString());
+                bug.setCreateDt(query.value(3).toString());
+                bug.setEndDate(query.value(4).toString());
+                bug.setSetUserDate(query.value(5).toString());
+                bug.setDev(query.value(6).toString());
+                bug.setEtat(query.value(7).toString());
+
+            }
         }
     }
+
+
+
+
+
 
     return bug;
 
