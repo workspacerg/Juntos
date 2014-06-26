@@ -2,6 +2,7 @@
 #define UITICKET_H
 
 #include <QWidget>
+#include <QTableWidgetItem>
 #include "ticket.h"
 
 using namespace std;
@@ -26,7 +27,7 @@ public:
 private slots:
     void on_addBug_clicked();
     void on_delBug_clicked();
-    void on_tableWidgetTicket_doubleClicked(const QModelIndex &index);
+    void on_tableWidgetTicket_itemDoubleClicked(QTableWidgetItem *item);
 
 private:
     Ui::uiTicket *ui;
@@ -35,7 +36,7 @@ private:
 signals:
     void displayFormAddBug();
     void displayFormDelBug(QString);
-    void displayFormUpdBug();
+    void displayFormUpdBug(QString);
 
 
 };

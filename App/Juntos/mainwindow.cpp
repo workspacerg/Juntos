@@ -40,7 +40,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Ticket
     QObject::connect(PageTicket, SIGNAL(displayFormAddBug()), this, SLOT(displayFormAddBug()));
     QObject::connect(PageTicket, SIGNAL(displayFormDelBug(QString)), this, SLOT(displayFormDelBug(QString)));
-    QObject::connect(PageTicket, SIGNAL(displayFormUpdBug()), this, SLOT(displayFormUpdBug()));
+    QObject::connect(PageTicket, SIGNAL(displayFormUpdBug(QString)), this, SLOT(displayFormUpdBug(QString)));
 
 
 
@@ -173,9 +173,21 @@ void MainWindow::displayFormDelBug(QString idTk)
     emit on_mTicket_clicked();
 }
 
-void MainWindow::displayFormUpdBug()
+void MainWindow::displayFormUpdBug(QString idTk)
 {
+    vector<cUser> listUser = myBDD->getParticipant(currentProject->getId());
 
+    currentProject->clearUser();
+    for(cUser item : listUser)
+    {
+        currentProject->addUser(item);
+    }
+
+    pageUpdBug = new formUpdBug();
+    pageUpdBug->loadParticipant(currentProject->getUsers());
+    pageUpdBug->loadInfoTicket(myBDD->loadTicketDetail(idTk));
+    QObject::connect(pageUpdBug, SIGNAL(save_upd_ticket(Ticket)), this, SLOT(updTicketToDatabase(Ticket)));
+    pageUpdBug->show();
 }
 
 void MainWindow::saveTicketToDatabase(QString title ,QString descr ,QString user ,QString etat)
@@ -183,6 +195,13 @@ void MainWindow::saveTicketToDatabase(QString title ,QString descr ,QString user
     myBDD->add_ticket(title , descr , user , etat , currentProject->getId());
 
     delete pageAddBug;
+    emit on_mTicket_clicked();
+}
+
+void MainWindow::updTicketToDatabase(Ticket source)
+{
+    myBDD->upd_ticket(source);
+    delete pageUpdBug;
     emit on_mTicket_clicked();
 }
 

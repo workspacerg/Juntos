@@ -13,7 +13,7 @@
 #include "bdd.h"
 #include "addpeopledialog.h"
 #include "formaddbug.h"
-#include "formdelbug.h"
+#include "formupdbug.h"
 
 namespace Ui {
 class MainWindow;
@@ -46,7 +46,7 @@ public:
     addPeopleDialog *pagePeople ;
 
     formAddBug *pageAddBug ;
-    formDelBug *pageDelBug ;
+    formUpdBug *pageUpdBug ;
 
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -66,8 +66,9 @@ public slots:
     //  Ticket ------------------------------------------------------------------------------------------------------------------------------
     void displayFormAddBug();
     void displayFormDelBug(QString idTk);
-    void displayFormUpdBug();
+    void displayFormUpdBug(QString idTk);
     void saveTicketToDatabase(QString , QString , QString , QString );
+    void updTicketToDatabase(Ticket source);
 
 
 private slots:

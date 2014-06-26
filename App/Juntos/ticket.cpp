@@ -82,6 +82,21 @@ void Ticket::setEtat(const QString &value)
 {
     etat = value;
 }
+
+QString Ticket::getEndDate() const
+{
+    return endDate;
+}
+
+void Ticket::setEndDate(const QString &value)
+{
+    endDate = value;
+}
+Ticket::Ticket()
+{
+
+}
+
 Ticket::Ticket(QString idT, QString nameT, QString descrT, QString createUser, QString dtCreate, QString setUserDt, QString devName, QString etatTk)
 {
 

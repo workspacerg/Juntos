@@ -31,7 +31,7 @@ SOURCES += main.cpp\
     cuser.cpp \
     ticket.cpp \
     formaddbug.cpp \
-    formdelbug.cpp
+    formupdbug.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -48,7 +48,7 @@ HEADERS  += mainwindow.h \
     cuser.h \
     ticket.h \
     formaddbug.h \
-    formdelbug.h
+    formupdbug.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \
@@ -59,7 +59,7 @@ FORMS    += mainwindow.ui \
     uiFile.ui \
     addpeopledialog.ui \
     formaddbug.ui \
-    formdelbug.ui
+    formupdbug.ui
 
 RESOURCES += \
     Images.qrc

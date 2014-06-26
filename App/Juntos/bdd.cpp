@@ -338,6 +338,33 @@ vector<Ticket> BDD::loadTicket( int idPro )
 
 }
 
+Ticket BDD::loadTicketDetail(QString idTk)
+{
+
+    Ticket bug;
+
+    QSqlQuery query;
+    if(query.exec("select t.name , t.description, u.login, t.dateLog , t.dateDone , t.dateAssignTo , u2.login , e.name  from task t inner join Etat e on e.id = t.Etat inner join user u on u.id = t.createBy inner join user u2 on u2.id = t.assignToUser where t.id = '"+ idTk +"' "))
+    {
+        while(query.next())
+        {
+            bug.setIdTicket(idTk);
+            bug.setNameTicket(query.value(0).toString());
+            bug.setDescrTicket(query.value(1).toString());
+            bug.setCreateName(query.value(2).toString());
+            bug.setCreateDt(query.value(3).toString());
+            bug.setEndDate(query.value(4).toString());
+            bug.setSetUserDate(query.value(5).toString());
+            bug.setDev(query.value(6).toString());
+            bug.setEtat(query.value(7).toString());
+
+        }
+    }
+
+    return bug;
+
+}
+
 bool BDD::add_ticket(QString title , QString descr , QString userToAssign, QString avancement , int idPro )
 {
 
@@ -386,6 +413,28 @@ bool BDD::del_ticket(QString idTk , int idPro)
     }
      return false;
 
+}
+
+bool BDD::upd_ticket(Ticket source)
+{
+    QSqlQuery query;
+
+    if(query.exec("select upd_ticket('"+ login +"' ,'"+ source.getCreateName()  +"' , '"+ source.getNameTicket() +"' , '"+ source.getDescrTicket() +"' , '"+ source.getDev() +"' , '"+ source.getEtat() +"' , '"+ source.getIdTicket()+"')"))
+    {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
+
+    }else
+    {
+        qDebug() << query.lastError().text();
+    }
+     return false;
 }
 
 

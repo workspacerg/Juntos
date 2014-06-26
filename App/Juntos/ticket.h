@@ -15,6 +15,7 @@ class Ticket
     QString createName;
     QString createDt;
     QString setUserDate;
+    QString endDate;
     QString dev;
     QString etat;
 
@@ -22,6 +23,7 @@ class Ticket
 
 public:
 
+    Ticket();
     Ticket(QString idT, QString nameT, QString descrT , QString createUser , QString dtCreate , QString setUserDt , QString devName , QString etatTk );
 
     QString getIdTicket() const;
@@ -41,6 +43,8 @@ public:
     void setDev(const QString &value);
     QString getEtat() const;
     void setEtat(const QString &value);
+    QString getEndDate() const;
+    void setEndDate(const QString &value);
 };
 
 #endif // TICKET_H
