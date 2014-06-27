@@ -477,7 +477,95 @@ bool BDD::upd_ticket(Ticket source)
     {
         qDebug() << query.lastError().text();
     }
+    return false;
+}
+
+
+// TASK -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+vector<Task> BDD::loadTask(int idPro)
+{
+    tasks.clear();
+
+    QString idString = QString::number(idPro);
+
+    // Chargement des projet
+
+    QSqlQuery query;
+    if(query.exec("SELECT td.`id` , td.titre , td.description, uC.login as 'Createur', uD.login as 'Developpeur' , atd.nom , td.`dateCreation`, td.`dateModification`, td.`dateFinalisation` FROM todo td INNER JOIN avancementTodo atd on td.`idAvancement` = atd.id INNER JOIN user uC on td.`idCreateur` = uC.id INNER JOIN user uD on td.`idDeveloppeur` = uD.id WHERE td.`idProjet` = '"+idString+"' "))
+    {
+        while(query.next())
+        {
+
+            tasks.push_back(Task(query.value(0).toString() , query.value(1).toString(), query.value(2).toString(), query.value(3).toString() ,  query.value(4).toString() ,  query.value(5).toString() ,  query.value(6).toString() , query.value(7).toString(), query.value(8).toString()));
+
+        }
+    }
+
+    if(query.exec("SELECT tk.id, tk.name, tk.description, u2.login, tk.dateLog,  tk.dateAssignTo , e.name FROM task tk   INNER JOIN project pro ON pro.id = tk.idProject  INNER JOIN etat e ON e.id = tk.Etat  INNER JOIN type tp ON tp.id = tk.idType INNER JOIN user u2 ON u2.id = tk.createBy  WHERE pro.id = '"+idString+"' AND tp.nom = 'task' AND tk.assignToUser is null "))
+    {
+        while(query.next())
+        {
+
+           //tickets.push_back(Ticket(query.value(0).toString() , query.value(1).toString(), query.value(2).toString(), query.value(3).toString() ,  query.value(4).toString() ,  query.value(5).toString() ,  "" ,  query.value(6).toString() ));
+
+
+        }
+    }
+
+
+    return tasks;
+}
+
+bool BDD::delTask(QString idTk, int idPro)
+{
+
+    QString idString = QString::number(idPro);
+    QSqlQuery query;
+
+    if(query.exec("select del_task('" + login + "' , '"+ idTk +"' , '"+ idString +"')"))
+    {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
+
+    }else
+    {
+        qDebug() << query.lastError().text();
+    }
      return false;
+
+}
+
+bool BDD::add_task(QString title, QString descr, QString userToAssign, QString avancement, QString date, int idPro)
+{
+
+    QString idString = QString::number(idPro);
+    QSqlQuery query;
+
+    if(query.exec("select add_task('"+ login +"', '"+ title +"' , '"+ descr +"', '"+ userToAssign +"' , '"+ avancement +"',  '"+ date +"', '"+ idString +"' )"))
+    {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
+
+    }else
+    {
+        qDebug() << query.lastError().text();
+    }
+     return false;
+
 }
 
 

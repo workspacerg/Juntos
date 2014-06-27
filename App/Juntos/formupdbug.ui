@@ -364,13 +364,6 @@
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QPushButton" name="cancel">
-       <property name="text">
-        <string>Annuler</string>
-       </property>
-      </widget>
-     </item>
     </layout>
    </item>
   </layout>
