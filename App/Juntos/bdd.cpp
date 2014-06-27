@@ -477,7 +477,170 @@ bool BDD::upd_ticket(Ticket source)
     {
         qDebug() << query.lastError().text();
     }
+    return false;
+}
+
+
+// TASK -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+vector<Task> BDD::loadTask(int idPro)
+{
+    tasks.clear();
+
+    QString idString = QString::number(idPro);
+
+    // Chargement des projet
+
+    QSqlQuery query;
+    if(query.exec("SELECT td.`id` , td.titre , td.description, uC.login as 'Createur', uD.login as 'Developpeur' , atd.nom , td.`dateCreation`, td.`dateModification`, td.`dateFinalisation` FROM todo td INNER JOIN avancementTodo atd on td.`idAvancement` = atd.id INNER JOIN user uC on td.`idCreateur` = uC.id INNER JOIN user uD on td.`idDeveloppeur` = uD.id WHERE td.`idProjet` = '"+idString+"' "))
+    {
+        while(query.next())
+        {
+
+            tasks.push_back(Task(query.value(0).toString() , query.value(1).toString(), query.value(2).toString(), query.value(3).toString() ,  query.value(4).toString() ,  query.value(5).toString() ,  query.value(6).toString() , query.value(7).toString(), query.value(8).toString()));
+
+        }
+    }
+
+    if(query.exec("SELECT td.`id` , td.titre , td.description, uC.login as 'Createur', atd.nom , td.`dateCreation`, td.`dateModification`, td.`dateFinalisation` FROM todo td INNER JOIN avancementTodo atd on td.`idAvancement` = atd.id INNER JOIN user uC on td.`idCreateur` = uC.id WHERE td.`idProjet` = '"+idString+"' AND td.idDeveloppeur is null "))
+    {
+        while(query.next())
+        {
+
+          tasks.push_back(Task(query.value(0).toString() , query.value(1).toString(), query.value(2).toString(), query.value(3).toString() , "" ,  query.value(4).toString() ,  query.value(5).toString() ,  query.value(6).toString() , query.value(7).toString()));
+
+        }
+    }
+
+
+    return tasks;
+}
+
+bool BDD::delTask(QString idTk, int idPro)
+{
+
+    QString idString = QString::number(idPro);
+    QSqlQuery query;
+
+    if(query.exec("select del_task('" + login + "' , '"+ idTk +"' , '"+ idString +"')"))
+    {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
+
+    }else
+    {
+        qDebug() << query.lastError().text();
+    }
      return false;
+
+}
+
+bool BDD::add_task(QString title, QString descr, QString userToAssign, QString avancement, QString date, int idPro)
+{
+
+    QString idString = QString::number(idPro);
+    QSqlQuery query;
+
+    if(query.exec("select add_task('"+ login +"', '"+ title +"' , '"+ descr +"', '"+ userToAssign +"' , '"+ avancement +"',  '"+ date +"', '"+ idString +"' )"))
+    {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
+
+    }else
+    {
+        qDebug() << query.lastError().text();
+    }
+     return false;
+
+}
+
+Task BDD::load_task_Detail(QString idTk, QString assign)
+{
+
+
+    Task todo;
+
+    QSqlQuery query;
+
+    if(assign != ""){
+
+        if(query.exec("SELECT td.titre , td.description, uC.login as 'Createur', uD.login as 'Developpeur' , atd.nom , td.`dateCreation`, td.`dateModification`, td.`dateFinalisation` FROM todo td INNER JOIN avancementTodo atd on td.`idAvancement` = atd.id INNER JOIN user uC on td.`idCreateur` = uC.id INNER JOIN user uD on td.`idDeveloppeur` = uD.id WHERE td.id =  '"+ idTk +"' "))
+        {
+            while(query.next())
+            {
+                todo.setIdTask(idTk);
+                todo.setTitre(query.value(0).toString());
+                todo.setDescr(query.value(1).toString());
+                todo.setCreateur(query.value(2).toString());
+                todo.setDev(query.value(3).toString());
+                todo.setEtat(query.value(4).toString());
+                todo.setDateCreation(query.value(5).toString());
+                todo.setDateModification(query.value(6).toString());
+                todo.setDateFinalisation(query.value(7).toString());
+
+            }
+        }
+
+
+
+    }
+    else{
+
+        if(query.exec("SELECT td.titre , td.description, uC.login as 'Createur', atd.nom , td.`dateCreation`, td.`dateModification`, td.`dateFinalisation` FROM todo td INNER JOIN avancementTodo atd on td.`idAvancement` = atd.id INNER JOIN user uC on td.`idCreateur` = uC.id WHERE td.id =  '"+ idTk +"' "))
+        {
+            while(query.next())
+            {
+                todo.setIdTask(idTk);
+                todo.setTitre(query.value(0).toString());
+                todo.setDescr(query.value(1).toString());
+                todo.setCreateur(query.value(2).toString());
+                todo.setDev("");
+                todo.setEtat(query.value(3).toString());
+                todo.setDateCreation(query.value(4).toString());
+                todo.setDateModification(query.value(5).toString());
+                todo.setDateFinalisation(query.value(6).toString());
+
+            }
+        }
+    }
+
+    return todo ;
+
+}
+
+bool BDD::upd_task(Task source)
+{
+    QSqlQuery query;
+
+    if(query.exec("select upd_task('"+ login +"' ,'"+ source.getCreateur()  +"' , '"+ source.getTitre() +"' , '"+ source.getDescr() +"' , '"+ source.getDev() +"' , '"+ source.getEtat() +"' , '"+ source.getIdTask()+"')"))
+    {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
+
+    }else
+    {
+        qDebug() << query.lastError().text();
+    }
+    return false;
 }
 
 

@@ -14,6 +14,8 @@
 #include "addpeopledialog.h"
 #include "formaddbug.h"
 #include "formupdbug.h"
+#include "formaddtodo.h"
+#include "formupdtodo.h"
 
 namespace Ui {
 class MainWindow;
@@ -48,6 +50,8 @@ public:
     formAddBug *pageAddBug ;
     formUpdBug *pageUpdBug ;
 
+    formAddTodo *pageAddTask;
+    FormUpdTodo *pageUpdTask;
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
@@ -70,6 +74,11 @@ public slots:
     void saveTicketToDatabase(QString , QString , QString , QString );
     void updTicketToDatabase(Ticket source);
 
+    //Task ----------------------------------------------------------------------------------------------------------------------------------
+    void deleteTask(QString id);
+    void display_Form_Add_Task();
+    void display_Form_upd_task(QString, QString dev);
+    void upd_task_to_database(Task);
 
 private slots:
     void on_mAccueil_clicked();
@@ -79,6 +88,7 @@ private slots:
     void on_mMessages_clicked();
     void on_mTest_clicked();
     void on_mFile_clicked();
+    void save_To_Database(QString , QString , QString , QString , QString);
 
 
 };

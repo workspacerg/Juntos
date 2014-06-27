@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>formUpdBug</class>
- <widget class="QDialog" name="formUpdBug">
+ <class>FormUpdTodo</class>
+ <widget class="QDialog" name="FormUpdTodo">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>837</width>
-    <height>783</height>
+    <width>815</width>
+    <height>674</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,7 +29,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Details Ticket</string>
+      <string>Details Tâches</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -135,7 +135,7 @@
         </font>
        </property>
        <property name="text">
-        <string>Etat d'avancement :</string>
+        <string>Avancement :</string>
        </property>
       </widget>
      </item>
@@ -155,41 +155,6 @@
        <property name="frame">
         <bool>true</bool>
        </property>
-       <item>
-        <property name="text">
-         <string>ouvert</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>accepté</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>confirmé</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>affecté</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>résolu</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>fermé</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>rejeté</string>
-        </property>
-       </item>
       </widget>
      </item>
     </layout>
@@ -224,31 +189,6 @@
         </widget>
        </item>
        <item>
-        <widget class="QLabel" name="label_9">
-         <property name="minimumSize">
-          <size>
-           <width>150</width>
-           <height>0</height>
-          </size>
-         </property>
-         <property name="maximumSize">
-          <size>
-           <width>150</width>
-           <height>16777215</height>
-          </size>
-         </property>
-         <property name="font">
-          <font>
-           <family>Microsoft Yi Baiti</family>
-           <pointsize>18</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Fermeture</string>
-         </property>
-        </widget>
-       </item>
-       <item>
         <widget class="QLabel" name="label_8">
          <property name="minimumSize">
           <size>
@@ -269,7 +209,32 @@
           </font>
          </property>
          <property name="text">
-          <string>Assignation</string>
+          <string>Modification</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLabel" name="label_9">
+         <property name="minimumSize">
+          <size>
+           <width>150</width>
+           <height>0</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>150</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="font">
+          <font>
+           <family>Microsoft Yi Baiti</family>
+           <pointsize>18</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Date de fin</string>
          </property>
         </widget>
        </item>
@@ -296,7 +261,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QDateTimeEdit" name="dateEnd">
+        <widget class="QDateTimeEdit" name="dateModif">
          <property name="enabled">
           <bool>false</bool>
          </property>
@@ -314,9 +279,9 @@
         </widget>
        </item>
        <item>
-        <widget class="QDateTimeEdit" name="dateAssign">
+        <widget class="QDateTimeEdit" name="dateEnd">
          <property name="enabled">
-          <bool>false</bool>
+          <bool>true</bool>
          </property>
          <property name="minimumSize">
           <size>
@@ -358,11 +323,37 @@
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
       <widget class="QPushButton" name="save">
        <property name="text">
         <string>Sauvegarder</string>
        </property>
       </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
     </layout>
    </item>

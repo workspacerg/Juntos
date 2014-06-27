@@ -42,6 +42,10 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(PageTicket, SIGNAL(displayFormDelBug(QString)), this, SLOT(displayFormDelBug(QString)));
     QObject::connect(PageTicket, SIGNAL(displayFormUpdBug(QString, QString)), this, SLOT(displayFormUpdBug(QString, QString)));
 
+    // Task
+    QObject::connect(PageTask, SIGNAL(delSelectedTask(QString)), this, SLOT(deleteTask(QString)));
+    QObject::connect(PageTask, SIGNAL(add_task()), this, SLOT(display_Form_Add_Task()));
+    QObject::connect(PageTask, SIGNAL(upd_task(QString, QString)), this, SLOT(display_Form_upd_task(QString, QString)));
 
 
 }
@@ -151,6 +155,12 @@ void MainWindow::delPeopleToProject(QString usrToadd)
     delete pagePeople;
 }
 
+//
+//
+// TICKET -------------------------------------------------------------------------------------------------------------------
+//
+//
+
 void MainWindow::displayFormAddBug()
 {
     vector<cUser> listUser = myBDD->getParticipant(currentProject->getId());
@@ -204,6 +214,94 @@ void MainWindow::updTicketToDatabase(Ticket source)
     delete pageUpdBug;
     emit on_mTicket_clicked();
 }
+
+
+
+//
+//
+// TASK -------------------------------------------------------------------------------------------------------------------
+//
+//
+void MainWindow::deleteTask(QString id)
+{
+    myBDD->delTask(id , currentProject->getId());
+    emit on_mTask_clicked();
+}
+
+void MainWindow::display_Form_Add_Task()
+{
+
+    vector<cUser> listUser = myBDD->getParticipant(currentProject->getId());
+
+    currentProject->clearUser();
+    for(cUser item : listUser)
+    {
+        currentProject->addUser(item);
+    }
+
+    vector<QString> avc ;
+
+    avc.push_back("crée");
+    avc.push_back("assigné");
+    avc.push_back("en cours");
+
+    pageAddTask = new formAddTodo;
+        QObject::connect(pageAddTask, SIGNAL(savetodatabase(QString,QString,QString,QString,QString)), this, SLOT(save_To_Database(QString,QString,QString,QString,QString)));
+    pageAddTask->loadComboBox(currentProject->getUsers(), avc );
+    pageAddTask->show();
+
+    emit on_mTask_clicked();
+
+}
+
+void MainWindow::display_Form_upd_task(QString idTk, QString dev)
+{
+
+    vector<cUser> listUser = myBDD->getParticipant(currentProject->getId());
+
+    currentProject->clearUser();
+    for(cUser item : listUser)
+    {
+        currentProject->addUser(item);
+    }
+
+    vector<QString> avc ;
+
+    avc.push_back("crée");
+    avc.push_back("assigné");
+    avc.push_back("en cours");
+
+    pageUpdTask = new FormUpdTodo ;
+    QObject::connect(pageUpdTask, SIGNAL(save_data(Task)), this, SLOT(upd_task_to_database(Task)));
+    pageUpdTask->loadComboBox(currentProject->getUsers(), avc);
+    pageUpdTask->loadInfoTask(myBDD->load_task_Detail(idTk , dev));
+    pageUpdTask->show();
+
+
+}
+
+void MainWindow::upd_task_to_database(Task source)
+{
+    myBDD->upd_task(source);
+    emit on_mTask_clicked();
+    delete pageUpdTask;
+}
+
+
+void MainWindow::save_To_Database(QString Titre, QString Descr, QString Usr, QString Avc, QString dt)
+{
+
+    myBDD->add_task(Titre , Descr , Usr , Avc , dt , currentProject->getId());
+    delete pageAddTask;
+    emit on_mTask_clicked();
+
+}
+
+//
+//
+// UI MAIN WINDOW -------------------------------------------------------------------------------------------------------------------
+//
+//
 
 void MainWindow::displayNotification(QString titre, QString content)
 {
@@ -259,6 +357,8 @@ void MainWindow::on_mAccueil_clicked()
 void MainWindow::on_mTask_clicked()
 {
 
+    PageTask->loadTable(myBDD->loadTask(currentProject->getId()));
+
     this->hideAll();
     ui->TitreBody->setText("Liste des tâches");
     ui->cTask->layout()->addWidget(PageTask);
@@ -269,8 +369,6 @@ void MainWindow::on_mTask_clicked()
 void MainWindow::on_mTicket_clicked()
 {
     // Update des tickets :
-
-
     PageTicket->loadTable(myBDD->loadTicket(currentProject->getId()));
 
 
