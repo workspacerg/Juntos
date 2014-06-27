@@ -123,3 +123,85 @@ VALUES
 	RETURN 1;
  
 END|
+
+
+DROP FUNCTION IF EXISTS upd_task;
+CREATE FUNCTION upd_task(log TEXT , userCreate TEXT , titre TEXT , descr TEXT , userToAssign TEXT , etatAvancement TEXT , idTk TEXT)
+	RETURNS TINYINT(1)
+BEGIN
+
+
+	DECLARE userExiste INT DEFAULT 0;
+	DECLARE tkExiste INT DEFAULT 0;
+
+	DECLARE idLog 	INT  DEFAULT NULL ;
+	DECLARE idUser 	INT  DEFAULT NULL ;
+	DECLARE idEtat 	INT  DEFAULT NULL ;
+
+	DECLARE oldAssignId 	INT  DEFAULT NULL ;
+	DECLARE oldEtatId	 	INT  DEFAULT NULL ;
+
+	DECLARE userOK TINYINT(1) DEFAULT 0 ;
+	DECLARE nameAssign VARCHAR(50) ;
+	DECLARE rowAffected INT DEFAULT 0 ;
+
+	# Les verifications
+
+    SELECT count(*) INTO userExiste FROM user WHERE login = userCreate ; 
+    IF userExiste < 1 THEN
+    	call add_to_log(log, "user admin n'existe pas" , "Le créateur n'existe pas" );
+    	RETURN 0 ;
+	END IF; 
+
+	SELECT count(*) INTO userExiste FROM user WHERE login = userToAssign ; 
+    IF userExiste < 1 && userToAssign != ""  THEN
+    	call add_to_log(log, "user n'existe pas" , "L'utilisateur assigné n'existe pas" );
+    	RETURN 0 ;
+    ELSE
+    	Set userOK = 1;
+	END IF;
+
+
+	SELECT count(*) INTO tkExiste FROM todo WHERE id = idTk ; 
+    IF tkExiste < 1 THEN
+    	call add_to_log(log, "La tâche n'existe pas" , "La tâche n'existe pas");
+    	RETURN 0 ;
+	END IF; 
+
+	# Selection des différents id
+
+	SELECT id INTO idLog 	FROM user WHERE login 	= userCreate ;
+	SELECT id INTO idUser 	FROM user WHERE login 	= userToAssign ; 
+	SELECT id INTO idEtat 	FROM avancementTodo WHERE nom 	= etatAvancement ; 
+
+	SELECT assignToUser INTO oldAssignId 	FROM task WHERE id = idtk ;
+	SELECT etat 	INTO oldEtatId 		FROM task WHERE id = idtk ;
+
+
+
+UPDATE `juntos`.`todo` 
+SET 
+	`titre` = titre, 
+	`description` = descr, 
+	`idCreateur` = idLog, 
+	`idDeveloppeur` = idUser, 
+	`dateModification` = CURRENT_TIMESTAMP, 
+	`dateFinalisation` = '2016-01-23 00:00:00', 
+	`idAvancement` = '2' 
+WHERE `todo`.`id` = idTk;
+
+
+
+	
+	# Je suppprime si regression
+
+	IF idEtat = 7 THEN
+		UPDATE  `todo` SET `dateFinalisation` =  CURRENT_TIMESTAMP  WHERE `id` = idTk;
+	END IF;
+
+
+
+
+	RETURN 1;
+ 
+END|

@@ -503,13 +503,12 @@ vector<Task> BDD::loadTask(int idPro)
         }
     }
 
-    if(query.exec("SELECT tk.id, tk.name, tk.description, u2.login, tk.dateLog,  tk.dateAssignTo , e.name FROM task tk   INNER JOIN project pro ON pro.id = tk.idProject  INNER JOIN etat e ON e.id = tk.Etat  INNER JOIN type tp ON tp.id = tk.idType INNER JOIN user u2 ON u2.id = tk.createBy  WHERE pro.id = '"+idString+"' AND tp.nom = 'task' AND tk.assignToUser is null "))
+    if(query.exec("SELECT td.`id` , td.titre , td.description, uC.login as 'Createur', atd.nom , td.`dateCreation`, td.`dateModification`, td.`dateFinalisation` FROM todo td INNER JOIN avancementTodo atd on td.`idAvancement` = atd.id INNER JOIN user uC on td.`idCreateur` = uC.id WHERE td.`idProjet` = '"+idString+"' AND td.idDeveloppeur is null "))
     {
         while(query.next())
         {
 
-           //tickets.push_back(Ticket(query.value(0).toString() , query.value(1).toString(), query.value(2).toString(), query.value(3).toString() ,  query.value(4).toString() ,  query.value(5).toString() ,  "" ,  query.value(6).toString() ));
-
+          tasks.push_back(Task(query.value(0).toString() , query.value(1).toString(), query.value(2).toString(), query.value(3).toString() , "" ,  query.value(4).toString() ,  query.value(5).toString() ,  query.value(6).toString() , query.value(7).toString()));
 
         }
     }
@@ -566,6 +565,82 @@ bool BDD::add_task(QString title, QString descr, QString userToAssign, QString a
     }
      return false;
 
+}
+
+Task BDD::load_task_Detail(QString idTk, QString assign)
+{
+
+
+    Task todo;
+
+    QSqlQuery query;
+
+    if(assign != ""){
+
+        if(query.exec("SELECT td.titre , td.description, uC.login as 'Createur', uD.login as 'Developpeur' , atd.nom , td.`dateCreation`, td.`dateModification`, td.`dateFinalisation` FROM todo td INNER JOIN avancementTodo atd on td.`idAvancement` = atd.id INNER JOIN user uC on td.`idCreateur` = uC.id INNER JOIN user uD on td.`idDeveloppeur` = uD.id WHERE td.id =  '"+ idTk +"' "))
+        {
+            while(query.next())
+            {
+                todo.setIdTask(idTk);
+                todo.setTitre(query.value(0).toString());
+                todo.setDescr(query.value(1).toString());
+                todo.setCreateur(query.value(2).toString());
+                todo.setDev(query.value(3).toString());
+                todo.setEtat(query.value(4).toString());
+                todo.setDateCreation(query.value(5).toString());
+                todo.setDateModification(query.value(6).toString());
+                todo.setDateFinalisation(query.value(7).toString());
+
+            }
+        }
+
+
+
+    }
+    else{
+
+        if(query.exec("SELECT td.titre , td.description, uC.login as 'Createur', atd.nom , td.`dateCreation`, td.`dateModification`, td.`dateFinalisation` FROM todo td INNER JOIN avancementTodo atd on td.`idAvancement` = atd.id INNER JOIN user uC on td.`idCreateur` = uC.id WHERE td.id =  '"+ idTk +"' "))
+        {
+            while(query.next())
+            {
+                todo.setIdTask(idTk);
+                todo.setTitre(query.value(0).toString());
+                todo.setDescr(query.value(1).toString());
+                todo.setCreateur(query.value(2).toString());
+                todo.setDev("");
+                todo.setEtat(query.value(3).toString());
+                todo.setDateCreation(query.value(4).toString());
+                todo.setDateModification(query.value(5).toString());
+                todo.setDateFinalisation(query.value(6).toString());
+
+            }
+        }
+    }
+
+    return todo ;
+
+}
+
+bool BDD::upd_task(Task source)
+{
+    QSqlQuery query;
+
+    if(query.exec("select upd_task('"+ login +"' ,'"+ source.getCreateur()  +"' , '"+ source.getTitre() +"' , '"+ source.getDescr() +"' , '"+ source.getDev() +"' , '"+ source.getEtat() +"' , '"+ source.getIdTask()+"')"))
+    {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
+
+    }else
+    {
+        qDebug() << query.lastError().text();
+    }
+    return false;
 }
 
 

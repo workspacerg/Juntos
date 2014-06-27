@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <vector>
+#include <QTableWidgetItem>
 #include "task.h"
 #include "supprdialog.h"
 
@@ -29,6 +30,8 @@ private slots:
 
     void on_addTask_clicked();
 
+    void on_tableWidgetTask_itemDoubleClicked(QTableWidgetItem *item);
+
 public slots:
     void evaluationSuppr(QString);
 
@@ -39,6 +42,7 @@ private:
 signals:
     void delSelectedTask(QString idTask);
     void add_task();
+    void upd_task(QString, QString);
 
 };
 

@@ -63,6 +63,8 @@ public:
     vector<Task> loadTask(int idPro);
     bool delTask(QString idTk , int idPro);
     bool add_task(QString title , QString descr , QString userToAssign, QString avancement , QString date , int idPro);
+    Task load_task_Detail(QString idTk, QString assign);
+    bool upd_task(Task source);
 
 };
 

@@ -34,7 +34,8 @@ SOURCES += main.cpp\
     formupdbug.cpp \
     task.cpp \
     supprdialog.cpp \
-    formaddtodo.cpp
+    formaddtodo.cpp \
+    formupdtodo.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -54,7 +55,8 @@ HEADERS  += mainwindow.h \
     formupdbug.h \
     task.h \
     supprdialog.h \
-    formaddtodo.h
+    formaddtodo.h \
+    formupdtodo.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \
@@ -67,7 +69,8 @@ FORMS    += mainwindow.ui \
     formaddbug.ui \
     formupdbug.ui \
     supprdialog.ui \
-    formaddtodo.ui
+    formaddtodo.ui \
+    formupdtodo.ui
 
 RESOURCES += \
     Images.qrc

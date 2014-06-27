@@ -84,3 +84,10 @@ void uiTask::on_addTask_clicked()
 {
     emit add_task();
 }
+
+void uiTask::on_tableWidgetTask_itemDoubleClicked(QTableWidgetItem *item)
+{
+
+    emit upd_task(ui->tableWidgetTask->item( item->row() , 0)->text() ,  ui->tableWidgetTask->item( item->row() , 4)->text() );
+
+}
