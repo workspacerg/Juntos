@@ -187,7 +187,7 @@ SET
 	`idDeveloppeur` = idUser, 
 	`dateModification` = CURRENT_TIMESTAMP, 
 	`dateFinalisation` = '2016-01-23 00:00:00', 
-	`idAvancement` = '2' 
+	`idAvancement` = idEtat 
 WHERE `todo`.`id` = idTk;
 
 

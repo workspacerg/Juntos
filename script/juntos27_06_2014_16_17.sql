@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Mer 25 Juin 2014 à 17:47
+-- Généré le :  Ven 27 Juin 2014 à 16:17
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -34,6 +34,158 @@ END$$
 --
 -- Fonctions
 --
+CREATE DEFINER=`root`@`localhost` FUNCTION `add_task`( log TEXT , titre TEXT , descr TEXT , dev TEXT , etatAvancement TEXT , dateFin TEXT , idPro TEXT) RETURNS tinyint(1)
+BEGIN
+
+	DECLARE rowAffected INT DEFAULT 0 ;
+	DECLARE userExiste INT DEFAULT 0;
+	DECLARE proExiste INT DEFAULT 0;
+
+	DECLARE idLog 	INT  DEFAULT NULL ;
+	DECLARE idUser 	INT  DEFAULT NULL ;
+	DECLARE idEtat 	INT  DEFAULT NULL ;
+
+	DECLARE userOK TINYINT(1) DEFAULT 0 ;
+	DECLARE CONTINUE HANDLER FOR 1062 
+		BEGIN
+				call add_to_log(log, "Titre déjà présent" , "try to duplicate name values" );
+				RETURN 0;
+		END;
+
+	
+
+    SELECT count(*) INTO userExiste FROM user WHERE login = log ; 
+    IF userExiste < 1 THEN
+    	call add_to_log(log, "log n'existe pas" , "Le compte cherchant à crée un projet n'existe pas" );
+    	RETURN 0 ;
+	END IF; 
+
+	SELECT count(*) INTO userExiste FROM user WHERE login = dev ; 
+    IF userExiste < 1 && dev != "" THEN
+    	call add_to_log(log, "user n'existe pas" , "L'utilisateur assigné n'existe pas" );
+    	RETURN 0 ;
+    ELSE
+    	Set userOK = 1;
+	END IF;
+
+	SELECT count(*) INTO proExiste FROM project WHERE id = idPro ; 
+    IF proExiste < 1 THEN
+    	call add_to_log(log, "Le projet n'existe pas" , "Le projet n'existe pas");
+    	RETURN 0 ;
+	END IF; 
+
+	
+
+	IF dev = "" THEN
+		Set dev = NULL ;
+		Set userOK = 0 ;
+	END IF ;
+
+	SELECT id INTO idLog 	FROM user WHERE login 	= log ;
+	SELECT id INTO idUser 	FROM user WHERE login 	= dev ; 
+	SELECT id INTO idEtat 	FROM avancementTodo WHERE nom 	= etatAvancement ; 
+
+INSERT INTO `juntos`.`todo` 
+(
+	`id`, 
+	`titre`, 
+	`description`, 
+	`idProjet`, 
+	`idCreateur`, 
+	`idDeveloppeur`, 
+	`dateCreation`, 
+	`dateModification`, 
+	`dateFinalisation`, 
+	`idAvancement`) 
+VALUES 
+(
+	NULL, titre, descr, idPro, idLog, idUser, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, dateFin, idEtat
+);
+
+	IF idEtat = 7 THEN
+		UPDATE  `todo` SET dateFinalisation =  CURRENT_TIMESTAMP WHERE  `id` = LAST_INSERT_ID();
+	END IF;
+
+	RETURN 1;
+ 
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `add_ticket`( log TEXT , titre TEXT , descr TEXT , userToAssign TEXT , etatAvancement TEXT , idPro TEXT) RETURNS tinyint(1)
+BEGIN
+
+	DECLARE rowAffected INT DEFAULT 0 ;
+	DECLARE userExiste INT DEFAULT 0;
+	DECLARE proExiste INT DEFAULT 0;
+
+	DECLARE idLog 	INT  DEFAULT NULL ;
+	DECLARE idUser 	INT  DEFAULT NULL ;
+	DECLARE idEtat 	INT  DEFAULT NULL ;
+
+	DECLARE userOK TINYINT(1) DEFAULT 0 ;
+
+	
+
+    SELECT count(*) INTO userExiste FROM user WHERE login = log ; 
+    IF userExiste < 1 THEN
+    	call add_to_log(log, "log n'existe pas" , "Le compte cherchant à crée un projet n'existe pas" );
+    	RETURN 0 ;
+	END IF; 
+
+	SELECT count(*) INTO userExiste FROM user WHERE login = userToAssign ; 
+    IF userExiste < 1 && userToAssign != "" THEN
+    	call add_to_log(log, "user n'existe pas" , "L'utilisateur assigné n'existe pas" );
+    	RETURN 0 ;
+    ELSE
+    	Set userOK = 1;
+	END IF;
+
+	SELECT count(*) INTO proExiste FROM project WHERE id = idPro ; 
+    IF proExiste < 1 THEN
+    	call add_to_log(log, "Le projet n'existe pas" , "Le projet n'existe pas");
+    	RETURN 0 ;
+	END IF; 
+
+	
+
+	IF userToAssign = "" THEN
+		Set userToAssign = NULL ;
+		Set userOK = 0 ;
+	END IF ;
+
+	SELECT id INTO idLog 	FROM user WHERE login 	= log ;
+	SELECT id INTO idUser 	FROM user WHERE login 	= userToAssign ; 
+	SELECT id INTO idEtat 	FROM etat WHERE name 	= etatAvancement ; 
+
+	INSERT INTO  task (
+	`id` ,
+	`idProject` ,
+	`name` ,
+	`description` ,
+	`createBy` ,
+	`dateLog` ,
+	`dateDone` ,
+	`dateAssignTo` ,
+	`assignToUser` ,
+	`idType` ,
+	`Etat`
+	)
+	VALUES (
+	NULL ,  idPro,  titre,  descr,  idLog, 
+	CURRENT_TIMESTAMP , NULL , NULL ,  idUser,  '1',  idEtat
+	);
+
+	IF userOK = 1 THEN
+		UPDATE  `task` SET `dateAssignTo` =  CURRENT_TIMESTAMP WHERE  `id` = LAST_INSERT_ID();
+	END IF;
+
+	IF idEtat > 4 THEN
+		UPDATE  `task` SET `dateDone` =  CURRENT_TIMESTAMP WHERE  `id` = LAST_INSERT_ID();
+	END IF;
+
+	RETURN 1;
+ 
+END$$
+
 CREATE DEFINER=`root`@`localhost` FUNCTION `check_param_user`( log TEXT , password TEXT) RETURNS tinyint(1)
 BEGIN
         
@@ -111,6 +263,86 @@ BEGIN
 	END IF;
 
 
+ 
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `del_task`( log TEXT , idTd TEXT, idPro TEXT) RETURNS tinyint(1)
+BEGIN
+
+	DECLARE idLog 	INT  DEFAULT NULL ;
+
+	DECLARE isAdmin 	INT DEFAULT 0;
+	DECLARE isCreate 	INT DEFAULT 0;
+	DECLARE userExiste 	INT DEFAULT 0;
+
+	
+
+    SELECT count(*) INTO userExiste FROM user WHERE login = log ; 
+    IF userExiste < 1 THEN
+    	call add_to_log(log, "log n'existe pas" , "Le compte cherchant à crée un projet n'existe pas" );
+    	RETURN 0 ;
+	END IF; 
+
+	SELECT id INTO idLog FROM user WHERE login 	= log ;
+
+	
+
+	SELECT count(*) INTO isCreate FROM todo	 WHERE id = 2 AND idCreateur = 2 ; 
+	
+	SELECT check_user_admin(log , idPro) INTO isAdmin;
+    
+
+    IF isAdmin < 1 && isCreate <1 THEN
+    	call add_to_log(log, "Suppression impossible " , "Vous êtes ni admin du projet, ni créateur de la tâche ");
+    	RETURN 0 ;
+	END IF; 
+
+	DELETE FROM todo WHERE id = idTd ;
+
+	
+
+
+	RETURN 1;
+ 
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `del_ticket`( log TEXT , idTk TEXT, idPro TEXT) RETURNS tinyint(1)
+BEGIN
+
+	DECLARE idLog 	INT  DEFAULT NULL ;
+
+	DECLARE isAdmin 	INT DEFAULT 0;
+	DECLARE isCreate 	INT DEFAULT 0;
+	DECLARE userExiste 	INT DEFAULT 0;
+
+	
+
+    SELECT count(*) INTO userExiste FROM user WHERE login = log ; 
+    IF userExiste < 1 THEN
+    	call add_to_log(log, "log n'existe pas" , "Le compte cherchant à crée un projet n'existe pas" );
+    	RETURN 0 ;
+	END IF; 
+
+	SELECT id INTO idLog FROM user WHERE login 	= log ;
+
+
+	
+
+	SELECT count(*) INTO isCreate FROM task tk WHERE id = idTk AND createBy = idLog ; 
+	SELECT check_user_admin(log , idPro) INTO isAdmin;
+    
+
+    IF isAdmin < 1 && isCreate <1 THEN
+    	call add_to_log(log, "Suppression impossible " , "Vous êtes ni admin du projet, ni créateur du ticket ");
+    	RETURN 0 ;
+	END IF; 
+
+	DELETE FROM task WHERE id = idTk ;
+
+	
+
+
+	RETURN 1;
  
 END$$
 
@@ -314,7 +546,193 @@ END IF;
  
 END$$
 
+CREATE DEFINER=`root`@`localhost` FUNCTION `upd_task`(log TEXT , userCreate TEXT , titre TEXT , descr TEXT , userToAssign TEXT , etatAvancement TEXT , idTk TEXT) RETURNS tinyint(1)
+BEGIN
+
+
+	DECLARE userExiste INT DEFAULT 0;
+	DECLARE tkExiste INT DEFAULT 0;
+
+	DECLARE idLog 	INT  DEFAULT NULL ;
+	DECLARE idUser 	INT  DEFAULT NULL ;
+	DECLARE idEtat 	INT  DEFAULT NULL ;
+
+	DECLARE oldAssignId 	INT  DEFAULT NULL ;
+	DECLARE oldEtatId	 	INT  DEFAULT NULL ;
+
+	DECLARE userOK TINYINT(1) DEFAULT 0 ;
+	DECLARE nameAssign VARCHAR(50) ;
+	DECLARE rowAffected INT DEFAULT 0 ;
+
+	
+
+    SELECT count(*) INTO userExiste FROM user WHERE login = userCreate ; 
+    IF userExiste < 1 THEN
+    	call add_to_log(log, "user admin n'existe pas" , "Le créateur n'existe pas" );
+    	RETURN 0 ;
+	END IF; 
+
+	SELECT count(*) INTO userExiste FROM user WHERE login = userToAssign ; 
+    IF userExiste < 1 && userToAssign != ""  THEN
+    	call add_to_log(log, "user n'existe pas" , "L'utilisateur assigné n'existe pas" );
+    	RETURN 0 ;
+    ELSE
+    	Set userOK = 1;
+	END IF;
+
+
+	SELECT count(*) INTO tkExiste FROM todo WHERE id = idTk ; 
+    IF tkExiste < 1 THEN
+    	call add_to_log(log, "La tâche n'existe pas" , "La tâche n'existe pas");
+    	RETURN 0 ;
+	END IF; 
+
+	
+
+	SELECT id INTO idLog 	FROM user WHERE login 	= userCreate ;
+	SELECT id INTO idUser 	FROM user WHERE login 	= userToAssign ; 
+	SELECT id INTO idEtat 	FROM avancementTodo WHERE nom 	= etatAvancement ; 
+
+	SELECT assignToUser INTO oldAssignId 	FROM task WHERE id = idtk ;
+	SELECT etat 	INTO oldEtatId 		FROM task WHERE id = idtk ;
+
+
+
+UPDATE `juntos`.`todo` 
+SET 
+	`titre` = titre, 
+	`description` = descr, 
+	`idCreateur` = idLog, 
+	`idDeveloppeur` = idUser, 
+	`dateModification` = CURRENT_TIMESTAMP, 
+	`dateFinalisation` = '2016-01-23 00:00:00', 
+	`idAvancement` = idEtat 
+WHERE `todo`.`id` = idTk;
+
+
+
+	
+	
+
+	IF idEtat = 7 THEN
+		UPDATE  `todo` SET `dateFinalisation` =  CURRENT_TIMESTAMP  WHERE `id` = idTk;
+	END IF;
+
+
+
+
+	RETURN 1;
+ 
+END$$
+
+CREATE DEFINER=`root`@`localhost` FUNCTION `upd_ticket`(log TEXT , userCreate TEXT , titre TEXT , descr TEXT , userToAssign TEXT , etatAvancement TEXT , idTk TEXT) RETURNS tinyint(1)
+BEGIN
+
+
+	DECLARE userExiste INT DEFAULT 0;
+	DECLARE tkExiste INT DEFAULT 0;
+
+	DECLARE idLog 	INT  DEFAULT NULL ;
+	DECLARE idUser 	INT  DEFAULT NULL ;
+	DECLARE idEtat 	INT  DEFAULT NULL ;
+
+	DECLARE oldAssignId 	INT  DEFAULT NULL ;
+	DECLARE oldEtatId	 	INT  DEFAULT NULL ;
+
+	DECLARE userOK TINYINT(1) DEFAULT 0 ;
+	DECLARE nameAssign VARCHAR(50) ;
+	DECLARE rowAffected INT DEFAULT 0 ;
+
+	
+
+    SELECT count(*) INTO userExiste FROM user WHERE login = userCreate ; 
+    IF userExiste < 1 THEN
+    	call add_to_log(log, "user admin n'existe pas" , "Le créateur n'existe pas" );
+    	RETURN 0 ;
+	END IF; 
+
+	SELECT count(*) INTO userExiste FROM user WHERE login = userToAssign ; 
+    IF userExiste < 1 && userToAssign != ""  THEN
+    	call add_to_log(log, "user n'existe pas" , "L'utilisateur assigné n'existe pas" );
+    	RETURN 0 ;
+    ELSE
+    	Set userOK = 1;
+	END IF;
+
+
+
+	SELECT count(*) INTO tkExiste FROM task WHERE id = idTk ; 
+    IF tkExiste < 1 THEN
+    	call add_to_log(log, "Le ticket n'existe pas" , "Le ticket n'existe pas");
+    	RETURN 0 ;
+	END IF; 
+
+	
+
+	SELECT id INTO idLog 	FROM user WHERE login 	= userCreate ;
+	SELECT id INTO idUser 	FROM user WHERE login 	= userToAssign ; 
+	SELECT id INTO idEtat 	FROM etat WHERE name 	= etatAvancement ; 
+
+	SELECT assignToUser INTO oldAssignId 	FROM task WHERE id = idtk ;
+	SELECT etat 	INTO oldEtatId 		FROM task WHERE id = idtk ;
+
+
+
+	UPDATE task 
+	SET 
+	`name` = titre, 
+	`description` = descr, 
+	`createBy` = idLog,  
+	`assignToUser` = idUser, 
+	`Etat` = idEtat ,
+	`dateAssignTo` = CURRENT_TIMESTAMP
+	WHERE `task`.`id` = idTk;
+
+
+	
+
+	IF oldEtatId != idEtat && idEtat > 4 THEN
+		UPDATE  `task` SET `dateDone` =  CURRENT_TIMESTAMP WHERE  `id` = idTk;
+	END IF;
+	
+	
+
+	IF idEtat < 5 THEN
+		UPDATE  `task` SET `dateDone` =  NULL WHERE  `id` = idTk;
+	END IF;
+
+
+
+
+	RETURN 1;
+ 
+END$$
+
 DELIMITER ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `avancementtodo`
+--
+
+CREATE TABLE IF NOT EXISTS `avancementtodo` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `nom` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+
+--
+-- Contenu de la table `avancementtodo`
+--
+
+INSERT INTO `avancementtodo` (`id`, `nom`) VALUES
+(1, 'crée'),
+(2, 'assigné'),
+(4, 'en cours'),
+(5, 'à tester'),
+(6, 'validé'),
+(7, 'Terminé');
 
 -- --------------------------------------------------------
 
@@ -326,7 +744,7 @@ CREATE TABLE IF NOT EXISTS `etat` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=104 ;
 
 --
 -- Contenu de la table `etat`
@@ -339,7 +757,10 @@ INSERT INTO `etat` (`id`, `name`) VALUES
 (4, 'affecté'),
 (5, 'résolu'),
 (6, 'fermé'),
-(7, 'rejeté');
+(7, 'rejeté'),
+(101, 'Ouvert'),
+(102, 'En cours'),
+(103, 'Terminé');
 
 -- --------------------------------------------------------
 
@@ -353,19 +774,7 @@ CREATE TABLE IF NOT EXISTS `log` (
   `title` varchar(255) CHARACTER SET utf8 NOT NULL,
   `message` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=35 ;
-
---
--- Contenu de la table `log`
---
-
-INSERT INTO `log` (`id`, `login`, `title`, `message`) VALUES
-(29, 'rgabel', 'Le projet n''existe pas', 'Le projet n''existe pas'),
-(30, 'rgabel', 'Le projet n''existe pas', 'Le projet n''existe pas'),
-(31, 'rgabel', 'Le projet n''existe pas', 'Le projet n''existe pas'),
-(32, 'rgabel', 'Le projet n''existe pas', 'Le projet n''existe pas'),
-(33, 'rgabel', 'Erreur connection', 'Tentative de connection avec un mauvais couple d''id'),
-(34, 'rgabel', 'Erreur connection', 'Tentative de connection avec un mauvais couple d''id');
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=56 ;
 
 -- --------------------------------------------------------
 
@@ -394,7 +803,7 @@ CREATE TABLE IF NOT EXISTS `project` (
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
 
 --
 -- Contenu de la table `project`
@@ -402,7 +811,8 @@ CREATE TABLE IF NOT EXISTS `project` (
 
 INSERT INTO `project` (`id`, `name`, `description`) VALUES
 (1, 'First', 'mon premier projet'),
-(26, 'Projet 2', 'Admin : rgabel \nAutre: andy');
+(26, 'Projet 2', 'Admin : rgabel \nAutre: andy'),
+(27, 'Projet de andy', '...');
 
 -- --------------------------------------------------------
 
@@ -419,7 +829,7 @@ CREATE TABLE IF NOT EXISTS `task` (
   `dateLog` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `dateDone` datetime DEFAULT NULL,
   `dateAssignTo` datetime DEFAULT NULL,
-  `assignToUser` int(10) unsigned NOT NULL,
+  `assignToUser` int(10) unsigned DEFAULT NULL,
   `idType` int(10) unsigned DEFAULT '2',
   `Etat` int(10) unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`),
@@ -428,16 +838,17 @@ CREATE TABLE IF NOT EXISTS `task` (
   KEY `Etat` (`Etat`),
   KEY `createBy` (`createBy`),
   KEY `assignToUser` (`assignToUser`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=46 ;
 
 --
 -- Contenu de la table `task`
 --
 
 INSERT INTO `task` (`id`, `idProject`, `name`, `description`, `createBy`, `dateLog`, `dateDone`, `dateAssignTo`, `assignToUser`, `idType`, `Etat`) VALUES
-(1, 1, 'Mon premier ticket', 'Ticket de test pour le projet 1', 1, '2014-06-25 08:09:41', '2014-06-25 17:10:00', '2014-06-25 16:20:00', 3, 1, 1),
-(2, 1, 'Bug ticket', 'Crash lors du chargement des tickets', 1, '2014-06-25 15:10:53', NULL, '2014-06-25 17:15:37', 2, 1, 3),
-(4, 26, 'Ya pas ray', 'pas de ray sur le projet', 3, '2014-06-25 15:17:29', NULL, '2014-06-25 17:00:00', 1, 1, 6);
+(41, 1, 'bonjour', 'com', 1, '2014-06-26 15:29:40', NULL, '2014-06-26 17:29:40', 1, 1, 1),
+(42, 1, 'Bonsoir', 'non assigneazeaze', 1, '2014-06-26 15:30:03', NULL, '2014-06-26 17:34:15', 1, 1, 1),
+(43, 1, 'arzar', 'zaerzarzare', 1, '2014-06-26 15:37:18', NULL, '2014-06-26 17:37:56', 1, 1, 1),
+(44, 1, 'azerty', 'descr', 1, '2014-06-26 16:54:53', NULL, '2014-06-26 19:15:44', 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -454,6 +865,43 @@ CREATE TABLE IF NOT EXISTS `testunitaire` (
   `paramOut` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `todo`
+--
+
+CREATE TABLE IF NOT EXISTS `todo` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `titre` varchar(255) NOT NULL DEFAULT 'Titre du projet.',
+  `description` text NOT NULL,
+  `idProjet` int(10) unsigned NOT NULL,
+  `idCreateur` int(10) unsigned NOT NULL,
+  `idDeveloppeur` int(10) unsigned DEFAULT NULL,
+  `dateCreation` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dateModification` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `dateFinalisation` datetime DEFAULT NULL,
+  `idAvancement` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `titre` (`titre`),
+  KEY `idProjet` (`idProjet`,`idCreateur`,`idDeveloppeur`),
+  KEY `idAvancement` (`idAvancement`),
+  KEY `idCreateur` (`idCreateur`),
+  KEY `idDeveloppeur` (`idDeveloppeur`),
+  KEY `idCreateur_2` (`idCreateur`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=12 ;
+
+--
+-- Contenu de la table `todo`
+--
+
+INSERT INTO `todo` (`id`, `titre`, `description`, `idProjet`, `idCreateur`, `idDeveloppeur`, `dateCreation`, `dateModification`, `dateFinalisation`, `idAvancement`) VALUES
+(2, 'Titre du projet.', 'dercr', 1, 1, 2, '2014-06-27 10:35:43', '2014-06-27 10:35:43', NULL, 1),
+(5, 'Titre du projet.3\r\n', 'jkhlkjhlkhj', 1, 1, 2, '2014-06-27 11:42:43', '2014-06-27 11:42:43', '2014-06-28 00:00:00', 1),
+(7, 'Test de titre', 'Test insert by ui', 1, 1, 1, '2014-06-27 12:22:49', '2014-06-27 12:22:49', '2015-01-01 10:00:00', 2),
+(8, 'test 2azeaze', 'qsdqdqdaze', 1, 2, 1, '2014-06-27 12:24:56', '2014-06-27 16:13:22', '2016-01-23 00:00:00', 1),
+(11, 'Test ui ', '...', 1, 1, 2, '2014-06-27 15:35:28', '2014-06-27 15:35:28', '2014-07-01 00:00:00', 4);
 
 -- --------------------------------------------------------
 
@@ -512,7 +960,7 @@ CREATE TABLE IF NOT EXISTS `userinproject` (
   PRIMARY KEY (`id`),
   KEY `fk_userInProject_user_1` (`idUser`),
   KEY `fk_userInProject_project_1` (`idProject`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=49 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=52 ;
 
 --
 -- Contenu de la table `userinproject`
@@ -522,7 +970,10 @@ INSERT INTO `userinproject` (`id`, `idUser`, `idProject`, `admin`) VALUES
 (1, 1, 1, 1),
 (43, 2, 1, 0),
 (47, 1, 26, 1),
-(48, 3, 26, 0);
+(48, 3, 26, 0),
+(49, 2, 26, 0),
+(50, 3, 27, 1),
+(51, 1, 27, 0);
 
 --
 -- Contraintes pour les tables exportées
@@ -532,11 +983,20 @@ INSERT INTO `userinproject` (`id`, `idUser`, `idProject`, `admin`) VALUES
 -- Contraintes pour la table `task`
 --
 ALTER TABLE `task`
-  ADD CONSTRAINT `task_ibfk_5` FOREIGN KEY (`assignToUser`) REFERENCES `user` (`id`) ON UPDATE CASCADE,
   ADD CONSTRAINT `task_ibfk_1` FOREIGN KEY (`idProject`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `task_ibfk_2` FOREIGN KEY (`idType`) REFERENCES `type` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `task_ibfk_3` FOREIGN KEY (`Etat`) REFERENCES `etat` (`id`),
-  ADD CONSTRAINT `task_ibfk_4` FOREIGN KEY (`createBy`) REFERENCES `user` (`id`) ON UPDATE CASCADE;
+  ADD CONSTRAINT `task_ibfk_4` FOREIGN KEY (`createBy`) REFERENCES `user` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `task_ibfk_5` FOREIGN KEY (`assignToUser`) REFERENCES `user` (`id`) ON UPDATE CASCADE;
+
+--
+-- Contraintes pour la table `todo`
+--
+ALTER TABLE `todo`
+  ADD CONSTRAINT `todo_ibfk_4` FOREIGN KEY (`idDeveloppeur`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  ADD CONSTRAINT `todo_ibfk_1` FOREIGN KEY (`idProjet`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `todo_ibfk_2` FOREIGN KEY (`idAvancement`) REFERENCES `avancementtodo` (`id`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `todo_ibfk_3` FOREIGN KEY (`idCreateur`) REFERENCES `user` (`id`) ON UPDATE CASCADE;
 
 --
 -- Contraintes pour la table `userinproject`
