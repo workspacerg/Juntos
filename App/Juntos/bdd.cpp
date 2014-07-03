@@ -623,6 +623,7 @@ Task BDD::load_task_Detail(QString idTk, QString assign)
 
 bool BDD::upd_task(Task source)
 {
+
     QSqlQuery query;
 
     if(query.exec("select upd_task('"+ login +"' ,'"+ source.getCreateur()  +"' , '"+ source.getTitre() +"' , '"+ source.getDescr() +"' , '"+ source.getDev() +"' , '"+ source.getEtat() +"' , '"+ source.getIdTask()+"')"))
@@ -635,7 +636,6 @@ bool BDD::upd_task(Task source)
                return false;
            }
         }
-
     }else
     {
         qDebug() << query.lastError().text();

@@ -15,6 +15,12 @@ public:
     explicit uiTest(QWidget *parent = 0);
     ~uiTest();
 
+    //
+    // ---------------------------------------------
+    //
+
+    void loadData();
+
 private:
     Ui::uiTest *ui;
 };

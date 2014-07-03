@@ -5,10 +5,11 @@ uiTest::uiTest(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::uiTest)
 {
+
     ui->setupUi(this);
 
     QStringList Titreheader            ;
-    Titreheader <<"Test name"<<"description"<<"paramètre d'entrée" << "paramètre de sortie" << "Resultat" ;
+    Titreheader << "Test name" << "paramètre d'entrée" << "paramètre de sortie" << "Resultat attendu" << "description";
 
     ui->tableWidgetTest->setColumnCount(5);
     ui->tableWidgetTest->setHorizontalHeaderLabels(Titreheader);
@@ -22,6 +23,7 @@ uiTest::uiTest(QWidget *parent) :
     ui->tableWidgetTest->horizontalHeader()->setStretchLastSection(true);
 
     ui->tableWidgetTest->setStyleSheet("QTableView {selection-Background-color: rgb(45, 186, 166); }");
+
 }
 
 uiTest::~uiTest()

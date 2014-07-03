@@ -18,7 +18,6 @@ MainWindow::MainWindow(QWidget *parent) :
     disableAllFunction();
 
 
-
     emit on_mAccueil_clicked();
 
     // Centre de notifiaction
