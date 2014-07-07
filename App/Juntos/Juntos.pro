@@ -36,7 +36,8 @@ SOURCES += main.cpp\
     supprdialog.cpp \
     formaddtodo.cpp \
     formupdtodo.cpp \
-    unittest.cpp
+    unittest.cpp \
+    test.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -58,7 +59,8 @@ HEADERS  += mainwindow.h \
     supprdialog.h \
     formaddtodo.h \
     formupdtodo.h \
-    unittest.h
+    unittest.h \
+    test.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \
