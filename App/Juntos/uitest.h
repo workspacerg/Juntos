@@ -2,6 +2,10 @@
 #define UITEST_H
 
 #include <QDialog>
+#include "test.h"
+#include <vector>
+
+using namespace std;
 
 namespace Ui {
 class uiTest;
@@ -19,7 +23,7 @@ public:
     // ---------------------------------------------
     //
 
-    void loadData();
+    void loadTable(vector<Test> Source);
 
 private:
     Ui::uiTest *ui;

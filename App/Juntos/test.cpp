@@ -41,16 +41,6 @@ void Test::setParamIn(const QString &value)
     paramIn = value;
 }
 
-QString Test::getParamOut() const
-{
-    return paramOut;
-}
-
-void Test::setParamOut(const QString &value)
-{
-    paramOut = value;
-}
-
 QString Test::getResultatAttendu() const
 {
     return resultatAttendu;
@@ -70,13 +60,23 @@ void Test::setValidation(const QString &value)
 {
     validation = value;
 }
-Test::Test(QString _id, QString _titre, QString _descr, QString _paramIn, QString _paramOut, QString _resultatAttendu, QString _validation)
+
+QString Test::getValidePar() const
+{
+    return validePar;
+}
+
+void Test::setValidePar(const QString &value)
+{
+    validePar = value;
+}
+Test::Test(QString _id, QString _titre, QString _descr, QString _paramIn, QString _resultatAttendu, QString _validation, QString _valideur)
 {
     idTest = _id;
     titre = _titre;
     descr = _descr;
     paramIn = _paramIn;
-    paramOut =_paramOut;
     resultatAttendu = _resultatAttendu;
     validation = _validation;
+    validePar = _valideur;
 }

@@ -643,6 +643,36 @@ bool BDD::upd_task(Task source)
     return false;
 }
 
+//
+// Test unitaire
+//
+
+vector<Test> BDD::loadTest(int idPro)
+{
+
+
+    tests.clear();
+
+    QString idString = QString::number(idPro);
+
+    // Chargement des test
+
+    QSqlQuery query;
+
+    if(query.exec("SELECT tu.`id`, `name`, `desciption`, `paramIn` , `paramOut` , `resultat`, user.login FROM `testunitaire` tu INNER JOIN user ON user.id = tu.valideur WHERE `projectId` = '"+ idString +"' "))
+    {
+        while(query.next())
+        {
+
+            tests.push_back(Test(query.value(0).toString() , query.value(1).toString(), query.value(2).toString(), query.value(3).toString() ,  query.value(4).toString() ,  query.value(5).toString() , query.value(6).toString()));
+
+        }
+    }
+
+    return tests;
+}
+
+
 
 
 

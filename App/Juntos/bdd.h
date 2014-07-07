@@ -14,6 +14,7 @@
 #include "cuser.h"
 #include "ticket.h"
 #include "task.h"
+#include "test.h"
 
 using namespace std;
 
@@ -33,6 +34,7 @@ class BDD
             vector<CProjet> projects ;
             vector<Ticket> tickets ;
             vector<Task> tasks ;
+            vector<Test> tests ;
 
 
 
@@ -65,6 +67,9 @@ public:
     bool add_task(QString title , QString descr , QString userToAssign, QString avancement , QString date , int idPro);
     Task load_task_Detail(QString idTk, QString assign);
     bool upd_task(Task source);
+
+    // Test
+    vector<Test> loadTest(int idPro);
 
 };
 
