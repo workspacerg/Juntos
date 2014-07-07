@@ -12,7 +12,7 @@ MainWindow::MainWindow(QWidget *parent) :
     PageTask    = new uiTask    ;
     PagePref    = new uiPref    ;
     PageTicket  = new uiTicket  ;
-    PageTest    = new uiTest    ;
+    PageTest    = new UiTestUnitaire    ;
     PageFile    = new uiFile    ;
 
     disableAllFunction();
@@ -45,6 +45,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(PageTask, SIGNAL(delSelectedTask(QString)), this, SLOT(deleteTask(QString)));
     QObject::connect(PageTask, SIGNAL(add_task()), this, SLOT(display_Form_Add_Task()));
     QObject::connect(PageTask, SIGNAL(upd_task(QString, QString)), this, SLOT(display_Form_upd_task(QString, QString)));
+
+    // Test
+    QObject::connect(PageTest, SIGNAL(del_test(QString)), this, SLOT(del_test(QString)));
+    QObject::connect(PageTest, SIGNAL(add_test()), this, SLOT(display_form_add_test()));
+    //QObject::connect(PageTest, SIGNAL(upd_task(QString, QString)), this, SLOT(display_Form_upd_task(QString, QString)));
 
 
 }
@@ -287,6 +292,8 @@ void MainWindow::upd_task_to_database(Task source)
 }
 
 
+
+
 void MainWindow::save_To_Database(QString Titre, QString Descr, QString Usr, QString Avc, QString dt)
 {
 
@@ -301,6 +308,27 @@ void MainWindow::save_To_Database(QString Titre, QString Descr, QString Usr, QSt
 // TEST UNITAIRE -------------------------------------------------------------------------------------------------------------------
 //
 //
+
+void MainWindow::display_form_add_test()
+{
+
+}
+
+void MainWindow::del_test(QString id)
+{
+
+}
+
+void MainWindow::display_form_upd_test()
+{
+
+}
+
+void MainWindow::upd_to_dataBase(Test)
+{
+
+}
+
 
 
 

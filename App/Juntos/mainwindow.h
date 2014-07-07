@@ -7,7 +7,7 @@
 #include "uitask.h"
 #include "uipref.h"
 #include "uiticket.h"
-#include "uitest.h"
+#include "uitestunitaire.h"
 #include "uifile.h"
 #include "notification.h"
 #include "bdd.h"
@@ -16,6 +16,7 @@
 #include "formupdbug.h"
 #include "formaddtodo.h"
 #include "formupdtodo.h"
+#include "test.h"
 
 namespace Ui {
 class MainWindow;
@@ -42,7 +43,7 @@ public:
     uiTask      *PageTask       ;
     uiPref      *PagePref       ;
     uiTicket    *PageTicket     ;
-    uiTest      *PageTest       ;
+    UiTestUnitaire      *PageTest       ;
     uiFile      *PageFile       ;
 
     addPeopleDialog *pagePeople ;
@@ -74,11 +75,17 @@ public slots:
     void saveTicketToDatabase(QString , QString , QString , QString );
     void updTicketToDatabase(Ticket source);
 
-    //Task ----------------------------------------------------------------------------------------------------------------------------------
+    // Task ----------------------------------------------------------------------------------------------------------------------------------
     void deleteTask(QString id);
     void display_Form_Add_Task();
     void display_Form_upd_task(QString, QString dev);
     void upd_task_to_database(Task);
+
+    // Test ------------------------------------------------------------------------------------------------------------------------------
+    void display_form_add_test();
+    void del_test();
+    void display_form_upd_test();
+    void upd_to_dataBase(Test);
 
 private slots:
     void on_mAccueil_clicked();

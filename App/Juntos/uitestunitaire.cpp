@@ -1,11 +1,10 @@
-#include "uitest.h"
-#include "ui_uitest.h"
+#include "uitestunitaire.h"
+#include "ui_uitestunitaire.h"
 
-uiTest::uiTest(QWidget *parent) :
+UiTestUnitaire::UiTestUnitaire(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::uiTest)
+    ui(new Ui::UiTestUnitaire)
 {
-
     ui->setupUi(this);
 
     QStringList Titreheader            ;
@@ -29,12 +28,13 @@ uiTest::uiTest(QWidget *parent) :
 
 }
 
-uiTest::~uiTest()
+UiTestUnitaire::~UiTestUnitaire()
 {
     delete ui;
 }
 
-void uiTest::loadTable(vector<Test> Source)
+
+void UiTestUnitaire::loadTable(vector<Test> Source)
 {
     // Vide la table
     while (ui->tableWidgetTest->rowCount() > 0)
@@ -51,10 +51,30 @@ void uiTest::loadTable(vector<Test> Source)
         ui->tableWidgetTest->setItem(LastRow, 1, new QTableWidgetItem(item.getTitre()));
         ui->tableWidgetTest->setItem(LastRow, 2, new QTableWidgetItem(item.getParamIn()));
         ui->tableWidgetTest->setItem(LastRow, 3, new QTableWidgetItem(item.getResultatAttendu()));
-        ui->tableWidgetTest->setItem(LastRow, 4, new QTableWidgetItem(item.getValidation()));
+        if(item.getValidation() == QString::number(1)){
+         ui->tableWidgetTest->setItem(LastRow, 4, new QTableWidgetItem("Passed"));
+        }
+        else{
+          ui->tableWidgetTest->setItem(LastRow, 4, new QTableWidgetItem("failed"));
+        }
         ui->tableWidgetTest->setItem(LastRow, 5, new QTableWidgetItem(item.getValidePar()));
         ui->tableWidgetTest->setItem(LastRow, 6, new QTableWidgetItem(item.getDescr()));
 
-
     }
+}
+
+
+void UiTestUnitaire::on_addTest_clicked()
+{
+     emit add_test();
+}
+
+void UiTestUnitaire::on_DelTest_clicked()
+{
+    emit del_test();
+}
+
+void UiTestUnitaire::on_tableWidgetTest_itemDoubleClicked(QTableWidgetItem *item)
+{
+    emit upd_test(item->row());
 }

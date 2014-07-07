@@ -22,7 +22,6 @@ SOURCES += main.cpp\
     uitask.cpp \
     uipref.cpp \
     uiticket.cpp \
-    uitest.cpp \
     uifile.cpp \
     notification.cpp \
     bdd.cpp \
@@ -37,7 +36,8 @@ SOURCES += main.cpp\
     formaddtodo.cpp \
     formupdtodo.cpp \
     unittest.cpp \
-    test.cpp
+    test.cpp \
+    uitestunitaire.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -45,7 +45,6 @@ HEADERS  += mainwindow.h \
     uitask.h \
     uipref.h \
     uiticket.h \
-    uitest.h \
     uifile.h \
     notification.h \
     bdd.h \
@@ -60,21 +59,22 @@ HEADERS  += mainwindow.h \
     formaddtodo.h \
     formupdtodo.h \
     unittest.h \
-    test.h
+    test.h \
+    uitestunitaire.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \
     uitask.ui \
     uipref.ui \
     uiticket.ui \
-    uiTest.ui \
     uiFile.ui \
     addpeopledialog.ui \
     formaddbug.ui \
     formupdbug.ui \
     supprdialog.ui \
     formaddtodo.ui \
-    formupdtodo.ui
+    formupdtodo.ui \
+    uitestunitaire.ui
 
 RESOURCES += \
     Images.qrc

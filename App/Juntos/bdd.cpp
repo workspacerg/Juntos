@@ -669,6 +669,17 @@ vector<Test> BDD::loadTest(int idPro)
         }
     }
 
+    if(query.exec("SELECT tu.`id`, `name`, `desciption`, `paramIn` , `paramOut` , `resultat` , valideur FROM `testunitaire` tu  WHERE `projectId` = '"+idString+"'  AND valideur is null "))
+    {
+
+    while(query.next())
+        {
+
+            tests.push_back(Test(query.value(0).toString() , query.value(1).toString(), query.value(2).toString(), query.value(3).toString() ,  query.value(4).toString() ,  query.value(5).toString() , ""));
+
+        }
+    }
+
     return tests;
 }
 
