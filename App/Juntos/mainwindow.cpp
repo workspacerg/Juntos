@@ -313,6 +313,8 @@ void MainWindow::add_test(QString _titre, QString _in , QString _out , QString _
 {
 
     qDebug() << _titre << "" << _descr << endl ;
+    myBDD->add_test(_titre, _descr ,_in , _out , currentProject->getId());
+    emit on_mTest_clicked();
 
 }
 

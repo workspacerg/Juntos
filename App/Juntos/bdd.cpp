@@ -708,6 +708,29 @@ bool BDD::delTest(QString idTk, int idPro)
 
 }
 
+bool BDD::add_test(QString title, QString descr, QString in, QString out, int idPro)
+{
+    QString idString = QString::number(idPro);
+    QSqlQuery query;
+
+    if(query.exec("select add_test('"+ login +"', '"+ title +"' , '"+ descr +"', '"+ in +"' , '"+ out +"', '"+ idString +"' )"))
+    {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
+
+    }else
+    {
+        qDebug() << query.lastError().text();
+    }
+     return false;
+}
+
 
 
 

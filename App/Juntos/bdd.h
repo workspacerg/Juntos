@@ -71,7 +71,7 @@ public:
     // Test
     vector<Test> loadTest(int idPro);
     bool delTest(QString idTk , int idPro);
-
+    bool add_test(QString title , QString descr , QString in, QString out , int idPro);
 };
 
 #endif // BDD_H

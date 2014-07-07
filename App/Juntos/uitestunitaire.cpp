@@ -116,6 +116,7 @@ void UiTestUnitaire::on_confirmDel_clicked()
 
 void UiTestUnitaire::on_save_test_clicked()
 {
+
     if(ui->TitreLine->text() == "" || ui->pInline->text() == "" || ui->pOutLine->text() == ""){
 
         return ;
@@ -123,4 +124,11 @@ void UiTestUnitaire::on_save_test_clicked()
 
     emit add_test(ui->TitreLine->text(),  ui->pInline->text() , ui->pOutLine->text(), ui->DescrTPL->toPlainText() );
 
+    ui->TitreLine->setText("");
+    ui->pInline->setText("");
+    ui->pOutLine->setText("");
+    ui->DescrTPL->setPlainText("");
+
+    boiteAdd = false;
+    ui->addBox->hide();
 }
