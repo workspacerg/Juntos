@@ -686,6 +686,26 @@ vector<Test> BDD::loadTest(int idPro)
 bool BDD::delTest(QString idTk, int idPro)
 {
 
+    QString idString = QString::number(idPro);
+    QSqlQuery query;
+
+    if(query.exec("select del_test('" + login + "' , '"+ idTk +"' , '"+ idString +"')"))
+    {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
+
+    }else
+    {
+        qDebug() << query.lastError().text();
+    }
+     return false;
+
 }
 
 
