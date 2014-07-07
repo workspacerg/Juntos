@@ -70,6 +70,7 @@ public:
 
     // Test
     vector<Test> loadTest(int idPro);
+    bool delTest(QString idTk , int idPro);
 
 };
 

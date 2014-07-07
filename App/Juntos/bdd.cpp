@@ -683,6 +683,11 @@ vector<Test> BDD::loadTest(int idPro)
     return tests;
 }
 
+bool BDD::delTest(QString idTk, int idPro)
+{
+
+}
+
 
 
 
