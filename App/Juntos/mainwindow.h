@@ -82,7 +82,7 @@ public slots:
     void upd_task_to_database(Task);
 
     // Test ------------------------------------------------------------------------------------------------------------------------------
-    void display_form_add_test();
+    void add_test(QString _titre, QString _in, QString _out, QString _descr);
     void del_test(QString id);
     void display_form_upd_test();
     void upd_to_dataBase(Test);

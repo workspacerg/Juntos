@@ -10,6 +10,9 @@ UiTestUnitaire::UiTestUnitaire(QWidget *parent) :
      ui->delBox->hide();
      boiteDel = false;
 
+     ui->addBox->hide();
+     boiteAdd = false;
+
     QStringList Titreheader            ;
     Titreheader << "id" << "Votre test" << "paramètre d'entrée" << "Resultat attendu" << "Validation" << "Valideur" << "description";
 
@@ -69,7 +72,15 @@ void UiTestUnitaire::loadTable(vector<Test> Source)
 
 void UiTestUnitaire::on_addTest_clicked()
 {
-     emit add_test();
+    if(boiteAdd == true)
+    {
+        boiteAdd = false;
+        ui->addBox->hide();
+    }
+    else{
+        boiteAdd = true;
+        ui->addBox->show();
+    }
 }
 
 void UiTestUnitaire::on_DelTest_clicked()
@@ -100,5 +111,16 @@ void UiTestUnitaire::on_confirmDel_clicked()
 
     ui->delBox->hide();
     boiteDel = false;
+
+}
+
+void UiTestUnitaire::on_save_test_clicked()
+{
+    if(ui->TitreLine->text() == "" || ui->pInline->text() == "" || ui->pOutLine->text() == ""){
+
+        return ;
+    }
+
+    emit add_test(ui->TitreLine->text(),  ui->pInline->text() , ui->pOutLine->text(), ui->DescrTPL->toPlainText() );
 
 }

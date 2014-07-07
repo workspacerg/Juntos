@@ -48,7 +48,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Test
     QObject::connect(PageTest, SIGNAL(del_test(QString)), this, SLOT(del_test(QString)));
-    QObject::connect(PageTest, SIGNAL(add_test()), this, SLOT(display_form_add_test()));
+    QObject::connect(PageTest, SIGNAL(add_test(QString,QString,QString,QString)), this, SLOT(add_test(QString,QString,QString,QString)));
     //QObject::connect(PageTest, SIGNAL(upd_task(QString, QString)), this, SLOT(display_Form_upd_task(QString, QString)));
 
 
@@ -309,8 +309,10 @@ void MainWindow::save_To_Database(QString Titre, QString Descr, QString Usr, QSt
 //
 //
 
-void MainWindow::display_form_add_test()
+void MainWindow::add_test(QString _titre, QString _in , QString _out , QString _descr)
 {
+
+    qDebug() << _titre << "" << _descr << endl ;
 
 }
 

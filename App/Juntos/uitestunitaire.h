@@ -17,6 +17,7 @@ class UiTestUnitaire : public QDialog
     Q_OBJECT
 
     bool boiteDel;
+    bool boiteAdd;
 
 public:
     explicit UiTestUnitaire(QWidget *parent = 0);
@@ -33,11 +34,13 @@ private slots:
 
     void on_confirmDel_clicked();
 
+    void on_save_test_clicked();
+
 private:
     Ui::UiTestUnitaire *ui;
 
 signals:
-    void add_test();
+    void add_test(QString,QString,QString,QString);
     void del_test(QString idTest);
     void upd_test(int idTest);
 };
