@@ -16,6 +16,8 @@ class UiTestUnitaire : public QDialog
 {
     Q_OBJECT
 
+    bool boiteDel;
+
 public:
     explicit UiTestUnitaire(QWidget *parent = 0);
     ~UiTestUnitaire();
@@ -28,6 +30,8 @@ private slots:
     void on_DelTest_clicked();
 
     void on_tableWidgetTest_itemDoubleClicked(QTableWidgetItem *item);
+
+    void on_confirmDel_clicked();
 
 private:
     Ui::UiTestUnitaire *ui;

@@ -316,7 +316,7 @@ void MainWindow::display_form_add_test()
 
 void MainWindow::del_test(QString id)
 {
-
+    qDebug() << "test à supprimer : " << id << endl;
 }
 
 void MainWindow::display_form_upd_test()

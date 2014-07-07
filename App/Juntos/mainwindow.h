@@ -83,7 +83,7 @@ public slots:
 
     // Test ------------------------------------------------------------------------------------------------------------------------------
     void display_form_add_test();
-    void del_test();
+    void del_test(QString id);
     void display_form_upd_test();
     void upd_to_dataBase(Test);
 

@@ -7,6 +7,9 @@ UiTestUnitaire::UiTestUnitaire(QWidget *parent) :
 {
     ui->setupUi(this);
 
+     ui->delBox->hide();
+     boiteDel = false;
+
     QStringList Titreheader            ;
     Titreheader << "id" << "Votre test" << "paramètre d'entrée" << "Resultat attendu" << "Validation" << "Valideur" << "description";
 
@@ -71,10 +74,31 @@ void UiTestUnitaire::on_addTest_clicked()
 
 void UiTestUnitaire::on_DelTest_clicked()
 {
-    emit del_test();
+
+    if(boiteDel == true)
+    {
+        boiteDel = false;
+        ui->delBox->hide();
+    }
+    else{
+        boiteDel = true;
+        ui->delBox->show();
+    }
 }
 
 void UiTestUnitaire::on_tableWidgetTest_itemDoubleClicked(QTableWidgetItem *item)
 {
     emit upd_test(item->row());
+}
+
+void UiTestUnitaire::on_confirmDel_clicked()
+{
+    if ( ui->delLine->text() == "SUPPRIMER" )
+    {
+        emit del_test(ui->tableWidgetTest->item( ui->tableWidgetTest->currentRow() , 0)->text());
+    }
+
+    ui->delBox->hide();
+    boiteDel = false;
+
 }

@@ -74,7 +74,7 @@
      <item>
       <widget class="QPushButton" name="sent">
        <property name="text">
-        <string>PushButton</string>
+        <string>Valider</string>
        </property>
       </widget>
      </item>
