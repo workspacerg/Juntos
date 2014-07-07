@@ -20,6 +20,7 @@ BEGIN
 
 
 	DELETE FROM testunitaire WHERE id = idTt ;
+	call add_to_log(log, "Utilisateur" , "Vient de supprimer le test unitaire n° " );
 
 
 	RETURN 1;
