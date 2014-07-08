@@ -21,6 +21,7 @@ class uiAcceuil : public QWidget
 private:
 
     bool BtCreation ;
+    bool boiteDel;
 
 
     vector<CProjet> projects ;
@@ -40,6 +41,8 @@ private slots:
     void on_updTable_clicked();
     void on_tableWidgetPtoject_itemDoubleClicked(QTableWidgetItem *item);
     void on_addPeople_clicked();
+
+    void on_confirmDel_clicked();
 
 signals:
     void notifiactionNewProject(QString, QString);

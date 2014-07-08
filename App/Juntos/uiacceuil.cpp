@@ -15,6 +15,10 @@ uiAcceuil::uiAcceuil(QWidget *parent) :
     ui->BoiteDeCreation->hide();
     BtCreation = false ;
 
+    ui->delBox->hide();
+    boiteDel = false;
+    ui->delLine->setAlignment(Qt::AlignCenter);
+
     ui->tableWidgetPtoject->verticalHeader()->setVisible(false);
     ui->tableWidgetPtoject->setShowGrid(false);
 
@@ -87,9 +91,16 @@ void uiAcceuil::on_PBDelProject_clicked()
        return;
     }
 
-    if(ui->tableWidgetPtoject->currentRow() != -1  )
+
+    if(boiteDel == true)
     {
-        emit sigDelPro(CProjet(ui->tableWidgetPtoject->item(ui->tableWidgetPtoject->currentRow() , 0)->text() , ui->tableWidgetPtoject->item(ui->tableWidgetPtoject->currentRow() , 1)->text() ));
+        boiteDel = false;
+        ui->delBox->hide();
+        ui->delLine->setText("");
+    }
+    else{
+        boiteDel = true;
+        ui->delBox->show();
     }
 
 }
@@ -115,4 +126,17 @@ void uiAcceuil::on_addPeople_clicked()
 
     emit sigGetParticipant();
 
+}
+
+void uiAcceuil::on_confirmDel_clicked()
+{
+    if (  ui->delLine->text() == "SUPPRIMER" )
+    {
+         emit sigDelPro(CProjet(ui->tableWidgetPtoject->item(ui->tableWidgetPtoject->currentRow() , 0)->text() , ui->tableWidgetPtoject->item(ui->tableWidgetPtoject->currentRow() , 1)->text() ));
+
+    }
+
+    boiteDel = false;
+    ui->delBox->hide();
+    ui->delLine->setText("");
 }
