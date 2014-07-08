@@ -70,6 +70,11 @@ void uiTicket::loadTable(vector<Ticket> Source)
         ui->tableWidgetTicket->setItem(LastRow, 5, new QTableWidgetItem(item.getDev()));
         ui->tableWidgetTicket->setItem(LastRow, 6, new QTableWidgetItem(item.getEtat()));
         ui->tableWidgetTicket->setItem(LastRow, 7, new QTableWidgetItem(item.getDescrTicket()));
+
+        ui->tableWidgetTicket->setItem( LastRow, 3, new QTableWidgetItem( QDateTime::fromString(item.getCreateDt(),"yyyy-MM-ddTHH:mm:ss").toString("yyyy-MM-dd HH:mm:ss")) );
+        ui->tableWidgetTicket->setItem( LastRow, 4, new QTableWidgetItem( QDateTime::fromString(item.getSetUserDate(),"yyyy-MM-ddTHH:mm:ss").toString("yyyy-MM-dd HH:mm:ss")));
+
+
     }
 
     updTable();

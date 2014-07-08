@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QTableWidgetItem>
+#include <QDateTime>
 #include "ticket.h"
 
 using namespace std;

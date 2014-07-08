@@ -70,6 +70,10 @@ void uiTask::loadTable(vector<Task> Source)
         ui->tableWidgetTask->setItem(LastRow, 7, new QTableWidgetItem(item.getDateFinalisation()));
         ui->tableWidgetTask->setItem(LastRow, 8, new QTableWidgetItem(item.getDescr()));
 
+        ui->tableWidgetTask->setItem( LastRow, 5, new QTableWidgetItem( QDateTime::fromString(item.getDateCreation(),"yyyy-MM-ddTHH:mm:ss").toString("yyyy-MM-dd HH:mm:ss")));
+        ui->tableWidgetTask->setItem( LastRow, 6, new QTableWidgetItem( QDateTime::fromString(item.getDateModification(),"yyyy-MM-ddTHH:mm:ss").toString("yyyy-MM-dd HH:mm:ss")));
+        ui->tableWidgetTask->setItem( LastRow, 7, new QTableWidgetItem( QDateTime::fromString(item.getDateFinalisation(),"yyyy-MM-ddTHH:mm:ss").toString("yyyy-MM-dd HH:mm:ss")));
+
     }
 
     ui->mesTaches->setChecked(true);
