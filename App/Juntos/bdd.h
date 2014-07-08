@@ -72,6 +72,14 @@ public:
     vector<Test> loadTest(int idPro);
     bool delTest(QString idTk , int idPro);
     bool add_test(QString title , QString descr , QString in, QString out , int idPro);
+
+
+
+
+
+
+    QString getLogin() const;
+    void setLogin(const QString &value);
 };
 
 #endif // BDD_H

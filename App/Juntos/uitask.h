@@ -18,12 +18,18 @@ class uiTask : public QWidget
 {
     Q_OBJECT
 
+    QString login;
+    bool boiteDel;
+
 public:
     explicit uiTask(QWidget *parent = 0);
     ~uiTask();
 
     void loadTable(vector<Task>);
 
+
+    QString getLogin() const;
+    void setLogin(const QString &value);
 
 private slots:
     void on_DelTask_clicked();
@@ -32,13 +38,25 @@ private slots:
 
     void on_tableWidgetTask_itemDoubleClicked(QTableWidgetItem *item);
 
+    void on_lineEdit_textChanged(const QString &arg1);
+
+    void on_mesTaches_clicked();
+
+    void on_autreTache_clicked();
+
+    void on_nonAssign_clicked();
+
+    void on_confirmDel_clicked();
+
 public slots:
-    void evaluationSuppr(QString);
+
 
 private:
     Ui::uiTask *ui;
 
-    SupprDialog * DialSuppr;
+    void updTable();
+
+
 signals:
     void delSelectedTask(QString idTask);
     void add_task();

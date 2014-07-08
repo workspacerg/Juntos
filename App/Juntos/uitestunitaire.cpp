@@ -281,7 +281,6 @@ void UiTestUnitaire::updTable()
 void UiTestUnitaire::on_lineEdit_textChanged(const QString &arg1)
 {
 
-    int a = -2;
 
     for (int i = 0 ; i < ui->tableWidgetTest->rowCount() ; i++ )
     {

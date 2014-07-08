@@ -5,16 +5,26 @@
 #define q2c(string) string.toStdString()
 
 
+
+QString BDD::getLogin() const
+{
+    return login;
+}
+
+void BDD::setLogin(const QString &value)
+{
+    login = value;
+}
 BDD::BDD()
 {
-
+    
 }
 
 bool BDD::connectDB()
 {
     if(db.isOpen())
         db.close();
-
+    
     // Connection à la base de donnée.
     // Ouverture du fichier INI
     QSettings settings("config.ini", QSettings::IniFormat);

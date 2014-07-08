@@ -31,6 +31,7 @@ private:
     CProjet * currentProject ;
     notification *Notif ;
 
+    QString login;
     Ui::MainWindow *ui;
     void hideAll();
     void enableAllFunction();

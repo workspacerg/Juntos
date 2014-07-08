@@ -111,11 +111,12 @@ void MainWindow::selCurrentProject(CProjet source)
     currentProject = new CProjet(myBDD->getInfoProjet(source));
     enableAllFunction();
 
-    qDebug() << currentProject->getId();
-    qDebug() << currentProject->getNomProjet();
-    qDebug() << currentProject->getDescProjet();
+    login = myBDD->getLogin();
 
     ui->statusBar->showMessage(" Current project is : "  +  currentProject->getNomProjet());
+
+    PageTask->setLogin(login);
+
 
 }
 

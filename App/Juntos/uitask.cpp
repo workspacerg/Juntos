@@ -1,11 +1,26 @@
 #include "uitask.h"
 #include "ui_uitask.h"
 
+
+QString uiTask::getLogin() const
+{
+    return login;
+}
+
+void uiTask::setLogin(const QString &value)
+{
+    login = value;
+}
 uiTask::uiTask(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::uiTask)
 {
     ui->setupUi(this);
+
+
+    ui->delBox->hide();
+    boiteDel = false;
+    ui->delLine->setAlignment(Qt::AlignCenter);
 
     QStringList Titreheader            ;
     Titreheader << "id" << "Tâches" << "Etat" << "Créateur" << " Assigné à" <<"Date de création" << "modifié le" << "à finir pour" << "Description" ;
@@ -56,21 +71,13 @@ void uiTask::loadTable(vector<Task> Source)
         ui->tableWidgetTask->setItem(LastRow, 8, new QTableWidgetItem(item.getDescr()));
 
     }
+
+    ui->mesTaches->setChecked(true);
+    updTable();
 }
 
 
 void uiTask::on_DelTask_clicked()
-{
-    DialSuppr = new SupprDialog ;
-
-    QObject::connect(DialSuppr, SIGNAL(sendText(QString)), this, SLOT(evaluationSuppr(QString)));
-    DialSuppr->show();
-
-
-
-}
-
-void uiTask::evaluationSuppr(QString string)
 {
 
     if(ui->tableWidgetTask->currentRow() == -1)
@@ -79,12 +86,19 @@ void uiTask::evaluationSuppr(QString string)
        return;
     }
 
-    delete DialSuppr;
-    if ( string == "SUPPRIMER" )
+    if(boiteDel == true)
     {
-        emit delSelectedTask(ui->tableWidgetTask->item( ui->tableWidgetTask->currentRow() , 0)->text());
+        boiteDel = false;
+        ui->delBox->hide();
+        ui->delLine->setText("");
     }
+    else{
+        boiteDel = true;
+        ui->delBox->show();
+    }
+
 }
+
 
 void uiTask::on_addTask_clicked()
 {
@@ -96,4 +110,97 @@ void uiTask::on_tableWidgetTask_itemDoubleClicked(QTableWidgetItem *item)
 
     emit upd_task(ui->tableWidgetTask->item( item->row() , 0)->text() ,  ui->tableWidgetTask->item( item->row() , 4)->text() );
 
+}
+
+
+
+void uiTask::updTable()
+{
+
+    for (int i = 0 ; i < ui->tableWidgetTask->rowCount() ; i++ )
+    {
+            ui->tableWidgetTask->hideRow(i);
+
+    }
+
+
+    if(ui->mesTaches->isChecked()){
+
+        for (int i = 0 ; i < ui->tableWidgetTask->rowCount() ; i++ )
+        {
+            if(  ui->tableWidgetTask->item( i , 3)->text() ==  login || ui->tableWidgetTask->item( i , 4)->text() ==  login  ){
+                ui->tableWidgetTask->showRow(i);
+            }
+
+        }
+    }
+
+
+    if(ui->autreTache->isChecked()){
+
+        for (int i = 0 ; i < ui->tableWidgetTask->rowCount() ; i++ )
+        {
+            if(  ui->tableWidgetTask->item( i , 3)->text() !=  login && ui->tableWidgetTask->item( i , 4)->text() !=  login  ){
+                ui->tableWidgetTask->showRow(i);
+            }
+
+        }
+    }
+
+    if(ui->nonAssign->isChecked()){
+
+        for (int i = 0 ; i < ui->tableWidgetTask->rowCount() ; i++ )
+        {
+            if( ui->tableWidgetTask->item( i , 4)->text() ==  ""  ){
+                ui->tableWidgetTask->showRow(i);
+            }
+
+        }
+    }
+
+}
+
+void uiTask::on_lineEdit_textChanged(const QString &arg1)
+{
+    for (int i = 0 ; i < ui->tableWidgetTask->rowCount() ; i++ )
+    {
+        ui->tableWidgetTask->hideRow(i);
+        for (int y = 0 ; y < ui->tableWidgetTask->columnCount() ; y++ )
+        {
+            if(   ui->tableWidgetTask->item( i , y)->text().indexOf( arg1, Qt::CaseInsensitive) >=0  && ui->tableWidgetTask->item( i , y)->text() != "" ){
+
+                ui->tableWidgetTask->showRow(i);
+            }
+            else{
+            }
+        }
+    }
+}
+
+void uiTask::on_mesTaches_clicked()
+{
+    updTable();
+}
+
+void uiTask::on_autreTache_clicked()
+{
+    updTable();
+}
+
+void uiTask::on_nonAssign_clicked()
+{
+    updTable();
+}
+
+void uiTask::on_confirmDel_clicked()
+{
+
+    if (  ui->delLine->text() == "SUPPRIMER" )
+    {
+        emit delSelectedTask(ui->tableWidgetTask->item( ui->tableWidgetTask->currentRow() , 0)->text());
+    }
+
+    boiteDel = false;
+    ui->delBox->hide();
+     ui->delLine->setText("");
 }
