@@ -21,12 +21,6 @@ void formUpdBug::loadParticipant(vector<cUser> usr)
         ui->usrComboBox->addItem(item.getLogin());
     }
 
-    ui->usrComboBox->addItem("");
-    for(cUser item : usr)
-    {
-        ui->usrComboBox->addItem(item.getLogin());
-    }
-
     for(cUser item : usr)
     {
         ui->createComboBox->addItem(item.getLogin());

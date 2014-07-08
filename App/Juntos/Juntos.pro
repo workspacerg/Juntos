@@ -32,7 +32,6 @@ SOURCES += main.cpp\
     formaddbug.cpp \
     formupdbug.cpp \
     task.cpp \
-    supprdialog.cpp \
     formaddtodo.cpp \
     formupdtodo.cpp \
     unittest.cpp \
@@ -55,7 +54,6 @@ HEADERS  += mainwindow.h \
     formaddbug.h \
     formupdbug.h \
     task.h \
-    supprdialog.h \
     formaddtodo.h \
     formupdtodo.h \
     unittest.h \
@@ -71,7 +69,6 @@ FORMS    += mainwindow.ui \
     addpeopledialog.ui \
     formaddbug.ui \
     formupdbug.ui \
-    supprdialog.ui \
     formaddtodo.ui \
     formupdtodo.ui \
     uitestunitaire.ui

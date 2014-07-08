@@ -15,6 +15,7 @@ class uiTicket : public QWidget
 {
     Q_OBJECT
         bool boiteDel;
+        QString login;
 
 public:
     explicit uiTicket(QWidget *parent = 0);
@@ -25,6 +26,9 @@ public:
 
     void loadTable(vector<Ticket>);
 
+    QString getLogin() const;
+    void setLogin(const QString &value);
+
 private slots:
     void on_addBug_clicked();
     void on_delBug_clicked();
@@ -32,8 +36,19 @@ private slots:
 
     void on_confirmDel_clicked();
 
+    void on_lineEdit_textChanged(const QString &arg1);
+
+    void on_mesTk_clicked();
+
+    void on_autreTk_clicked();
+
+    void on_resolus_clicked();
+
+    void on_nonAssign_clicked();
+
 private:
     Ui::uiTicket *ui;
+    void updTable();
 
 
 signals:

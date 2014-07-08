@@ -16,15 +16,12 @@ BEGIN
 
 	DECLARE userOK TINYINT(1) DEFAULT 0 ;
 
-	call add_to_log(log, "1" , "");
-
     SELECT count(*) INTO userExiste FROM user WHERE login = log ; 
     IF userExiste < 1 THEN
     	call add_to_log(log, "log n'existe pas" , "Le compte cherchant à crée un projet n'existe pas" );
     	RETURN 0 ;
 	END IF; 
 
-	call add_to_log(log, "2" , "");
 
 	SELECT count(*) INTO userExiste FROM user WHERE login = userToAssign ; 
     IF userExiste < 1 && userToAssign != "" THEN
@@ -33,8 +30,6 @@ BEGIN
     ELSE
     	Set userOK = 1;
 	END IF;
-
-	call add_to_log(log, "3" , "");
 
 	SELECT count(*) INTO proExiste FROM project WHERE id = idPro ; 
     IF proExiste < 1 THEN
@@ -53,7 +48,6 @@ BEGIN
 	SELECT id INTO idUser 	FROM user WHERE login 	= userToAssign ; 
 	SELECT id INTO idEtat 	FROM etat WHERE name 	= etatAvancement ; 
 
-call add_to_log(log, "Avant insert" , "");
 
 	INSERT INTO  task (
 	`id` ,

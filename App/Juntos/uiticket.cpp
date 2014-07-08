@@ -1,6 +1,16 @@
 #include "uiticket.h"
 #include "ui_uiticket.h"
 
+
+QString uiTicket::getLogin() const
+{
+    return login;
+}
+
+void uiTicket::setLogin(const QString &value)
+{
+    login = value;
+}
 uiTicket::uiTicket(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::uiTicket)
@@ -10,6 +20,8 @@ uiTicket::uiTicket(QWidget *parent) :
     ui->delBox->hide();
     boiteDel = false;
     ui->delLine->setAlignment(Qt::AlignCenter);
+
+    ui->mesTk->setChecked(true);
 
     QStringList Titreheader            ;
     Titreheader << "id" << "Ticket" << "Créateur" <<"Date d'ajout " << "modifié le" << " Assigné à "  << "Etat" << "Description" ;
@@ -59,6 +71,8 @@ void uiTicket::loadTable(vector<Ticket> Source)
         ui->tableWidgetTicket->setItem(LastRow, 6, new QTableWidgetItem(item.getEtat()));
         ui->tableWidgetTicket->setItem(LastRow, 7, new QTableWidgetItem(item.getDescrTicket()));
     }
+
+    updTable();
 
 }
 
@@ -110,4 +124,95 @@ void uiTicket::on_confirmDel_clicked()
 
     ui->delBox->hide();
     boiteDel = false;
+}
+
+void uiTicket::on_lineEdit_textChanged(const QString &arg1)
+{
+    for (int i = 0 ; i < ui->tableWidgetTicket->rowCount() ; i++ )
+    {
+        ui->tableWidgetTicket->hideRow(i);
+        for (int y = 0 ; y < ui->tableWidgetTicket->columnCount() ; y++ )
+        {
+            if(   ui->tableWidgetTicket->item( i , y)->text().indexOf( arg1, Qt::CaseInsensitive) >=0  && ui->tableWidgetTicket->item( i , y)->text() != "" ){
+
+                ui->tableWidgetTicket->showRow(i);
+            }
+            else{
+            }
+
+        }
+    }
+}
+
+void uiTicket::updTable()
+{
+
+    for (int i = 0 ; i < ui->tableWidgetTicket->rowCount() ; i++ )
+    {
+            ui->tableWidgetTicket->hideRow(i);
+
+    }
+
+
+    if(ui->mesTk->isChecked()){
+
+        for (int i = 0 ; i < ui->tableWidgetTicket->rowCount() ; i++ )
+        {
+            if(  ui->tableWidgetTicket->item( i , 5)->text() ==  login && ui->tableWidgetTicket->item( i , 6)->text() !=  "résolu" ){
+                ui->tableWidgetTicket->showRow(i);
+            }
+
+        }
+    }
+
+    if(ui->autreTk->isChecked()){
+
+        for (int i = 0 ; i < ui->tableWidgetTicket->rowCount() ; i++ )
+        {
+            if(  ui->tableWidgetTicket->item( i , 5)->text() !=  login ){
+                ui->tableWidgetTicket->showRow(i);
+            }
+        }
+    }
+
+    if(ui->nonAssign->isChecked()){
+
+        for (int i = 0 ; i < ui->tableWidgetTicket->rowCount() ; i++ )
+        {
+            if(  ui->tableWidgetTicket->item( i , 5)->text() ==  "" ){
+                ui->tableWidgetTicket->showRow(i);
+            }
+
+        }
+    }
+
+    if(ui->resolus->isChecked()){
+
+        for (int i = 0 ; i < ui->tableWidgetTicket->rowCount() ; i++ )
+        {
+            if(  ui->tableWidgetTicket->item( i , 6)->text() ==  "résolu" ){
+                ui->tableWidgetTicket->showRow(i);
+            }
+        }
+    }
+}
+
+void uiTicket::on_mesTk_clicked()
+{
+    updTable();
+}
+
+void uiTicket::on_autreTk_clicked()
+{
+    updTable();
+}
+
+void uiTicket::on_resolus_clicked()
+{
+    updTable();
+}
+
+void uiTicket::on_nonAssign_clicked()
+{
+    updTable();
 }

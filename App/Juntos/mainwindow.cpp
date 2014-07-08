@@ -116,6 +116,7 @@ void MainWindow::selCurrentProject(CProjet source)
     ui->statusBar->showMessage(" Current project is : "  +  currentProject->getNomProjet());
 
     PageTask->setLogin(login);
+    PageTicket->setLogin(login);
 
 
 }
