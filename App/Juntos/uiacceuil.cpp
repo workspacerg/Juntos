@@ -81,6 +81,11 @@ void uiAcceuil::on_PBCreate_clicked()
 
 void uiAcceuil::on_PBDelProject_clicked()
 {
+    if(ui->tableWidgetPtoject->currentRow() == -1)
+    {
+
+       return;
+    }
 
     if(ui->tableWidgetPtoject->currentRow() != -1  )
     {

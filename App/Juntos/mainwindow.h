@@ -84,8 +84,7 @@ public slots:
     // Test ------------------------------------------------------------------------------------------------------------------------------
     void add_test(QString _titre, QString _in, QString _out, QString _descr);
     void del_test(QString id);
-    void display_form_upd_test();
-    void upd_to_dataBase(Test);
+    void upd_to_dataBase_test(QString,QString,QString,QString,QString );
 
 private slots:
     void on_mAccueil_clicked();

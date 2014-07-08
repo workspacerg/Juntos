@@ -73,6 +73,12 @@ void uiTask::on_DelTask_clicked()
 void uiTask::evaluationSuppr(QString string)
 {
 
+    if(ui->tableWidgetTask->currentRow() == -1)
+    {
+
+       return;
+    }
+
     delete DialSuppr;
     if ( string == "SUPPRIMER" )
     {

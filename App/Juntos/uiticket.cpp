@@ -66,6 +66,11 @@ void uiTicket::on_addBug_clicked()
 
 void uiTicket::on_delBug_clicked()
 {
+    if(ui->tableWidgetTicket->currentRow() == -1)
+    {
+
+       return;
+    }
     emit displayFormDelBug(ui->tableWidgetTicket->item( ui->tableWidgetTicket->currentRow() , 0)->text());
 }
 

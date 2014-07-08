@@ -1,5 +1,6 @@
 #include "uitestunitaire.h"
 #include "ui_uitestunitaire.h"
+#include <QDebug>
 
 UiTestUnitaire::UiTestUnitaire(QWidget *parent) :
     QDialog(parent),
@@ -12,6 +13,14 @@ UiTestUnitaire::UiTestUnitaire(QWidget *parent) :
 
      ui->addBox->hide();
      boiteAdd = false;
+
+     ui->updBox->hide();
+     boiteUpd = false;
+
+
+     ui->ok->setChecked(true);
+     ui->failed->setChecked(true);
+
 
     QStringList Titreheader            ;
     Titreheader << "id" << "Votre test" << "paramètre d'entrée" << "Resultat attendu" << "Validation" << "Valideur" << "description";
@@ -61,7 +70,7 @@ void UiTestUnitaire::loadTable(vector<Test> Source)
          ui->tableWidgetTest->setItem(LastRow, 4, new QTableWidgetItem("Passed"));
         }
         else{
-          ui->tableWidgetTest->setItem(LastRow, 4, new QTableWidgetItem("failed"));
+          ui->tableWidgetTest->setItem(LastRow, 4, new QTableWidgetItem("Failed"));
         }
         ui->tableWidgetTest->setItem(LastRow, 5, new QTableWidgetItem(item.getValidePar()));
         ui->tableWidgetTest->setItem(LastRow, 6, new QTableWidgetItem(item.getDescr()));
@@ -99,11 +108,46 @@ void UiTestUnitaire::on_DelTest_clicked()
 
 void UiTestUnitaire::on_tableWidgetTest_itemDoubleClicked(QTableWidgetItem *item)
 {
-    emit upd_test(item->row());
+
+    if(boiteUpd == true)
+    {
+        boiteUpd = false;
+        ui->updBox->hide();
+
+        ui->TitreLine_upd->setText("");
+        ui->pInline_upd->setText("");
+        ui->pOutLine_upd->setText("");
+        ui->DescrTPL_upd->setPlainText("");
+        ui->valid->setChecked(false);
+
+    }
+    else{
+        boiteUpd = true;
+        ui->updBox->show();
+
+        ui->TitreLine_upd->setText(ui->tableWidgetTest->item( ui->tableWidgetTest->currentRow() , 1)->text());
+        ui->pInline_upd->setText(ui->tableWidgetTest->item( ui->tableWidgetTest->currentRow() , 2)->text());
+        ui->pOutLine_upd->setText(ui->tableWidgetTest->item( ui->tableWidgetTest->currentRow() , 3)->text());
+        ui->DescrTPL_upd->setPlainText(ui->tableWidgetTest->item( ui->tableWidgetTest->currentRow() , 6)->text());
+
+        if(ui->tableWidgetTest->item( ui->tableWidgetTest->currentRow() , 4)->text() == "Passed" )
+        {
+            ui->valid->setChecked(true);
+        }
+
+    }
+
 }
 
 void UiTestUnitaire::on_confirmDel_clicked()
 {
+
+    if(ui->tableWidgetTest->currentRow() == -1)
+    {
+
+       return;
+    }
+
     if ( ui->delLine->text() == "SUPPRIMER" )
     {
         emit del_test(ui->tableWidgetTest->item( ui->tableWidgetTest->currentRow() , 0)->text());
@@ -131,4 +175,127 @@ void UiTestUnitaire::on_save_test_clicked()
 
     boiteAdd = false;
     ui->addBox->hide();
+}
+
+void UiTestUnitaire::on_save_test_upd_clicked()
+{
+
+    emit upd_test( ui->tableWidgetTest->item( ui->tableWidgetTest->currentRow() , 0)->text() , ui->TitreLine_upd->text(),  ui->pInline_upd->text() , ui->pOutLine_upd->text(), ui->DescrTPL_upd->toPlainText() );
+
+    ui->TitreLine_upd->setText("");
+    ui->pInline_upd->setText("");
+    ui->pOutLine_upd->setText("");
+    ui->DescrTPL_upd->setPlainText("");
+
+    boiteUpd = false;
+    ui->updBox->hide();
+
+}
+
+void UiTestUnitaire::on_tableWidgetTest_itemChanged(QTableWidgetItem *item)
+{
+
+}
+
+void UiTestUnitaire::on_tableWidgetTest_itemClicked(QTableWidgetItem *item)
+{
+
+    if(boiteUpd == true){
+        ui->TitreLine_upd->setText(ui->tableWidgetTest->item( ui->tableWidgetTest->currentRow() , 1)->text());
+        ui->pInline_upd->setText(ui->tableWidgetTest->item( ui->tableWidgetTest->currentRow() , 2)->text());
+        ui->pOutLine_upd->setText(ui->tableWidgetTest->item( ui->tableWidgetTest->currentRow() , 3)->text());
+        ui->DescrTPL_upd->setPlainText(ui->tableWidgetTest->item( ui->tableWidgetTest->currentRow() , 6)->text());
+
+        if(ui->tableWidgetTest->item( ui->tableWidgetTest->currentRow() , 4)->text() == "Passed" )
+        {
+            ui->valid->setChecked(true);
+        }
+    }
+
+}
+
+void UiTestUnitaire::on_ok_clicked()
+{
+
+    updTable();
+    ui->lineEdit->setText("");
+
+}
+
+
+void UiTestUnitaire::on_failed_clicked()
+{
+    updTable();
+    ui->lineEdit->setText("");
+}
+
+
+void UiTestUnitaire::updTable()
+{
+    if (ui->ok->isChecked())
+    {
+        for (int i = 0 ; i < ui->tableWidgetTest->rowCount() ; i++ )
+        {
+
+            if(  ui->tableWidgetTest->item( i , 4)->text() == "Passed"    ){
+                ui->tableWidgetTest->showRow(i);
+            }
+
+        }
+    }
+    else{
+
+        for (int i = 0 ; i < ui->tableWidgetTest->rowCount() ; i++ )
+        {
+
+            if(  ui->tableWidgetTest->item( i , 4)->text() == "Passed"    ){
+                ui->tableWidgetTest->hideRow(i);
+            }
+
+        }
+
+    }
+
+    if (ui->failed->isChecked())
+    {
+        for (int i = 0 ; i < ui->tableWidgetTest->rowCount() ; i++ )
+        {
+            if(  ui->tableWidgetTest->item( i , 4)->text() == "Failed"    ){
+                ui->tableWidgetTest->showRow(i);
+            }
+        }
+    }
+    else{
+
+        for (int i = 0 ; i < ui->tableWidgetTest->rowCount() ; i++ )
+        {
+            if(  ui->tableWidgetTest->item( i , 4)->text() == "Failed"    ){
+                ui->tableWidgetTest->hideRow(i);
+
+            }
+        }
+    }
+
+}
+
+void UiTestUnitaire::on_lineEdit_textChanged(const QString &arg1)
+{
+
+    int a = -2;
+
+    for (int i = 0 ; i < ui->tableWidgetTest->rowCount() ; i++ )
+    {
+        ui->tableWidgetTest->hideRow(i);
+        for (int y = 0 ; y < ui->tableWidgetTest->columnCount() ; y++ )
+        {
+            if(   ui->tableWidgetTest->item( i , y)->text().indexOf( arg1, Qt::CaseInsensitive) >=0  && ui->tableWidgetTest->item( i , y)->text() != "" ){
+
+                ui->tableWidgetTest->showRow(i);
+            }
+            else{
+            }
+
+        }
+    }
+
 }

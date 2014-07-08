@@ -49,7 +49,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Test
     QObject::connect(PageTest, SIGNAL(del_test(QString)), this, SLOT(del_test(QString)));
     QObject::connect(PageTest, SIGNAL(add_test(QString,QString,QString,QString)), this, SLOT(add_test(QString,QString,QString,QString)));
-    //QObject::connect(PageTest, SIGNAL(upd_task(QString, QString)), this, SLOT(display_Form_upd_task(QString, QString)));
+    QObject::connect(PageTest, SIGNAL(upd_test(QString,QString,QString,QString,QString)), this, SLOT(upd_to_dataBase_test(QString,QString,QString,QString,QString)));
 
 
 }
@@ -324,17 +324,12 @@ void MainWindow::del_test(QString id)
     emit on_mTest_clicked();
 }
 
-void MainWindow::display_form_upd_test()
+void MainWindow::upd_to_dataBase_test(QString _id, QString _titre, QString _in , QString _out , QString _descr)
 {
 
+    qDebug() << endl ;
+    emit on_mTest_clicked();
 }
-
-void MainWindow::upd_to_dataBase(Test)
-{
-
-}
-
-
 
 
 
