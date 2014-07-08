@@ -7,6 +7,10 @@ uiTicket::uiTicket(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    ui->delBox->hide();
+    boiteDel = false;
+    ui->delLine->setAlignment(Qt::AlignCenter);
+
     QStringList Titreheader            ;
     Titreheader << "id" << "Ticket" << "Créateur" <<"Date d'ajout " << "modifié le" << " Assigné à "  << "Etat" << "Description" ;
 
@@ -71,10 +75,39 @@ void uiTicket::on_delBug_clicked()
 
        return;
     }
-    emit displayFormDelBug(ui->tableWidgetTicket->item( ui->tableWidgetTicket->currentRow() , 0)->text());
+   // emit displayFormDelBug(ui->tableWidgetTicket->item( ui->tableWidgetTicket->currentRow() , 0)->text());
+
+    if(boiteDel == true)
+    {
+        boiteDel = false;
+        ui->delBox->hide();
+        ui->delLine->setText("");
+    }
+    else{
+        boiteDel = true;
+        ui->delBox->show();
+    }
+
 }
 
 void uiTicket::on_tableWidgetTicket_itemDoubleClicked(QTableWidgetItem *item)
 {
     emit displayFormUpdBug(ui->tableWidgetTicket->item( item->row() , 0)->text() ,  ui->tableWidgetTicket->item( item->row() , 5)->text() );
+}
+
+void uiTicket::on_confirmDel_clicked()
+{
+    if(ui->tableWidgetTicket->currentRow() == -1)
+    {
+
+       return;
+    }
+
+    if ( ui->delLine->text() == "SUPPRIMER" )
+    {
+        emit displayFormDelBug(ui->tableWidgetTicket->item( ui->tableWidgetTicket->currentRow() , 0)->text());
+    }
+
+    ui->delBox->hide();
+    boiteDel = false;
 }

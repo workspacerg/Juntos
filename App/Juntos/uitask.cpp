@@ -202,5 +202,5 @@ void uiTask::on_confirmDel_clicked()
 
     boiteDel = false;
     ui->delBox->hide();
-     ui->delLine->setText("");
+    ui->delLine->setText("");
 }

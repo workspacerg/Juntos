@@ -14,6 +14,7 @@ class uiTicket;
 class uiTicket : public QWidget
 {
     Q_OBJECT
+        bool boiteDel;
 
 public:
     explicit uiTicket(QWidget *parent = 0);
@@ -28,6 +29,8 @@ private slots:
     void on_addBug_clicked();
     void on_delBug_clicked();
     void on_tableWidgetTicket_itemDoubleClicked(QTableWidgetItem *item);
+
+    void on_confirmDel_clicked();
 
 private:
     Ui::uiTicket *ui;

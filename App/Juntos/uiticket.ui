@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
+  <layout class="QVBoxLayout" name="verticalLayout_2">
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
@@ -142,6 +142,104 @@
     </widget>
    </item>
    <item>
+    <widget class="QWidget" name="delBox" native="true">
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QLabel" name="label">
+        <property name="minimumSize">
+         <size>
+          <width>0</width>
+          <height>40</height>
+         </size>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>Pour supprimer la tâches, écrivez SUPPRIMER ci-dessous.</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <spacer name="horizontalSpacer_5">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="delLine">
+          <property name="minimumSize">
+           <size>
+            <width>300</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>300</width>
+            <height>60</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <pointsize>13</pointsize>
+           </font>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="confirmDel">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset resource="Images.qrc">
+            <normaloff>:/new/MenuInterface/Ressouces/dnd-512.png</normaloff>:/new/MenuInterface/Ressouces/dnd-512.png</iconset>
+          </property>
+          <property name="iconSize">
+           <size>
+            <width>40</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="flat">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer_6">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>40</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </item>
+   <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
      <item>
       <spacer name="horizontalSpacer_3">
@@ -163,7 +261,7 @@
        </property>
        <property name="icon">
         <iconset resource="Images.qrc">
-         <normaloff>:/new/MenuInterface/Ressouces/plus-512.png</normaloff>:/new/MenuInterface/Ressouces/plus-512.png</iconset>
+         <normaloff>:/new/MenuInterface/Ressouces/box-plus@2x.png</normaloff>:/new/MenuInterface/Ressouces/box-plus@2x.png</iconset>
        </property>
        <property name="iconSize">
         <size>
@@ -183,7 +281,7 @@
        </property>
        <property name="icon">
         <iconset resource="Images.qrc">
-         <normaloff>:/new/MenuInterface/Ressouces/dnd-512.png</normaloff>:/new/MenuInterface/Ressouces/dnd-512.png</iconset>
+         <normaloff>:/new/MenuInterface/Ressouces/box-minus@2x.png</normaloff>:/new/MenuInterface/Ressouces/box-minus@2x.png</iconset>
        </property>
        <property name="iconSize">
         <size>
