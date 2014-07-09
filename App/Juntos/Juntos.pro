@@ -36,7 +36,8 @@ SOURCES += main.cpp\
     formupdtodo.cpp \
     test.cpp \
     uitestunitaire.cpp \
-    uimessage.cpp
+    uimessage.cpp \
+    cmessage.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -58,7 +59,8 @@ HEADERS  += mainwindow.h \
     formupdtodo.h \
     test.h \
     uitestunitaire.h \
-    uimessage.h
+    uimessage.h \
+    cmessage.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \
