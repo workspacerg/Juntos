@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     PageTicket  = new uiTicket  ;
     PageTest    = new UiTestUnitaire    ;
     PageFile    = new uiFile    ;
+    PageMessage = new uiMessage ;
 
     disableAllFunction();
 
@@ -378,6 +379,7 @@ void MainWindow::hideAll()
     ui->cTicket->hide()  ;
     ui->cTest->hide()    ;
     ui->cFile->hide()    ;
+    ui->cMessage->hide() ;
 
 }
 
@@ -426,8 +428,13 @@ void MainWindow::on_mPreference_clicked()
 
 void MainWindow::on_mMessages_clicked()
 {
+
+    PageMessage->loadParticipant(myBDD->getParticipant(currentProject->getId()));
+
     this->hideAll();
     ui->TitreBody->setText("Messages");
+    ui->cMessage->layout()->addWidget(PageMessage);
+    ui->cMessage->show();
 
 }
 
