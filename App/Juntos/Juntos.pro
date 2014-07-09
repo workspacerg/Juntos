@@ -34,9 +34,9 @@ SOURCES += main.cpp\
     task.cpp \
     formaddtodo.cpp \
     formupdtodo.cpp \
-    unittest.cpp \
     test.cpp \
-    uitestunitaire.cpp
+    uitestunitaire.cpp \
+    uimessage.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -56,9 +56,9 @@ HEADERS  += mainwindow.h \
     task.h \
     formaddtodo.h \
     formupdtodo.h \
-    unittest.h \
     test.h \
-    uitestunitaire.h
+    uitestunitaire.h \
+    uimessage.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \
@@ -71,7 +71,8 @@ FORMS    += mainwindow.ui \
     formupdbug.ui \
     formaddtodo.ui \
     formupdtodo.ui \
-    uitestunitaire.ui
+    uitestunitaire.ui \
+    uimessage.ui
 
 RESOURCES += \
     Images.qrc
