@@ -9,12 +9,14 @@
 #include <QSettings>
 #include <QtSql/QSqlQuery>
 #include <QDebug>
+#include <QDateTime>
 #include "cprojet.h"
 #include <vector>
 #include "cuser.h"
 #include "ticket.h"
 #include "task.h"
 #include "test.h"
+#include "cmessage.h"
 
 using namespace std;
 
@@ -35,6 +37,7 @@ class BDD
             vector<Ticket> tickets ;
             vector<Task> tasks ;
             vector<Test> tests ;
+            vector<cMessage> messages;
 
 
 
@@ -73,7 +76,8 @@ public:
     bool delTest(QString idTk , int idPro);
     bool add_test(QString title , QString descr , QString in, QString out , int idPro);
 
-
+    // Message
+    vector<cMessage> loadMessage(int idPro);
 
 
 

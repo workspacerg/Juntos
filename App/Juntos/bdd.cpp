@@ -738,7 +738,31 @@ bool BDD::add_test(QString title, QString descr, QString in, QString out, int id
     {
         qDebug() << query.lastError().text();
     }
-     return false;
+    return false;
+}
+
+vector<cMessage> BDD::loadMessage(int idPro)
+{
+    messages.clear();
+
+    QString idString = QString::number(idPro);
+
+    // Chargement des test
+
+    QSqlQuery query;
+
+    if(query.exec("SELECT u1.login , u2.login , message , date FROM `message` INNER JOIN user u1 ON u1.id = senderId INNER JOIN user u2 ON u2.id = receiverId WHERE `projectID` = '"+idString+"' "))
+    {
+        while(query.next())
+        {
+
+            QDateTime date = QDateTime::fromString(query.value(3).toString(),"yyyy-MM-ddTHH:mm:ss");
+            messages.push_back(cMessage(query.value(0).toString() , query.value(1).toString(), query.value(2).toString(), date ));
+
+        }
+    }
+
+    return messages;
 }
 
 
