@@ -15,6 +15,7 @@
 #include "ticket.h"
 #include "task.h"
 #include "test.h"
+#include "share.h"
 
 using namespace std;
 
@@ -35,6 +36,7 @@ class BDD
             vector<Ticket> tickets ;
             vector<Task> tasks ;
             vector<Test> tests ;
+            vector<Share> shares;
 
 
 
@@ -74,7 +76,9 @@ public:
     bool add_test(QString title , QString descr , QString in, QString out , int idPro);
 
 
-
+    // Share
+    vector<Share> loadShares(int idPro);
+    bool add_share(Share);
 
 
 

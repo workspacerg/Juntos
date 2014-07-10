@@ -67,7 +67,7 @@ public slots:
     void selCurrentProject(CProjet source);
     void getParticipant();
     void addPeopletoProject(QString);
-    void delPeopleToProject(QString);;
+    void delPeopleToProject(QString);
 
     //  Ticket ------------------------------------------------------------------------------------------------------------------------------
     void displayFormAddBug();
@@ -86,6 +86,9 @@ public slots:
     void add_test(QString _titre, QString _in, QString _out, QString _descr);
     void del_test(QString id);
     void upd_to_dataBase_test(QString,QString,QString,QString,QString );
+
+    // Share ------------------------------------------------------------------------------------------------------------------------------
+    void add_share(QString,std::string);
 
 private slots:
     void on_mAccueil_clicked();

@@ -110,8 +110,6 @@ void uiAcceuil::on_updTable_clicked()
 
     emit sigLoadTable();
 
-
-
 }
 
 void uiAcceuil::on_tableWidgetPtoject_itemDoubleClicked(QTableWidgetItem *item)

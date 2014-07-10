@@ -36,7 +36,8 @@ SOURCES += main.cpp\
     formupdtodo.cpp \
     unittest.cpp \
     test.cpp \
-    uitestunitaire.cpp
+    uitestunitaire.cpp \
+    share.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -58,7 +59,8 @@ HEADERS  += mainwindow.h \
     formupdtodo.h \
     unittest.h \
     test.h \
-    uitestunitaire.h
+    uitestunitaire.h \
+    share.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \
