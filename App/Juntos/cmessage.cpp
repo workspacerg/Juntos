@@ -42,9 +42,10 @@ void cMessage::setDateMessage(const QDateTime &value)
 }
 cMessage::cMessage()
 {
+
 }
 
-cMessage::cMessage(QString _receiver, QString _sender, QString _Message, QDateTime _dateMessage)
+cMessage::cMessage(QString _sender, QString _receiver, QString _Message, QDateTime _dateMessage)
 {
     receiver = _receiver;
     sender = _sender;

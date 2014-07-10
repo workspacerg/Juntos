@@ -118,6 +118,7 @@ void MainWindow::selCurrentProject(CProjet source)
 
     PageTask->setLogin(login);
     PageTicket->setLogin(login);
+    PageMessage->setLogin(login);
 
 
 }
@@ -430,6 +431,7 @@ void MainWindow::on_mMessages_clicked()
 {
 
     PageMessage->loadParticipant(myBDD->getParticipant(currentProject->getId()));
+    PageMessage->loadMessage(myBDD->loadMessage(currentProject->getId()));
 
     this->hideAll();
     ui->TitreBody->setText("Messages");

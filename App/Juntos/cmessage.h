@@ -15,7 +15,7 @@ class cMessage
 
 public:
     cMessage();
-    cMessage(QString _receiver, QString sender, QString _Message, QDateTime _dateMessage);
+    cMessage(QString sender, QString _receiver , QString _Message, QDateTime _dateMessage);
 
     QString getReceiver() const;
     void setReceiver(const QString &value);
