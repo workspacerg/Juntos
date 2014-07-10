@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <QColor>
 #include <QSize>
+#include <QFont>
 
 QString uiMessage::getLogin() const
 {
@@ -43,6 +44,8 @@ void uiMessage::loadParticipant(vector<cUser> usr)
 
         ui->User->addItem(item.getLogin());
     }
+
+
 }
 
 void uiMessage::loadMessage(vector<cMessage> msg)
@@ -53,25 +56,34 @@ void uiMessage::loadMessage(vector<cMessage> msg)
         ui->Messages->addItem(item.getDateMessage().toString("HH:mm dd-MM"));
         int LastRow = ui->Messages->count()-1;
         ui->Messages->item(LastRow)->setTextColor(Qt::gray);
-        ui->Messages->item(LastRow)->setTextAlignment(Qt::AlignCenter);
+
+        QFont f = ui->Messages->item(LastRow)->font();
+        f.setPointSize(10);
+        ui->Messages->item(LastRow)->setFont(f);
+
 
         ui->Messages->addItem(item.getMessage());
         LastRow = ui->Messages->count()-1;
 
         if(item.getSender() != login){
 
-            ui->Messages->item(LastRow)->setTextColor(Qt::white);
+
             QColor col ;
             col.setRgb(45,186,166);
+            ui->Messages->item(LastRow)->setTextColor(Qt::white);
+            ui->Messages->item(LastRow-1)->setTextColor(Qt::white);
             ui->Messages->item(LastRow)->setBackground(col);
+            ui->Messages->item(LastRow-1)->setBackground(col);
+
         }
         else{
+            ui->Messages->item(LastRow-1)->setTextAlignment(Qt::AlignRight);
             ui->Messages->item(LastRow)->setTextAlignment(Qt::AlignRight);
         }
 
-
-
     }
+
+    ui->Messages->scrollToBottom();
 }
 
 void uiMessage::on_User_itemDoubleClicked(QListWidgetItem *item)

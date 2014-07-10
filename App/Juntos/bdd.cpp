@@ -251,6 +251,23 @@ bool BDD::checkAdmin(int idPro)
 
 }
 
+cUser BDD::getInfoUser(QString _log)
+{
+
+    QSqlQuery query;
+   if(query.exec("Select * FROM user where login ='"+ _log +"'"))
+   {
+       while(query.next())
+       {
+            return cUser(query.value(0).toInt(),query.value(1).toString(),query.value(2).toString());
+       }
+
+   }
+
+     return cUser();
+
+}
+
 bool BDD::addPeopleToProject(QString log, int idPro)
 {
 

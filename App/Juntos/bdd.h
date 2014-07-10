@@ -47,6 +47,7 @@ public:
     bool connectDB();
     bool verifUser();
     bool checkAdmin(int);
+    cUser getInfoUser(QString _log);
 
     // Projet
     vector<CProjet> loadProject();

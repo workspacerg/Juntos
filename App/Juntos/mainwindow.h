@@ -30,6 +30,7 @@ private:
 
     BDD *myBDD ;
     CProjet * currentProject ;
+    cUser * currentUser ;
     notification *Notif ;
 
     QString login;
@@ -63,6 +64,7 @@ public slots:
     void displayNotification(QString, QString);
     // BDD ------------------------------------------------------------------------------------------------------------------------------
     void connectBDD();
+    void loadCurrentUser();
     void loadTableProject();
     void addProject(CProjet);
     void delProject(CProjet source);

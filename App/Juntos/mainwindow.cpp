@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    currentUser = new cUser ;
+
     PageAccueil = new uiAcceuil ;
     PageTask    = new uiTask    ;
     PagePref    = new uiPref    ;
@@ -73,9 +75,12 @@ void MainWindow::connectBDD()
     {
        ui->statusBar->showMessage("Vous êts connecté");
        ui->menu->show();
+
+
+      loadCurrentUser();
+
+
        emit on_mAccueil_clicked();
-
-
        emit loadTableProject();
 
     }
@@ -87,6 +92,17 @@ void MainWindow::connectBDD()
     }
 
 }
+
+void MainWindow::loadCurrentUser()
+{
+
+    cUser tmp = myBDD->getInfoUser(myBDD->getLogin());
+
+    currentUser->loadAllParam(tmp.getIdUser(),tmp.getLogin(), tmp.getMail());
+
+}
+
+
 
 void MainWindow::loadTableProject()
 {
