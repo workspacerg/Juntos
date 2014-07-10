@@ -54,6 +54,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Message
     QObject::connect(PageMessage, SIGNAL(changeListMessage(QString)), this, SLOT(selectMessageFor(QString)));
+    QObject::connect(PageMessage, SIGNAL(sendMessageTo(QString,QString)), this, SLOT(insertMessage(QString,QString)));
 
 
 }
@@ -347,6 +348,11 @@ void MainWindow::upd_to_dataBase_test(QString _id, QString _titre, QString _in ,
 void MainWindow::selectMessageFor(QString usr)
 {
     PageMessage->loadMessage(myBDD->loadMessage(currentProject->getId() , usr));
+}
+
+void MainWindow::insertMessage(QString msg, QString usr)
+{
+    myBDD->add_Message(currentProject->getId(), msg , usr);
 }
 
 

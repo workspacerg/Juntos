@@ -78,9 +78,7 @@ public:
 
     // Message
     vector<cMessage> loadMessage(int idPro, QString receiver);
-
-
-
+    bool add_Message(int idPro , QString msg , QString usr);
 
     QString getLogin() const;
     void setLogin(const QString &value);

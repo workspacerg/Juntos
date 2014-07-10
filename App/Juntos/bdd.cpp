@@ -751,7 +751,7 @@ vector<cMessage> BDD::loadMessage(int idPro, QString receiver)
 
     QSqlQuery query;
 
-    if(query.exec("SELECT u1.login , u2.login , message , date FROM `message` INNER JOIN user u1 ON u1.id = senderId INNER JOIN user u2 ON u2.id = receiverId WHERE `projectID` = '"+idString+"' AND ((u2.login = '"+ receiver +"' AND u1.login = '"+ login +"' ) || (u2.login = '"+ login +"' AND u1.login = '"+ receiver +"')) "))
+    if(query.exec("SELECT u1.login , u2.login , message , date FROM `message` INNER JOIN user u1 ON u1.id = senderId INNER JOIN user u2 ON u2.id = receiverId WHERE `projectID` = '"+idString+"' AND ((u2.login = '"+ receiver +"' AND u1.login = '"+ login +"' ) || (u2.login = '"+ login +"' AND u1.login = '"+ receiver +"')) order By date "))
     {
         while(query.next())
         {
@@ -763,6 +763,30 @@ vector<cMessage> BDD::loadMessage(int idPro, QString receiver)
     }
 
     return messages;
+}
+
+bool BDD::add_Message(int idPro, QString msg, QString usr)
+{
+    QString idString = QString::number(idPro);
+    QSqlQuery query;
+
+    if(query.exec("select add_Message( '"+ login +"' , '"+ msg +"' , '"+ usr +"' , '"+ idString +"' )"))
+    {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
+
+    }else
+    {
+        qDebug() << query.lastError().text();
+    }
+
+    return false;
 }
 
 

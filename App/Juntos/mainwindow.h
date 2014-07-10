@@ -91,6 +91,7 @@ public slots:
 
     // Messages ---------------------------------------------------------------------------------------------------------------------------
     void selectMessageFor(QString);
+    void insertMessage(QString msg, QString usr);
 
 private slots:
     void on_mAccueil_clicked();

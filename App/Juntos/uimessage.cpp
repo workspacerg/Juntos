@@ -50,8 +50,13 @@ void uiMessage::loadMessage(vector<cMessage> msg)
 
     for(cMessage item : msg)
     {
-        ui->Messages->addItem(item.getMessage() + "\n" + item.getDateMessage().toString("HH:mm dd-MM"));
+        ui->Messages->addItem(item.getDateMessage().toString("HH:mm dd-MM"));
         int LastRow = ui->Messages->count()-1;
+        ui->Messages->item(LastRow)->setTextColor(Qt::gray);
+        ui->Messages->item(LastRow)->setTextAlignment(Qt::AlignCenter);
+
+        ui->Messages->addItem(item.getMessage());
+        LastRow = ui->Messages->count()-1;
 
         if(item.getSender() != login){
 
@@ -78,5 +83,18 @@ void uiMessage::on_User_itemDoubleClicked(QListWidgetItem *item)
     ui->Messages->item(LastRow)->setTextAlignment(Qt::AlignCenter);
 
     emit changeListMessage(item->text());
+
+}
+
+void uiMessage::on_sendMessage_clicked()
+{
+
+    if (ui->myMessage->text() == ""){
+        return ;
+    }
+
+    emit sendMessageTo(ui->myMessage->text(), ui->User->currentItem()->text());
+    emit on_User_itemDoubleClicked(ui->User->currentItem());
+    ui->myMessage->setText("");
 
 }

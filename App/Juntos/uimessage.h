@@ -32,11 +32,16 @@ public:
 private slots:
     void on_User_itemDoubleClicked(QListWidgetItem *item);
 
+
+
+    void on_sendMessage_clicked();
+
 private:
     Ui::uiMessage *ui;
 
 signals:
     void changeListMessage(QString);
+    void sendMessageTo(QString,QString);
 };
 
 #endif // UIMESSAGE_H
