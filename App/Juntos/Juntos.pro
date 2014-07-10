@@ -36,6 +36,7 @@ SOURCES += main.cpp\
     formupdtodo.cpp \
     test.cpp \
     uitestunitaire.cpp \
+    share.cpp \
     uimessage.cpp \
     cmessage.cpp
 
@@ -59,6 +60,7 @@ HEADERS  += mainwindow.h \
     formupdtodo.h \
     test.h \
     uitestunitaire.h \
+    share.h \
     uimessage.h \
     cmessage.h
 

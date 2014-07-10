@@ -54,10 +54,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(PageTest, SIGNAL(add_test(QString,QString,QString,QString)), this, SLOT(add_test(QString,QString,QString,QString)));
     QObject::connect(PageTest, SIGNAL(upd_test(QString,QString,QString,QString,QString)), this, SLOT(upd_to_dataBase_test(QString,QString,QString,QString,QString)));
 
+    // Partage
+    QObject::connect(PageFile, SIGNAL(add_share(QString,std::string)), this, SLOT(add_share(QString,std::string)));
     // Message
     QObject::connect(PageMessage, SIGNAL(changeListMessage(QString)), this, SLOT(selectMessageFor(QString)));
     QObject::connect(PageMessage, SIGNAL(sendMessageTo(QString,QString)), this, SLOT(insertMessage(QString,QString)));
-
 
 }
 
@@ -269,9 +270,9 @@ void MainWindow::display_Form_Add_Task()
 
     vector<QString> avc ;
 
-    avc.push_back("crée");
-    avc.push_back("assigné");
-    avc.push_back("en cours");
+    avc.push_back("Crée");
+    avc.push_back("Assigné");
+    avc.push_back("En cours");
 
     pageAddTask = new formAddTodo;
         QObject::connect(pageAddTask, SIGNAL(savetodatabase(QString,QString,QString,QString,QString)), this, SLOT(save_To_Database(QString,QString,QString,QString,QString)));
@@ -357,6 +358,12 @@ void MainWindow::upd_to_dataBase_test(QString _id, QString _titre, QString _in ,
 
 //
 //
+
+// SHARE -------------------------------------------------------------------------------------------------------------------
+//
+//
+
+
 // Message -------------------------------------------------------------------------------------------------------------------
 //
 //
@@ -372,6 +379,10 @@ void MainWindow::insertMessage(QString msg, QString usr)
 }
 
 
+void MainWindow::add_share(QString filename, std::string filecontent){
+    Share s;
+    myBDD->add_share(s);
+}
 
 //
 //

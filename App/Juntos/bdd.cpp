@@ -94,7 +94,7 @@ vector<CProjet> BDD::loadProject()
 
     // Chargement des projet
 
-     QSqlQuery query;
+    QSqlQuery query;
     if(query.exec("SELECT pr.id , pr.name , pr.description FROM user u INNER JOIN userinproject up ON u.id = up.idUser INNER JOIN project pr ON up.idProject = pr.id where u.login = '"+ login +"'"))
     {
         while(query.next())
@@ -106,6 +106,7 @@ vector<CProjet> BDD::loadProject()
 
     return projects;
 }
+
 
 bool BDD::addProject(CProjet source)
 {
@@ -806,7 +807,34 @@ bool BDD::add_Message(int idPro, QString msg, QString usr)
     return false;
 }
 
+//
+// Share
+//
 
+vector<Share> BDD::loadShares(int idPro){
+    shares.clear();
+
+    QSqlQuery query;
+    if(query.exec(QString("SELECT id,projectId,userId,filename,filecontent FROM sharefiles s WHERE projectId = %1 ;").arg(idPro)))
+    {
+        while(query.next())
+        {
+           shares.push_back(Share(query.value(0).toInt(),query.value(1).toInt(),query.value(2).toInt(),query.value(3).toString(),query.value(4).toString().toStdString()));
+        }
+    }
+
+    return shares;
+}
+
+bool BDD::add_share(Share s){
+    QSqlQuery query;
+    if(!query.exec(QString("INSERT INTO sharefiles (projectId,userId,filename,filecontent) VALUES(%1,%2,%3,%4)").arg(QString::number(s.getIdProject()),QString::number(s.getIdCreator()),s.getFilename(),QString::fromStdString(s.getContent()))))
+    {
+        qDebug() << query.lastError().text();
+        return false;
+    }
+    return true;
+}
 
 
 
