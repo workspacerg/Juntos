@@ -77,7 +77,7 @@ public:
     bool add_test(QString title , QString descr , QString in, QString out , int idPro);
 
     // Message
-    vector<cMessage> loadMessage(int idPro);
+    vector<cMessage> loadMessage(int idPro, QString receiver);
 
 
 

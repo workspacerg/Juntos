@@ -89,6 +89,9 @@ public slots:
     void del_test(QString id);
     void upd_to_dataBase_test(QString,QString,QString,QString,QString );
 
+    // Messages ---------------------------------------------------------------------------------------------------------------------------
+    void selectMessageFor(QString);
+
 private slots:
     void on_mAccueil_clicked();
     void on_mTask_clicked();

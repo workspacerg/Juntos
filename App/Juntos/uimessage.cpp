@@ -32,8 +32,15 @@ uiMessage::~uiMessage()
 
 void uiMessage::loadParticipant(vector<cUser> usr)
 {
+
+    ui->User->clear();
+
+
     for(cUser item : usr)
     {
+        if (item.getLogin() == login)
+            continue;
+
         ui->User->addItem(item.getLogin());
     }
 }
@@ -64,9 +71,12 @@ void uiMessage::loadMessage(vector<cMessage> msg)
 
 void uiMessage::on_User_itemDoubleClicked(QListWidgetItem *item)
 {
-    ui->Messages->addItem(item->text());
-    item->setTextAlignment(Qt::AlignCenter);
+    ui->Messages->clear();
 
-    emit changeListMessage(item->text())
+    ui->Messages->addItem(item->text());
+    int LastRow = ui->Messages->count()-1;
+    ui->Messages->item(LastRow)->setTextAlignment(Qt::AlignCenter);
+
+    emit changeListMessage(item->text());
 
 }

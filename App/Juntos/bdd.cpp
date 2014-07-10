@@ -741,7 +741,7 @@ bool BDD::add_test(QString title, QString descr, QString in, QString out, int id
     return false;
 }
 
-vector<cMessage> BDD::loadMessage(int idPro)
+vector<cMessage> BDD::loadMessage(int idPro, QString receiver)
 {
     messages.clear();
 
@@ -751,7 +751,7 @@ vector<cMessage> BDD::loadMessage(int idPro)
 
     QSqlQuery query;
 
-    if(query.exec("SELECT u1.login , u2.login , message , date FROM `message` INNER JOIN user u1 ON u1.id = senderId INNER JOIN user u2 ON u2.id = receiverId WHERE `projectID` = '"+idString+"' "))
+    if(query.exec("SELECT u1.login , u2.login , message , date FROM `message` INNER JOIN user u1 ON u1.id = senderId INNER JOIN user u2 ON u2.id = receiverId WHERE `projectID` = '"+idString+"' AND ((u2.login = '"+ receiver +"' AND u1.login = '"+ login +"' ) || (u2.login = '"+ login +"' AND u1.login = '"+ receiver +"')) "))
     {
         while(query.next())
         {

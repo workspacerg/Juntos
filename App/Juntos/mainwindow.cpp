@@ -52,6 +52,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(PageTest, SIGNAL(add_test(QString,QString,QString,QString)), this, SLOT(add_test(QString,QString,QString,QString)));
     QObject::connect(PageTest, SIGNAL(upd_test(QString,QString,QString,QString,QString)), this, SLOT(upd_to_dataBase_test(QString,QString,QString,QString,QString)));
 
+    // Message
+    QObject::connect(PageMessage, SIGNAL(changeListMessage(QString)), this, SLOT(selectMessageFor(QString)));
+
 
 }
 
@@ -335,6 +338,17 @@ void MainWindow::upd_to_dataBase_test(QString _id, QString _titre, QString _in ,
     emit on_mTest_clicked();
 }
 
+//
+//
+// Message -------------------------------------------------------------------------------------------------------------------
+//
+//
+
+void MainWindow::selectMessageFor(QString usr)
+{
+    PageMessage->loadMessage(myBDD->loadMessage(currentProject->getId() , usr));
+}
+
 
 
 //
@@ -431,7 +445,6 @@ void MainWindow::on_mMessages_clicked()
 {
 
     PageMessage->loadParticipant(myBDD->getParticipant(currentProject->getId()));
-    PageMessage->loadMessage(myBDD->loadMessage(currentProject->getId()));
 
     this->hideAll();
     ui->TitreBody->setText("Messages");

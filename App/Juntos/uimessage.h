@@ -34,6 +34,9 @@ private slots:
 
 private:
     Ui::uiMessage *ui;
+
+signals:
+    void changeListMessage(QString);
 };
 
 #endif // UIMESSAGE_H
