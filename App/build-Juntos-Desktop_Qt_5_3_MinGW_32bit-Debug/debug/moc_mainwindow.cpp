@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[45];
-    char stringdata[605];
+    QByteArrayData data[49];
+    char stringdata[644];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -66,14 +66,18 @@ QT_MOC_LITERAL(33, 402, 8),
 QT_MOC_LITERAL(34, 411, 20),
 QT_MOC_LITERAL(35, 432, 9),
 QT_MOC_LITERAL(36, 442, 11),
-QT_MOC_LITERAL(37, 454, 19),
-QT_MOC_LITERAL(38, 474, 16),
-QT_MOC_LITERAL(39, 491, 18),
-QT_MOC_LITERAL(40, 510, 22),
-QT_MOC_LITERAL(41, 533, 20),
-QT_MOC_LITERAL(42, 554, 16),
-QT_MOC_LITERAL(43, 571, 16),
-QT_MOC_LITERAL(44, 588, 16)
+QT_MOC_LITERAL(37, 454, 16),
+QT_MOC_LITERAL(38, 471, 13),
+QT_MOC_LITERAL(39, 485, 3),
+QT_MOC_LITERAL(40, 489, 3),
+QT_MOC_LITERAL(41, 493, 19),
+QT_MOC_LITERAL(42, 513, 16),
+QT_MOC_LITERAL(43, 530, 18),
+QT_MOC_LITERAL(44, 549, 22),
+QT_MOC_LITERAL(45, 572, 20),
+QT_MOC_LITERAL(46, 593, 16),
+QT_MOC_LITERAL(47, 610, 16),
+QT_MOC_LITERAL(48, 627, 16)
     },
     "MainWindow\0displayNotification\0\0"
     "connectBDD\0loadTableProject\0addProject\0"
@@ -87,7 +91,8 @@ QT_MOC_LITERAL(44, 588, 16)
     "dev\0upd_task_to_database\0Task\0add_test\0"
     "_titre\0_in\0_out\0_descr\0del_test\0"
     "upd_to_dataBase_test\0add_share\0"
-    "std::string\0on_mAccueil_clicked\0"
+    "std::string\0selectMessageFor\0insertMessage\0"
+    "msg\0usr\0on_mAccueil_clicked\0"
     "on_mTask_clicked\0on_mTicket_clicked\0"
     "on_mPreference_clicked\0on_mMessages_clicked\0"
     "on_mTest_clicked\0on_mFile_clicked\0"
@@ -101,7 +106,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      30,   14, // methods
+      32,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -109,36 +114,38 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    2,  164,    2, 0x0a /* Public */,
-       3,    0,  169,    2, 0x0a /* Public */,
-       4,    0,  170,    2, 0x0a /* Public */,
-       5,    1,  171,    2, 0x0a /* Public */,
-       7,    1,  174,    2, 0x0a /* Public */,
-       9,    1,  177,    2, 0x0a /* Public */,
-      10,    0,  180,    2, 0x0a /* Public */,
-      11,    1,  181,    2, 0x0a /* Public */,
-      12,    1,  184,    2, 0x0a /* Public */,
-      13,    0,  187,    2, 0x0a /* Public */,
-      14,    1,  188,    2, 0x0a /* Public */,
-      16,    2,  191,    2, 0x0a /* Public */,
-      18,    4,  196,    2, 0x0a /* Public */,
-      19,    1,  205,    2, 0x0a /* Public */,
-      21,    1,  208,    2, 0x0a /* Public */,
-      23,    0,  211,    2, 0x0a /* Public */,
-      24,    2,  212,    2, 0x0a /* Public */,
-      26,    1,  217,    2, 0x0a /* Public */,
-      28,    4,  220,    2, 0x0a /* Public */,
-      33,    1,  229,    2, 0x0a /* Public */,
-      34,    5,  232,    2, 0x0a /* Public */,
-      35,    2,  243,    2, 0x0a /* Public */,
-      37,    0,  248,    2, 0x08 /* Private */,
-      38,    0,  249,    2, 0x08 /* Private */,
-      39,    0,  250,    2, 0x08 /* Private */,
-      40,    0,  251,    2, 0x08 /* Private */,
-      41,    0,  252,    2, 0x08 /* Private */,
-      42,    0,  253,    2, 0x08 /* Private */,
-      43,    0,  254,    2, 0x08 /* Private */,
-      44,    5,  255,    2, 0x08 /* Private */,
+       1,    2,  174,    2, 0x0a /* Public */,
+       3,    0,  179,    2, 0x0a /* Public */,
+       4,    0,  180,    2, 0x0a /* Public */,
+       5,    1,  181,    2, 0x0a /* Public */,
+       7,    1,  184,    2, 0x0a /* Public */,
+       9,    1,  187,    2, 0x0a /* Public */,
+      10,    0,  190,    2, 0x0a /* Public */,
+      11,    1,  191,    2, 0x0a /* Public */,
+      12,    1,  194,    2, 0x0a /* Public */,
+      13,    0,  197,    2, 0x0a /* Public */,
+      14,    1,  198,    2, 0x0a /* Public */,
+      16,    2,  201,    2, 0x0a /* Public */,
+      18,    4,  206,    2, 0x0a /* Public */,
+      19,    1,  215,    2, 0x0a /* Public */,
+      21,    1,  218,    2, 0x0a /* Public */,
+      23,    0,  221,    2, 0x0a /* Public */,
+      24,    2,  222,    2, 0x0a /* Public */,
+      26,    1,  227,    2, 0x0a /* Public */,
+      28,    4,  230,    2, 0x0a /* Public */,
+      33,    1,  239,    2, 0x0a /* Public */,
+      34,    5,  242,    2, 0x0a /* Public */,
+      35,    2,  253,    2, 0x0a /* Public */,
+      37,    1,  258,    2, 0x0a /* Public */,
+      38,    2,  261,    2, 0x0a /* Public */,
+      41,    0,  266,    2, 0x08 /* Private */,
+      42,    0,  267,    2, 0x08 /* Private */,
+      43,    0,  268,    2, 0x08 /* Private */,
+      44,    0,  269,    2, 0x08 /* Private */,
+      45,    0,  270,    2, 0x08 /* Private */,
+      46,    0,  271,    2, 0x08 /* Private */,
+      47,    0,  272,    2, 0x08 /* Private */,
+      48,    5,  273,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    2,    2,
@@ -163,6 +170,8 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::QString,   22,
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,    2,    2,    2,    2,    2,
     QMetaType::Void, QMetaType::QString, 0x80000000 | 36,    2,    2,
+    QMetaType::Void, QMetaType::QString,    2,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   39,   40,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -202,14 +211,16 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 19: _t->del_test((*reinterpret_cast< QString(*)>(_a[1]))); break;
         case 20: _t->upd_to_dataBase_test((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5]))); break;
         case 21: _t->add_share((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2]))); break;
-        case 22: _t->on_mAccueil_clicked(); break;
-        case 23: _t->on_mTask_clicked(); break;
-        case 24: _t->on_mTicket_clicked(); break;
-        case 25: _t->on_mPreference_clicked(); break;
-        case 26: _t->on_mMessages_clicked(); break;
-        case 27: _t->on_mTest_clicked(); break;
-        case 28: _t->on_mFile_clicked(); break;
-        case 29: _t->save_To_Database((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5]))); break;
+        case 22: _t->selectMessageFor((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 23: _t->insertMessage((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
+        case 24: _t->on_mAccueil_clicked(); break;
+        case 25: _t->on_mTask_clicked(); break;
+        case 26: _t->on_mTicket_clicked(); break;
+        case 27: _t->on_mPreference_clicked(); break;
+        case 28: _t->on_mMessages_clicked(); break;
+        case 29: _t->on_mTest_clicked(); break;
+        case 30: _t->on_mFile_clicked(); break;
+        case 31: _t->save_To_Database((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5]))); break;
         default: ;
         }
     }
@@ -240,13 +251,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 30)
+        if (_id < 32)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 30;
+        _id -= 32;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 30)
+        if (_id < 32)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 30;
+        _id -= 32;
     }
     return _id;
 }

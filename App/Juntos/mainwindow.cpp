@@ -14,6 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
     PageTicket  = new uiTicket  ;
     PageTest    = new UiTestUnitaire    ;
     PageFile    = new uiFile    ;
+    PageMessage = new uiMessage ;
 
     disableAllFunction();
 
@@ -53,6 +54,10 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Partage
     QObject::connect(PageFile, SIGNAL(add_share(QString,std::string)), this, SLOT(add_share(QString,std::string)));
+    // Message
+    QObject::connect(PageMessage, SIGNAL(changeListMessage(QString)), this, SLOT(selectMessageFor(QString)));
+    QObject::connect(PageMessage, SIGNAL(sendMessageTo(QString,QString)), this, SLOT(insertMessage(QString,QString)));
+
 }
 
 
@@ -118,6 +123,7 @@ void MainWindow::selCurrentProject(CProjet source)
 
     PageTask->setLogin(login);
     PageTicket->setLogin(login);
+    PageMessage->setLogin(login);
 
 
 }
@@ -336,9 +342,26 @@ void MainWindow::upd_to_dataBase_test(QString _id, QString _titre, QString _in ,
 
 //
 //
+
 // SHARE -------------------------------------------------------------------------------------------------------------------
 //
 //
+
+
+// Message -------------------------------------------------------------------------------------------------------------------
+//
+//
+
+void MainWindow::selectMessageFor(QString usr)
+{
+    PageMessage->loadMessage(myBDD->loadMessage(currentProject->getId() , usr));
+}
+
+void MainWindow::insertMessage(QString msg, QString usr)
+{
+    myBDD->add_Message(currentProject->getId(), msg , usr);
+}
+
 
 void MainWindow::add_share(QString filename, std::string filecontent){
     Share s;
@@ -388,6 +411,7 @@ void MainWindow::hideAll()
     ui->cTicket->hide()  ;
     ui->cTest->hide()    ;
     ui->cFile->hide()    ;
+    ui->cMessage->hide() ;
 
 }
 
@@ -436,8 +460,13 @@ void MainWindow::on_mPreference_clicked()
 
 void MainWindow::on_mMessages_clicked()
 {
+
+    PageMessage->loadParticipant(myBDD->getParticipant(currentProject->getId()));
+
     this->hideAll();
     ui->TitreBody->setText("Messages");
+    ui->cMessage->layout()->addWidget(PageMessage);
+    ui->cMessage->show();
 
 }
 

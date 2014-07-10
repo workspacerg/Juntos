@@ -7,6 +7,7 @@
 #include "uitask.h"
 #include "uipref.h"
 #include "uiticket.h"
+#include "uimessage.h"
 #include "uitestunitaire.h"
 #include "uifile.h"
 #include "notification.h"
@@ -44,8 +45,9 @@ public:
     uiTask      *PageTask       ;
     uiPref      *PagePref       ;
     uiTicket    *PageTicket     ;
-    UiTestUnitaire      *PageTest       ;
+    UiTestUnitaire      *PageTest ;
     uiFile      *PageFile       ;
+    uiMessage   *PageMessage    ;
 
     addPeopleDialog *pagePeople ;
 
@@ -89,6 +91,10 @@ public slots:
 
     // Share ------------------------------------------------------------------------------------------------------------------------------
     void add_share(QString,std::string);
+
+    // Messages ---------------------------------------------------------------------------------------------------------------------------
+    void selectMessageFor(QString);
+    void insertMessage(QString msg, QString usr);
 
 private slots:
     void on_mAccueil_clicked();

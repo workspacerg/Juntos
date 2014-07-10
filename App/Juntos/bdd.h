@@ -9,6 +9,7 @@
 #include <QSettings>
 #include <QtSql/QSqlQuery>
 #include <QDebug>
+#include <QDateTime>
 #include "cprojet.h"
 #include <vector>
 #include "cuser.h"
@@ -16,6 +17,7 @@
 #include "task.h"
 #include "test.h"
 #include "share.h"
+#include "cmessage.h"
 
 using namespace std;
 
@@ -37,6 +39,7 @@ class BDD
             vector<Task> tasks ;
             vector<Test> tests ;
             vector<Share> shares;
+            vector<cMessage> messages;
 
 
 
@@ -75,12 +78,13 @@ public:
     bool delTest(QString idTk , int idPro);
     bool add_test(QString title , QString descr , QString in, QString out , int idPro);
 
-
     // Share
     vector<Share> loadShares(int idPro);
     bool add_share(Share);
 
-
+    // Message
+    vector<cMessage> loadMessage(int idPro, QString receiver);
+    bool add_Message(int idPro , QString msg , QString usr);
 
     QString getLogin() const;
     void setLogin(const QString &value);

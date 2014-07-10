@@ -18,10 +18,11 @@ INPUT(
 ./release\task.o
 ./release\formaddtodo.o
 ./release\formupdtodo.o
-./release\unittest.o
 ./release\test.o
 ./release\uitestunitaire.o
 ./release\share.o
+./release\uimessage.o
+./release\cmessage.o
 ./release\qrc_Images.o
 ./release\moc_mainwindow.o
 ./release\moc_uiacceuil.o
@@ -35,4 +36,5 @@ INPUT(
 ./release\moc_formaddtodo.o
 ./release\moc_formupdtodo.o
 ./release\moc_uitestunitaire.o
+./release\moc_uimessage.o
 );
