@@ -180,7 +180,7 @@ void UiTestUnitaire::on_save_test_clicked()
 void UiTestUnitaire::on_save_test_upd_clicked()
 {
 
-    emit upd_test( ui->tableWidgetTest->item( ui->tableWidgetTest->currentRow() , 0)->text() , ui->TitreLine_upd->text(),  ui->pInline_upd->text() , ui->pOutLine_upd->text(), ui->DescrTPL_upd->toPlainText() );
+    emit upd_test( ui->tableWidgetTest->item( ui->tableWidgetTest->currentRow() , 0)->text() , ui->TitreLine_upd->text(),  ui->pInline_upd->text() , ui->pOutLine_upd->text(), ui->DescrTPL_upd->toPlainText(), ui->valid->isChecked()  );
 
     ui->TitreLine_upd->setText("");
     ui->pInline_upd->setText("");

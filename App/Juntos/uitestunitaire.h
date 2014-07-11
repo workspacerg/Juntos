@@ -57,7 +57,7 @@ private:
 signals:
     void add_test(QString,QString,QString,QString);
     void del_test(QString idTest );
-    void upd_test(QString ,QString,QString,QString,QString);
+    void upd_test(QString ,QString,QString,QString,QString, int);
 };
 
 #endif // UITESTUNITAIRE_H

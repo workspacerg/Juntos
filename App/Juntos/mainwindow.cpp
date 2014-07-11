@@ -52,7 +52,7 @@ MainWindow::MainWindow(QWidget *parent) :
     // Test
     QObject::connect(PageTest, SIGNAL(del_test(QString)), this, SLOT(del_test(QString)));
     QObject::connect(PageTest, SIGNAL(add_test(QString,QString,QString,QString)), this, SLOT(add_test(QString,QString,QString,QString)));
-    QObject::connect(PageTest, SIGNAL(upd_test(QString,QString,QString,QString,QString)), this, SLOT(upd_to_dataBase_test(QString,QString,QString,QString,QString)));
+    QObject::connect(PageTest, SIGNAL(upd_test(QString,QString,QString,QString,QString, int)), this, SLOT(upd_to_dataBase_test(QString,QString,QString,QString,QString, int)));
 
     // Partage
     QObject::connect(PageFile, SIGNAL(add_share(QString,std::string)), this, SLOT(add_share(QString,std::string)));
@@ -349,12 +349,12 @@ void MainWindow::del_test(QString id)
     emit on_mTest_clicked();
 }
 
-void MainWindow::upd_to_dataBase_test(QString _id, QString _titre, QString _in , QString _out , QString _descr)
+void MainWindow::upd_to_dataBase_test(QString _id, QString _titre, QString _in , QString _out , QString _descr , int validate)
 {
 
     qDebug() << endl ;
 
-    myBDD->upd_test(_titre , _descr , _in , _out , 0 , _id.toInt(), currentProject->getId() );
+    myBDD->upd_test(_titre , _descr , _in , _out , validate , _id.toInt(), currentProject->getId() );
 
     emit on_mTest_clicked();
 }

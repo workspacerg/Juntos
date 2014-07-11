@@ -89,7 +89,7 @@ public slots:
     // Test ------------------------------------------------------------------------------------------------------------------------------
     void add_test(QString _titre, QString _in, QString _out, QString _descr);
     void del_test(QString id);
-    void upd_to_dataBase_test(QString,QString,QString,QString,QString );
+    void upd_to_dataBase_test(QString, QString, QString, QString, QString , int validate);
 
     // Share ------------------------------------------------------------------------------------------------------------------------------
     void add_share(QString,std::string);
