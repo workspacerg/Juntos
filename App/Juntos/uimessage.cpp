@@ -68,15 +68,15 @@ void uiMessage::loadMessage(vector<cMessage> msg)
         if(item.getSender() != login){
 
 
-            QColor col ;
-            col.setRgb(45,186,166);
-            ui->Messages->item(LastRow)->setTextColor(Qt::white);
-            ui->Messages->item(LastRow-1)->setTextColor(Qt::white);
-            ui->Messages->item(LastRow)->setBackground(col);
-            ui->Messages->item(LastRow-1)->setBackground(col);
+            //ui->Messages->item(LastRow)->setBackground(col);
+            //ui->Messages->item(LastRow-1)->setBackground(col);
 
         }
         else{
+            QColor col ;
+            col.setRgb(45,186,166);
+            ui->Messages->item(LastRow)->setTextColor(col);
+            ui->Messages->item(LastRow-1)->setTextColor(col);
             ui->Messages->item(LastRow-1)->setTextAlignment(Qt::AlignRight);
             ui->Messages->item(LastRow)->setTextAlignment(Qt::AlignRight);
         }
