@@ -353,6 +353,9 @@ void MainWindow::upd_to_dataBase_test(QString _id, QString _titre, QString _in ,
 {
 
     qDebug() << endl ;
+
+    myBDD->upd_test(_titre , _descr , _in , _out , 0 , _id.toInt(), currentProject->getId() );
+
     emit on_mTest_clicked();
 }
 

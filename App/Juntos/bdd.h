@@ -78,6 +78,7 @@ public:
     vector<Test> loadTest(int idPro);
     bool delTest(QString idTk , int idPro);
     bool add_test(QString title , QString descr , QString in, QString out , int idPro);
+    bool upd_test(QString title, QString descr, QString in, QString out, int validate, int idTest,  int idPro);
 
     // Share
     vector<Share> loadShares(int idPro);

@@ -759,6 +759,39 @@ bool BDD::add_test(QString title, QString descr, QString in, QString out, int id
     return false;
 }
 
+bool BDD::upd_test(QString title, QString descr, QString in, QString out, int validate, int idTest,  int idPro)
+{
+    QString idString = QString::number(idPro);
+    QString idTestString = QString::number(idTest);
+    QString validateString = QString::number(validate);
+
+    if(validate == 0){
+        validateString = "0";
+    }
+    else {
+        validateString = "1";
+    }
+
+    QSqlQuery query;
+
+    if(query.exec("select upd_test('"+ login +"', '"+ title +"' , '"+ descr +"', '"+ in +"' , '"+ out +"', '"+ validateString +"' , '"+ idTestString +"' , '"+ idString +"' )"))
+    {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
+
+    }else
+    {
+        qDebug() << query.lastError().text();
+    }
+    return false;
+}
+
 vector<cMessage> BDD::loadMessage(int idPro, QString receiver)
 {
     messages.clear();
