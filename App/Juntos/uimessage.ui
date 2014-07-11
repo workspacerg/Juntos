@@ -82,7 +82,17 @@
           </size>
          </property>
          <property name="text">
-          <string>Send</string>
+          <string/>
+         </property>
+         <property name="icon">
+          <iconset resource="Images.qrc">
+           <normaloff>:/new/MenuInterface/Ressouces/rocket-512.png</normaloff>:/new/MenuInterface/Ressouces/rocket-512.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
          </property>
          <property name="autoDefault">
           <bool>false</bool>
@@ -98,6 +108,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="Images.qrc"/>
+ </resources>
  <connections/>
 </ui>
