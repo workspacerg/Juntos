@@ -39,7 +39,8 @@ SOURCES += main.cpp\
     share.cpp \
     uimessage.cpp \
     cmessage.cpp \
-    uijournal.cpp
+    uijournal.cpp \
+    cjournal.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -64,7 +65,8 @@ HEADERS  += mainwindow.h \
     share.h \
     uimessage.h \
     cmessage.h \
-    uijournal.h
+    uijournal.h \
+    cjournal.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \
