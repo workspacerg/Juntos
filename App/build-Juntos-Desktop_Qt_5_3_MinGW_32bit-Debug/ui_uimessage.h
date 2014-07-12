@@ -57,6 +57,7 @@ public:
         QFont font1;
         font1.setPointSize(14);
         Messages->setFont(font1);
+        Messages->setStyleSheet(QStringLiteral(""));
 
         verticalLayout->addWidget(Messages);
 

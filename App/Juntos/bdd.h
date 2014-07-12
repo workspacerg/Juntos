@@ -50,6 +50,7 @@ public:
     bool verifUser();
     bool checkAdmin(int);
     cUser getInfoUser(QString _log);
+    cUser getInfoUserById(int id);
 
     // Projet
     vector<CProjet> loadProject();
@@ -80,8 +81,8 @@ public:
     bool add_test(QString title , QString descr , QString in, QString out , int idPro);
 
     // Share
-    vector<Share> loadShares(int idPro);
-    bool add_share(Share);
+    std::map<Share, QString> loadShares(int idPro);
+    bool add_share(Share *);
 
     // Message
     vector<cMessage> loadMessage(int idPro, QString receiver);

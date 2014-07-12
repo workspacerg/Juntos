@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[49];
-    char stringdata[644];
+    QByteArrayData data[50];
+    char stringdata[660];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -33,62 +33,64 @@ QT_MOC_LITERAL(0, 0, 10),
 QT_MOC_LITERAL(1, 11, 19),
 QT_MOC_LITERAL(2, 31, 0),
 QT_MOC_LITERAL(3, 32, 10),
-QT_MOC_LITERAL(4, 43, 16),
-QT_MOC_LITERAL(5, 60, 10),
-QT_MOC_LITERAL(6, 71, 7),
-QT_MOC_LITERAL(7, 79, 10),
-QT_MOC_LITERAL(8, 90, 6),
-QT_MOC_LITERAL(9, 97, 17),
-QT_MOC_LITERAL(10, 115, 14),
-QT_MOC_LITERAL(11, 130, 18),
-QT_MOC_LITERAL(12, 149, 18),
-QT_MOC_LITERAL(13, 168, 17),
-QT_MOC_LITERAL(14, 186, 17),
-QT_MOC_LITERAL(15, 204, 4),
-QT_MOC_LITERAL(16, 209, 17),
-QT_MOC_LITERAL(17, 227, 6),
-QT_MOC_LITERAL(18, 234, 20),
-QT_MOC_LITERAL(19, 255, 19),
-QT_MOC_LITERAL(20, 275, 6),
-QT_MOC_LITERAL(21, 282, 10),
-QT_MOC_LITERAL(22, 293, 2),
-QT_MOC_LITERAL(23, 296, 21),
-QT_MOC_LITERAL(24, 318, 21),
-QT_MOC_LITERAL(25, 340, 3),
-QT_MOC_LITERAL(26, 344, 20),
-QT_MOC_LITERAL(27, 365, 4),
-QT_MOC_LITERAL(28, 370, 8),
-QT_MOC_LITERAL(29, 379, 6),
-QT_MOC_LITERAL(30, 386, 3),
-QT_MOC_LITERAL(31, 390, 4),
-QT_MOC_LITERAL(32, 395, 6),
-QT_MOC_LITERAL(33, 402, 8),
-QT_MOC_LITERAL(34, 411, 20),
-QT_MOC_LITERAL(35, 432, 9),
-QT_MOC_LITERAL(36, 442, 11),
-QT_MOC_LITERAL(37, 454, 16),
-QT_MOC_LITERAL(38, 471, 13),
-QT_MOC_LITERAL(39, 485, 3),
-QT_MOC_LITERAL(40, 489, 3),
-QT_MOC_LITERAL(41, 493, 19),
-QT_MOC_LITERAL(42, 513, 16),
-QT_MOC_LITERAL(43, 530, 18),
-QT_MOC_LITERAL(44, 549, 22),
-QT_MOC_LITERAL(45, 572, 20),
-QT_MOC_LITERAL(46, 593, 16),
-QT_MOC_LITERAL(47, 610, 16),
-QT_MOC_LITERAL(48, 627, 16)
+QT_MOC_LITERAL(4, 43, 15),
+QT_MOC_LITERAL(5, 59, 16),
+QT_MOC_LITERAL(6, 76, 10),
+QT_MOC_LITERAL(7, 87, 7),
+QT_MOC_LITERAL(8, 95, 10),
+QT_MOC_LITERAL(9, 106, 6),
+QT_MOC_LITERAL(10, 113, 17),
+QT_MOC_LITERAL(11, 131, 14),
+QT_MOC_LITERAL(12, 146, 18),
+QT_MOC_LITERAL(13, 165, 18),
+QT_MOC_LITERAL(14, 184, 17),
+QT_MOC_LITERAL(15, 202, 17),
+QT_MOC_LITERAL(16, 220, 4),
+QT_MOC_LITERAL(17, 225, 17),
+QT_MOC_LITERAL(18, 243, 6),
+QT_MOC_LITERAL(19, 250, 20),
+QT_MOC_LITERAL(20, 271, 19),
+QT_MOC_LITERAL(21, 291, 6),
+QT_MOC_LITERAL(22, 298, 10),
+QT_MOC_LITERAL(23, 309, 2),
+QT_MOC_LITERAL(24, 312, 21),
+QT_MOC_LITERAL(25, 334, 21),
+QT_MOC_LITERAL(26, 356, 3),
+QT_MOC_LITERAL(27, 360, 20),
+QT_MOC_LITERAL(28, 381, 4),
+QT_MOC_LITERAL(29, 386, 8),
+QT_MOC_LITERAL(30, 395, 6),
+QT_MOC_LITERAL(31, 402, 3),
+QT_MOC_LITERAL(32, 406, 4),
+QT_MOC_LITERAL(33, 411, 6),
+QT_MOC_LITERAL(34, 418, 8),
+QT_MOC_LITERAL(35, 427, 20),
+QT_MOC_LITERAL(36, 448, 9),
+QT_MOC_LITERAL(37, 458, 11),
+QT_MOC_LITERAL(38, 470, 16),
+QT_MOC_LITERAL(39, 487, 13),
+QT_MOC_LITERAL(40, 501, 3),
+QT_MOC_LITERAL(41, 505, 3),
+QT_MOC_LITERAL(42, 509, 19),
+QT_MOC_LITERAL(43, 529, 16),
+QT_MOC_LITERAL(44, 546, 18),
+QT_MOC_LITERAL(45, 565, 22),
+QT_MOC_LITERAL(46, 588, 20),
+QT_MOC_LITERAL(47, 609, 16),
+QT_MOC_LITERAL(48, 626, 16),
+QT_MOC_LITERAL(49, 643, 16)
     },
     "MainWindow\0displayNotification\0\0"
-    "connectBDD\0loadTableProject\0addProject\0"
-    "CProjet\0delProject\0source\0selCurrentProject\0"
-    "getParticipant\0addPeopletoProject\0"
-    "delPeopleToProject\0displayFormAddBug\0"
-    "displayFormDelBug\0idTk\0displayFormUpdBug\0"
-    "assign\0saveTicketToDatabase\0"
-    "updTicketToDatabase\0Ticket\0deleteTask\0"
-    "id\0display_Form_Add_Task\0display_Form_upd_task\0"
-    "dev\0upd_task_to_database\0Task\0add_test\0"
+    "connectBDD\0loadCurrentUser\0loadTableProject\0"
+    "addProject\0CProjet\0delProject\0source\0"
+    "selCurrentProject\0getParticipant\0"
+    "addPeopletoProject\0delPeopleToProject\0"
+    "displayFormAddBug\0displayFormDelBug\0"
+    "idTk\0displayFormUpdBug\0assign\0"
+    "saveTicketToDatabase\0updTicketToDatabase\0"
+    "Ticket\0deleteTask\0id\0display_Form_Add_Task\0"
+    "display_Form_upd_task\0dev\0"
+    "upd_task_to_database\0Task\0add_test\0"
     "_titre\0_in\0_out\0_descr\0del_test\0"
     "upd_to_dataBase_test\0add_share\0"
     "std::string\0selectMessageFor\0insertMessage\0"
@@ -106,7 +108,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      32,   14, // methods
+      33,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -114,64 +116,66 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    2,  174,    2, 0x0a /* Public */,
-       3,    0,  179,    2, 0x0a /* Public */,
-       4,    0,  180,    2, 0x0a /* Public */,
-       5,    1,  181,    2, 0x0a /* Public */,
-       7,    1,  184,    2, 0x0a /* Public */,
-       9,    1,  187,    2, 0x0a /* Public */,
-      10,    0,  190,    2, 0x0a /* Public */,
-      11,    1,  191,    2, 0x0a /* Public */,
-      12,    1,  194,    2, 0x0a /* Public */,
-      13,    0,  197,    2, 0x0a /* Public */,
-      14,    1,  198,    2, 0x0a /* Public */,
-      16,    2,  201,    2, 0x0a /* Public */,
-      18,    4,  206,    2, 0x0a /* Public */,
-      19,    1,  215,    2, 0x0a /* Public */,
-      21,    1,  218,    2, 0x0a /* Public */,
-      23,    0,  221,    2, 0x0a /* Public */,
-      24,    2,  222,    2, 0x0a /* Public */,
-      26,    1,  227,    2, 0x0a /* Public */,
-      28,    4,  230,    2, 0x0a /* Public */,
-      33,    1,  239,    2, 0x0a /* Public */,
-      34,    5,  242,    2, 0x0a /* Public */,
-      35,    2,  253,    2, 0x0a /* Public */,
-      37,    1,  258,    2, 0x0a /* Public */,
-      38,    2,  261,    2, 0x0a /* Public */,
-      41,    0,  266,    2, 0x08 /* Private */,
-      42,    0,  267,    2, 0x08 /* Private */,
-      43,    0,  268,    2, 0x08 /* Private */,
-      44,    0,  269,    2, 0x08 /* Private */,
-      45,    0,  270,    2, 0x08 /* Private */,
-      46,    0,  271,    2, 0x08 /* Private */,
-      47,    0,  272,    2, 0x08 /* Private */,
-      48,    5,  273,    2, 0x08 /* Private */,
+       1,    2,  179,    2, 0x0a /* Public */,
+       3,    0,  184,    2, 0x0a /* Public */,
+       4,    0,  185,    2, 0x0a /* Public */,
+       5,    0,  186,    2, 0x0a /* Public */,
+       6,    1,  187,    2, 0x0a /* Public */,
+       8,    1,  190,    2, 0x0a /* Public */,
+      10,    1,  193,    2, 0x0a /* Public */,
+      11,    0,  196,    2, 0x0a /* Public */,
+      12,    1,  197,    2, 0x0a /* Public */,
+      13,    1,  200,    2, 0x0a /* Public */,
+      14,    0,  203,    2, 0x0a /* Public */,
+      15,    1,  204,    2, 0x0a /* Public */,
+      17,    2,  207,    2, 0x0a /* Public */,
+      19,    4,  212,    2, 0x0a /* Public */,
+      20,    1,  221,    2, 0x0a /* Public */,
+      22,    1,  224,    2, 0x0a /* Public */,
+      24,    0,  227,    2, 0x0a /* Public */,
+      25,    2,  228,    2, 0x0a /* Public */,
+      27,    1,  233,    2, 0x0a /* Public */,
+      29,    4,  236,    2, 0x0a /* Public */,
+      34,    1,  245,    2, 0x0a /* Public */,
+      35,    5,  248,    2, 0x0a /* Public */,
+      36,    2,  259,    2, 0x0a /* Public */,
+      38,    1,  264,    2, 0x0a /* Public */,
+      39,    2,  267,    2, 0x0a /* Public */,
+      42,    0,  272,    2, 0x08 /* Private */,
+      43,    0,  273,    2, 0x08 /* Private */,
+      44,    0,  274,    2, 0x08 /* Private */,
+      45,    0,  275,    2, 0x08 /* Private */,
+      46,    0,  276,    2, 0x08 /* Private */,
+      47,    0,  277,    2, 0x08 /* Private */,
+      48,    0,  278,    2, 0x08 /* Private */,
+      49,    5,  279,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    2,    2,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 6,    2,
-    QMetaType::Void, 0x80000000 | 6,    8,
-    QMetaType::Void, 0x80000000 | 6,    8,
+    QMetaType::Void,
+    QMetaType::Void, 0x80000000 | 7,    2,
+    QMetaType::Void, 0x80000000 | 7,    9,
+    QMetaType::Void, 0x80000000 | 7,    9,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString,    2,
     QMetaType::Void, QMetaType::QString,    2,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   15,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,   15,   17,
+    QMetaType::Void, QMetaType::QString,   16,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   16,   18,
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,    2,    2,    2,    2,
-    QMetaType::Void, 0x80000000 | 20,    8,
-    QMetaType::Void, QMetaType::QString,   22,
+    QMetaType::Void, 0x80000000 | 21,    9,
+    QMetaType::Void, QMetaType::QString,   23,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,    2,   25,
-    QMetaType::Void, 0x80000000 | 27,    2,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,   29,   30,   31,   32,
-    QMetaType::Void, QMetaType::QString,   22,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,    2,   26,
+    QMetaType::Void, 0x80000000 | 28,    2,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,   30,   31,   32,   33,
+    QMetaType::Void, QMetaType::QString,   23,
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,    2,    2,    2,    2,    2,
-    QMetaType::Void, QMetaType::QString, 0x80000000 | 36,    2,    2,
+    QMetaType::Void, 0x80000000 | 37, QMetaType::QByteArray,    2,    2,
     QMetaType::Void, QMetaType::QString,    2,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString,   39,   40,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   40,   41,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -191,36 +195,37 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         switch (_id) {
         case 0: _t->displayNotification((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
         case 1: _t->connectBDD(); break;
-        case 2: _t->loadTableProject(); break;
-        case 3: _t->addProject((*reinterpret_cast< CProjet(*)>(_a[1]))); break;
-        case 4: _t->delProject((*reinterpret_cast< CProjet(*)>(_a[1]))); break;
-        case 5: _t->selCurrentProject((*reinterpret_cast< CProjet(*)>(_a[1]))); break;
-        case 6: _t->getParticipant(); break;
-        case 7: _t->addPeopletoProject((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 8: _t->delPeopleToProject((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 9: _t->displayFormAddBug(); break;
-        case 10: _t->displayFormDelBug((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 11: _t->displayFormUpdBug((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
-        case 12: _t->saveTicketToDatabase((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4]))); break;
-        case 13: _t->updTicketToDatabase((*reinterpret_cast< Ticket(*)>(_a[1]))); break;
-        case 14: _t->deleteTask((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 15: _t->display_Form_Add_Task(); break;
-        case 16: _t->display_Form_upd_task((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
-        case 17: _t->upd_task_to_database((*reinterpret_cast< Task(*)>(_a[1]))); break;
-        case 18: _t->add_test((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4]))); break;
-        case 19: _t->del_test((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 20: _t->upd_to_dataBase_test((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5]))); break;
-        case 21: _t->add_share((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< std::string(*)>(_a[2]))); break;
-        case 22: _t->selectMessageFor((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 23: _t->insertMessage((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
-        case 24: _t->on_mAccueil_clicked(); break;
-        case 25: _t->on_mTask_clicked(); break;
-        case 26: _t->on_mTicket_clicked(); break;
-        case 27: _t->on_mPreference_clicked(); break;
-        case 28: _t->on_mMessages_clicked(); break;
-        case 29: _t->on_mTest_clicked(); break;
-        case 30: _t->on_mFile_clicked(); break;
-        case 31: _t->save_To_Database((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5]))); break;
+        case 2: _t->loadCurrentUser(); break;
+        case 3: _t->loadTableProject(); break;
+        case 4: _t->addProject((*reinterpret_cast< CProjet(*)>(_a[1]))); break;
+        case 5: _t->delProject((*reinterpret_cast< CProjet(*)>(_a[1]))); break;
+        case 6: _t->selCurrentProject((*reinterpret_cast< CProjet(*)>(_a[1]))); break;
+        case 7: _t->getParticipant(); break;
+        case 8: _t->addPeopletoProject((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 9: _t->delPeopleToProject((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 10: _t->displayFormAddBug(); break;
+        case 11: _t->displayFormDelBug((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 12: _t->displayFormUpdBug((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
+        case 13: _t->saveTicketToDatabase((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4]))); break;
+        case 14: _t->updTicketToDatabase((*reinterpret_cast< Ticket(*)>(_a[1]))); break;
+        case 15: _t->deleteTask((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 16: _t->display_Form_Add_Task(); break;
+        case 17: _t->display_Form_upd_task((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
+        case 18: _t->upd_task_to_database((*reinterpret_cast< Task(*)>(_a[1]))); break;
+        case 19: _t->add_test((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4]))); break;
+        case 20: _t->del_test((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 21: _t->upd_to_dataBase_test((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5]))); break;
+        case 22: _t->add_share((*reinterpret_cast< std::string(*)>(_a[1])),(*reinterpret_cast< QByteArray(*)>(_a[2]))); break;
+        case 23: _t->selectMessageFor((*reinterpret_cast< QString(*)>(_a[1]))); break;
+        case 24: _t->insertMessage((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2]))); break;
+        case 25: _t->on_mAccueil_clicked(); break;
+        case 26: _t->on_mTask_clicked(); break;
+        case 27: _t->on_mTicket_clicked(); break;
+        case 28: _t->on_mPreference_clicked(); break;
+        case 29: _t->on_mMessages_clicked(); break;
+        case 30: _t->on_mTest_clicked(); break;
+        case 31: _t->on_mFile_clicked(); break;
+        case 32: _t->save_To_Database((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5]))); break;
         default: ;
         }
     }
@@ -251,13 +256,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 32)
+        if (_id < 33)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 32;
+        _id -= 33;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 32)
+        if (_id < 33)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 32;
+        _id -= 33;
     }
     return _id;
 }

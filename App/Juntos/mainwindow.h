@@ -18,6 +18,7 @@
 #include "formaddtodo.h"
 #include "formupdtodo.h"
 #include "test.h"
+#include "share.h"
 
 namespace Ui {
 class MainWindow;
@@ -92,7 +93,7 @@ public slots:
     void upd_to_dataBase_test(QString,QString,QString,QString,QString );
 
     // Share ------------------------------------------------------------------------------------------------------------------------------
-    void add_share(QString,std::string);
+    void add_share(std::string,QByteArray);
 
     // Messages ---------------------------------------------------------------------------------------------------------------------------
     void selectMessageFor(QString);

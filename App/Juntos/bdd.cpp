@@ -269,6 +269,21 @@ cUser BDD::getInfoUser(QString _log)
 
 }
 
+cUser BDD::getInfoUserById(int id){
+    QSqlQuery query;
+
+    if(query.exec(QString("Select * FROM user where id =%1").arg(id)))
+    {
+        while(query.next())
+        {
+             return cUser(query.value(0).toInt(),query.value(1).toString(),query.value(2).toString());
+        }
+
+    }
+
+      return cUser();
+}
+
 bool BDD::addPeopleToProject(QString log, int idPro)
 {
 
@@ -811,24 +826,31 @@ bool BDD::add_Message(int idPro, QString msg, QString usr)
 // Share
 //
 
-vector<Share> BDD::loadShares(int idPro){
+std::map<Share,QString> BDD::loadShares(int idPro){
     shares.clear();
-
+    std::map<Share,QString> map;
     QSqlQuery query;
-    if(query.exec(QString("SELECT id,projectId,userId,filename,filecontent FROM sharefiles s WHERE projectId = %1 ;").arg(idPro)))
+    if(query.exec(QString("SELECT s.id,projectId,userId,filename,filecontent,login FROM sharefiles s,user u WHERE projectId = %1 AND userId = u.id;").arg(idPro)))
     {
         while(query.next())
         {
-           shares.push_back(Share(query.value(0).toInt(),query.value(1).toInt(),query.value(2).toInt(),query.value(3).toString(),query.value(4).toString().toStdString()));
+           Share s = Share(query.value(0).toInt(),query.value(1).toInt(),query.value(2).toInt(),query.value(3).toString().toStdString(),query.value(4).toByteArray());
+           map[s] = query.value(5).toString();
+           shares.push_back(s);
         }
     }
 
-    return shares;
+    return map;
 }
 
-bool BDD::add_share(Share s){
+bool BDD::add_share(Share* s){
     QSqlQuery query;
-    if(!query.exec(QString("INSERT INTO sharefiles (projectId,userId,filename,filecontent) VALUES(%1,%2,%3,%4)").arg(QString::number(s.getIdProject()),QString::number(s.getIdCreator()),s.getFilename(),QString::fromStdString(s.getContent()))))
+    query.prepare("INSERT INTO sharefiles (projectId,userId,filename,filecontent) VALUES(?,?,?,?)");
+    query.addBindValue(s->getIdProject());
+    query.addBindValue(s->getIdCreator());
+    query.addBindValue(s->getFilename().c_str());
+    query.addBindValue(s->getContent(),QSql::Binary);
+    if(!query.exec())
     {
         qDebug() << query.lastError().text();
         return false;

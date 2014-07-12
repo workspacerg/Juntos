@@ -2,14 +2,14 @@
 #define SHARE_CPP
 #include "share.h"
 
-Share::Share(int _idProject,int _idUser,QString _filename,std::string _content){
+Share::Share(int _idProject,int _idUser,std::string _filename,QByteArray _content){
     idProject = _idProject;
     idCreator = _idUser;
     filename = _filename;
     content = _content;
 }
 
-Share::Share(int _id, int _idProject,int _idUser,QString _filename,std::string _content){
+Share::Share(int _id, int _idProject, int _idUser, std::string _filename, QByteArray _content){
     id = _id;
     idProject = _idProject;
     idCreator = _idUser;
@@ -32,11 +32,11 @@ int Share::getIdProject() const{
     return idProject;
 }
 
-QString Share::getFilename() const{
+std::string Share::getFilename() const{
     return filename;
 }
 
-std::string Share::getContent(){
+QByteArray Share::getContent() const{
     return content;
 }
 

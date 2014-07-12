@@ -13,16 +13,6 @@
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QListView" name="listView">
-   <property name="geometry">
-    <rect>
-     <x>80</x>
-     <y>40</y>
-     <width>381</width>
-     <height>411</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="BrowseButton">
    <property name="geometry">
     <rect>
@@ -70,6 +60,16 @@
    </property>
    <property name="text">
     <string>Upload</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="tableWidgetShare">
+   <property name="geometry">
+    <rect>
+     <x>80</x>
+     <y>40</y>
+     <width>401</width>
+     <height>271</height>
+    </rect>
    </property>
   </widget>
  </widget>

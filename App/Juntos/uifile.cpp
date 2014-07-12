@@ -5,6 +5,8 @@
 #include <fstream>
 #include <QDebug>
 #include <QFileDialog>
+#include <sstream>
+#include <map>
 #include <QMessageBox>
 
 uiFile::uiFile(QWidget *parent) :
@@ -12,11 +14,44 @@ uiFile::uiFile(QWidget *parent) :
     ui(new Ui::uiFile)
 {
     ui->setupUi(this);
+    ui->tableWidgetShare->verticalHeader()->setVisible(false);
+    ui->tableWidgetShare->setShowGrid(false);
+
+    QStringList test ;
+    test <<"id"<<"Fichier"<<"Posté par"  ;
+    ui->tableWidgetShare->setColumnCount(3);
+    ui->tableWidgetShare->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidgetShare->setColumnHidden(0,true);
+    ui->tableWidgetShare->setColumnWidth(0, 200);
+    ui->tableWidgetShare->setHorizontalHeaderLabels(test);
+    ui->tableWidgetShare->horizontalHeader()->setStretchLastSection(true);
+    ui->tableWidgetShare->setStyleSheet("QTableView {selection-Background-color: rgb(45, 186, 166); }");
 }
 
 uiFile::~uiFile()
 {
     delete ui;
+}
+
+void uiFile::loadTable(std::map<Share, QString> Source)
+{
+    map = Source;
+
+    while (ui->tableWidgetShare->rowCount() > 0)
+    {
+        ui->tableWidgetShare->removeRow(0);
+    }
+
+    for (std::map<Share,QString>::iterator it=map.begin(); it!=map.end(); ++it)
+    {
+        int LastRow = ui->tableWidgetShare->rowCount();
+        ui->tableWidgetShare->insertRow(LastRow);
+        ui->tableWidgetShare->setItem(LastRow,0,new QTableWidgetItem(QString::number(it->first.getId())));
+        ui->tableWidgetShare->setItem(LastRow, 1, new QTableWidgetItem(QString::fromStdString(it->first.getFilename())));
+        ui->tableWidgetShare->setItem(LastRow, 2, new QTableWidgetItem(it->second));
+    }
+
+    ui->DownloadButton->setEnabled(false);
 }
 
 void uiFile::on_BrowseButton_clicked()
@@ -33,18 +68,25 @@ void uiFile::on_uploadButton_clicked()
         uploadFile(filepath);
     else
         QMessageBox::information(this,"Fichier manquant","Veuillez séléctionner un fichier éxistant");
+
+    ui->lineEdit->clear();
 }
 
 void uiFile::on_DownloadButton_clicked()
 {
-    QString filepath = QFileDialog::getSaveFileName(this,tr("Sauvegarder en tant que..."),"C://",".docx");
-    QFileInfo fi(filepath);
-    if(fi.suffix().isEmpty())
-        filepath += ".docx";
+    int id = ui->tableWidgetShare->item( current_item->row() , 0)->text().toInt();
+    QString filename = ui->tableWidgetShare->item( current_item->row() , 1)->text();
+    QString extension = QFileInfo(filename).suffix();
+    QByteArray content;
+    for (std::map<Share,QString>::iterator it=map.begin(); it!=map.end(); ++it)
+    {
+        if(id == it->first.getId()){
+            content = it->first.getContent();
+            break;
+        }
+    }
 
-    /*std::ofstream outputFile(filepath, std::ios::app | std::ios::binary);
-    outputFile.write(&fileContents[0], length);
-    outputFile.close();*/
+    downloadFile(content,extension);
 }
 
 bool uiFile::fileExists(const std::string& filename)
@@ -58,7 +100,8 @@ bool uiFile::fileExists(const std::string& filename)
 }
 
 void uiFile::uploadFile(const std::string& filepath){
-    std::ifstream inputFile(filepath, std::ios::in | std::ios::binary);
+    std::ifstream inputFile(filepath, std::ios::binary | std::ios::ate);
+
     inputFile.seekg(0, std::ios::end);
     int length = inputFile.tellg();
     inputFile.seekg(0, std::ios::beg);
@@ -68,20 +111,35 @@ void uiFile::uploadFile(const std::string& filepath){
     inputFile.close();
 
 
-    // SAUVEGARDER LE SHARED
-    /*QMessageBox::information(this,"blah",fileContents.c_str());
-    qDebug()<< fileContents.c_str();*/
 
-    /*std::ofstream outputFile("C:\\Users\\Rayane\\Desktop\\TestCopy.docx", std::ios::app | std::ios::binary);
-    outputFile.write(&fileContents[0], length);
-    outputFile.close();*/
+    QByteArray array = QByteArray(fileContents.c_str(),length);
+    qDebug() << array.data();
+    QFileInfo fi(QString::fromStdString(filepath));
+    emit add_share(fi.fileName().toStdString(),array);
 }
 
-void uiFile::downloadFile(const std::string& filename, std::string contents){
-    /*std::ofstream file(filename.c_str(), std::ios::binary);
-        for ( std::size_t byte = 0; byte < contents.size(); byte += 8 ) {
-            file.put( std::bitset< 8 >( contents, byte, // convert one byte
-              std::min( (std::size_t) 8, contents.size() - byte ) // or as many bits as are left
-              .to_ulong() ); // to two's complement representation
-        }*/
+void uiFile::downloadFile(QByteArray content,QString extension){
+    QString filepath = QFileDialog::getSaveFileName(this,tr("Sauvegarder en tant que..."),"C://","."+extension);
+    QFileInfo fi(filepath);
+    if(fi.suffix().isEmpty())
+        filepath += "."+extension;
+
+    QFile file(filepath);
+    file.open(QIODevice::WriteOnly);
+    file.write(content);
+    file.close();
+}
+
+
+void uiFile::on_tableWidgetShare_itemClicked(QTableWidgetItem *item)
+{
+    current_item = item;
+}
+
+void uiFile::on_tableWidgetShare_itemSelectionChanged()
+{
+    if(ui->tableWidgetShare->selectedItems().size()==0)
+        ui->DownloadButton->setEnabled(false);
+    else
+        ui->DownloadButton->setEnabled(true);
 }

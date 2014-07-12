@@ -16,28 +16,25 @@
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLineEdit>
-#include <QtWidgets/QListView>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QTableWidget>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_uiFile
 {
 public:
-    QListView *listView;
     QPushButton *BrowseButton;
     QPushButton *DownloadButton;
     QLineEdit *lineEdit;
     QPushButton *uploadButton;
+    QTableWidget *tableWidgetShare;
 
     void setupUi(QDialog *uiFile)
     {
         if (uiFile->objectName().isEmpty())
             uiFile->setObjectName(QStringLiteral("uiFile"));
         uiFile->resize(984, 601);
-        listView = new QListView(uiFile);
-        listView->setObjectName(QStringLiteral("listView"));
-        listView->setGeometry(QRect(80, 40, 381, 411));
         BrowseButton = new QPushButton(uiFile);
         BrowseButton->setObjectName(QStringLiteral("BrowseButton"));
         BrowseButton->setGeometry(QRect(690, 140, 75, 21));
@@ -50,6 +47,9 @@ public:
         uploadButton = new QPushButton(uiFile);
         uploadButton->setObjectName(QStringLiteral("uploadButton"));
         uploadButton->setGeometry(QRect(580, 170, 75, 21));
+        tableWidgetShare = new QTableWidget(uiFile);
+        tableWidgetShare->setObjectName(QStringLiteral("tableWidgetShare"));
+        tableWidgetShare->setGeometry(QRect(80, 40, 401, 271));
 
         retranslateUi(uiFile);
 

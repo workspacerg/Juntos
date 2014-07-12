@@ -55,7 +55,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(PageTest, SIGNAL(upd_test(QString,QString,QString,QString,QString)), this, SLOT(upd_to_dataBase_test(QString,QString,QString,QString,QString)));
 
     // Partage
-    QObject::connect(PageFile, SIGNAL(add_share(QString,std::string)), this, SLOT(add_share(QString,std::string)));
+    QObject::connect(PageFile, SIGNAL(add_share(std::string,QByteArray)), this, SLOT(add_share(std::string,QByteArray)));
     // Message
     QObject::connect(PageMessage, SIGNAL(changeListMessage(QString)), this, SLOT(selectMessageFor(QString)));
     QObject::connect(PageMessage, SIGNAL(sendMessageTo(QString,QString)), this, SLOT(insertMessage(QString,QString)));
@@ -362,7 +362,11 @@ void MainWindow::upd_to_dataBase_test(QString _id, QString _titre, QString _in ,
 // SHARE -------------------------------------------------------------------------------------------------------------------
 //
 //
-
+void MainWindow::add_share(string filename, QByteArray filecontent){
+    Share* s = new Share(currentProject->getId(),currentUser->getIdUser(),filename,filecontent);
+    myBDD->add_share(s);
+    PageFile->loadTable(myBDD->loadShares(currentProject->getId()));
+}
 
 // Message -------------------------------------------------------------------------------------------------------------------
 //
@@ -376,12 +380,6 @@ void MainWindow::selectMessageFor(QString usr)
 void MainWindow::insertMessage(QString msg, QString usr)
 {
     myBDD->add_Message(currentProject->getId(), msg , usr);
-}
-
-
-void MainWindow::add_share(QString filename, std::string filecontent){
-    Share s;
-    myBDD->add_share(s);
 }
 
 //
@@ -501,6 +499,7 @@ void MainWindow::on_mTest_clicked()
 
 void MainWindow::on_mFile_clicked()
 {
+    PageFile->loadTable(myBDD->loadShares(currentProject->getId()));
     this->hideAll();
     ui->TitreBody->setText("File");
     ui->cFile->layout()->addWidget(PageFile);

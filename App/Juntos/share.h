@@ -6,20 +6,23 @@ class Share{
     int id;
     int idProject;
     int idCreator;
-    QString filename;
-    std::string content;
+    std::string filename;
+    QByteArray content;
 
 public:
     Share();
-    Share(int,int,QString,std::string);
-    Share(int,int,int,QString,std::string);
+    Share(int,int,std::string,QByteArray);
+    Share(int,int,int,std::string,QByteArray);
 
     int getId() const;
     int getIdProject() const;
     int getIdCreator() const;
-
-    QString getFilename() const;
-    std::string getContent();
+    std::string getFilename() const;
+    QByteArray getContent() const;
+    bool operator <(const Share& s) const
+        {
+            return id < s.id;
+        }
 };
 
 #endif // SHARE_H
