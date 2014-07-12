@@ -18,6 +18,7 @@
 #include "test.h"
 #include "share.h"
 #include "cmessage.h"
+#include "cjournal.h"
 
 using namespace std;
 
@@ -40,6 +41,7 @@ class BDD
             vector<Test> tests ;
             vector<Share> shares;
             vector<cMessage> messages;
+            vector<cJournal> journal;
 
 
 
@@ -87,6 +89,9 @@ public:
     // Message
     vector<cMessage> loadMessage(int idPro, QString receiver);
     bool add_Message(int idPro , QString msg , QString usr);
+
+    // Journal
+    vector<cJournal> select_journal(int idPro);
 
     QString getLogin() const;
     void setLogin(const QString &value);

@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Journal</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
    <item>
@@ -37,7 +37,7 @@
     </widget>
    </item>
    <item>
-    <widget class="QTableView" name="tableView">
+    <widget class="QTableWidget" name="tableWidget">
      <property name="editTriggers">
       <set>QAbstractItemView::NoEditTriggers</set>
      </property>

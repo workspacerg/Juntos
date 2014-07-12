@@ -188,6 +188,9 @@ void MainWindow::delPeopleToProject(QString usrToadd)
 void MainWindow::displayJournal()
 {
     journal = new uiJournal;
+
+    journal->loadJournal(myBDD->select_journal(currentProject->getId()));
+
     journal->show();
 }
 

@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <vector>
+#include "cjournal.h"
 
 using namespace std;
 
@@ -18,7 +19,7 @@ public:
     explicit uiJournal(QWidget *parent = 0);
     ~uiJournal();
 
-    void loadJournal();
+    void loadJournal(vector<cJournal> j);
 
 private:
     Ui::uiJournal *ui;

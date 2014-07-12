@@ -901,6 +901,23 @@ bool BDD::add_Message(int idPro, QString msg, QString usr)
     return false;
 }
 
+vector<cJournal> BDD::select_journal(int idPro)
+{
+    journal.clear();
+
+    QSqlQuery query;
+    if(query.exec(QString("SELECT j.id , u1.login , u2.login , j.date , j.action FROM `journal` j INNER JOIN user u1 ON u1.id = j.idUser INNER JOIN user u2 ON u2.id = j.idUserToContact WHERE `idProjet` = %1 ORDER BY j.date DESC ;").arg(idPro)))
+    {
+        while(query.next())
+        {
+           QDateTime date = QDateTime::fromString(query.value(3).toString(),"yyyy-MM-ddTHH:mm:ss");
+           journal.push_back(cJournal(query.value(0).toInt() , query.value(1).toString() , query.value(2).toString()  ,  query.value(4).toString() , date ));
+        }
+    }
+
+    return journal;
+}
+
 //
 // Share
 //
