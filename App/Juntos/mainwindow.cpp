@@ -38,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent) :
     QObject::connect(PageAccueil, SIGNAL(sigDelPro(CProjet)), this, SLOT(delProject(CProjet)));
     QObject::connect(PageAccueil, SIGNAL(sigSelectCurrentPro(CProjet)), this, SLOT(selCurrentProject(CProjet)));
     QObject::connect(PageAccueil, SIGNAL(sigGetParticipant()), this, SLOT(getParticipant()));
+    QObject::connect(PageAccueil, SIGNAL(displayJournal()), this, SLOT(displayJournal()));
 
     // Ticket
     QObject::connect(PageTicket, SIGNAL(displayFormAddBug()), this, SLOT(displayFormAddBug()));
@@ -173,15 +174,21 @@ void MainWindow::getParticipant()
 
 void MainWindow::addPeopletoProject(QString usrToadd)
 {
-    myBDD->addPeopleToProject(usrToadd, currentProject->getId());
+    myBDD->addPeopleToProject(usrToadd, currentProject->getId(), currentProject->getNomProjet());
     delete pagePeople;
 }
 
 void MainWindow::delPeopleToProject(QString usrToadd)
 {
     qDebug() << "delPeopleToProject(QString usrToadd)" ;
-    myBDD->delPeopletoProject(usrToadd, currentProject->getId());
+    myBDD->delPeopletoProject(usrToadd, currentProject->getId(), currentProject->getNomProjet());
     delete pagePeople;
+}
+
+void MainWindow::displayJournal()
+{
+    journal = new uiJournal;
+    journal->show();
 }
 
 //
@@ -239,7 +246,7 @@ void MainWindow::saveTicketToDatabase(QString title ,QString descr ,QString user
 
 void MainWindow::updTicketToDatabase(Ticket source)
 {
-    myBDD->upd_ticket(source);
+    myBDD->upd_ticket(source , currentProject->getId());
     delete pageUpdBug;
     emit on_mTicket_clicked();
 }
@@ -311,7 +318,7 @@ void MainWindow::display_Form_upd_task(QString idTk, QString dev)
 
 void MainWindow::upd_task_to_database(Task source)
 {
-    myBDD->upd_task(source);
+    myBDD->upd_task(source , currentProject->getId());
     emit on_mTask_clicked();
     delete pageUpdTask;
 }

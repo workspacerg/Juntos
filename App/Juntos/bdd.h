@@ -57,22 +57,22 @@ public:
     bool delProject(CProjet source);
     CProjet getInfoProjet(CProjet source);
     vector<cUser> getParticipant(int);
-    bool addPeopleToProject( QString , int );
-    bool delPeopletoProject( QString, int );
+    bool addPeopleToProject(QString , int , QString nomPro);
+    bool delPeopletoProject(QString, int , QString nomPro);
 
     // Ticket
     vector<Ticket> loadTicket(int);
     Ticket loadTicketDetail(QString idTk, QString assign);
     bool add_ticket(QString title , QString descr , QString userToAssign, QString avancement , int idPro);
     bool del_ticket(QString idTk , int idPro);
-    bool upd_ticket(Ticket source);
+    bool upd_ticket(Ticket source, int id);
 
     // Task
     vector<Task> loadTask(int idPro);
     bool delTask(QString idTk , int idPro);
     bool add_task(QString title , QString descr , QString userToAssign, QString avancement , QString date , int idPro);
     Task load_task_Detail(QString idTk, QString assign);
-    bool upd_task(Task source);
+    bool upd_task(Task source, int idPro);
 
     // Test
     vector<Test> loadTest(int idPro);

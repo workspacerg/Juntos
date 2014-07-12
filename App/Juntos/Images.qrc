@@ -20,5 +20,6 @@
         <file>Ressouces/add_user-512.png</file>
         <file>Ressouces/dnd-512.png</file>
         <file>Ressouces/rocket-512.png</file>
+        <file>Ressouces/dossier-512.png</file>
     </qresource>
 </RCC>

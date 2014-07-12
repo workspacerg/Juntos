@@ -18,6 +18,7 @@
 #include "formaddtodo.h"
 #include "formupdtodo.h"
 #include "test.h"
+#include "uijournal.h"
 
 namespace Ui {
 class MainWindow;
@@ -51,6 +52,7 @@ public:
     uiMessage   *PageMessage    ;
 
     addPeopleDialog *pagePeople ;
+    uiJournal * journal;
 
     formAddBug *pageAddBug ;
     formUpdBug *pageUpdBug ;
@@ -65,6 +67,8 @@ public slots:
     // BDD ------------------------------------------------------------------------------------------------------------------------------
     void connectBDD();
     void loadCurrentUser();
+
+    // PRO ------------------------------------------------------------------------------------------------------------------------------
     void loadTableProject();
     void addProject(CProjet);
     void delProject(CProjet source);
@@ -72,6 +76,7 @@ public slots:
     void getParticipant();
     void addPeopletoProject(QString);
     void delPeopleToProject(QString);
+    void displayJournal();
 
     //  Ticket ------------------------------------------------------------------------------------------------------------------------------
     void displayFormAddBug();
