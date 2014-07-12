@@ -38,7 +38,9 @@ SOURCES += main.cpp\
     uitestunitaire.cpp \
     share.cpp \
     uimessage.cpp \
-    cmessage.cpp
+    cmessage.cpp \
+    uijournal.cpp \
+    cjournal.cpp
 
 HEADERS  += mainwindow.h \
     uiacceuil.h \
@@ -62,7 +64,9 @@ HEADERS  += mainwindow.h \
     uitestunitaire.h \
     share.h \
     uimessage.h \
-    cmessage.h
+    cmessage.h \
+    uijournal.h \
+    cjournal.h
 
 FORMS    += mainwindow.ui \
     uiacceuil.ui \
@@ -76,7 +80,8 @@ FORMS    += mainwindow.ui \
     formaddtodo.ui \
     formupdtodo.ui \
     uitestunitaire.ui \
-    uimessage.ui
+    uimessage.ui \
+    uijournal.ui
 
 RESOURCES += \
     Images.qrc

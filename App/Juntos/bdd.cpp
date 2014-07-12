@@ -284,7 +284,7 @@ cUser BDD::getInfoUserById(int id){
       return cUser();
 }
 
-bool BDD::addPeopleToProject(QString log, int idPro)
+bool BDD::addPeopleToProject(QString log, int idPro, QString nomPro)
 {
 
     QString idString = QString::number(idPro);
@@ -294,6 +294,11 @@ bool BDD::addPeopleToProject(QString log, int idPro)
     {
         while (query.next()) {
            if(query.value(0).toInt() == 1){
+
+
+               QString Message = login + " a ajouté "+ log +" au projet :" + nomPro ;
+               query.exec("select add_journal( '"+ login +"' , '"+ log +"' , '"+ idString +"' , '"+ Message +"' )");
+
                return true;
            }
            else {
@@ -319,7 +324,7 @@ bool BDD::addPeopleToProject(QString log, int idPro)
 
 }
 
-bool BDD::delPeopletoProject(QString log, int idPro)
+bool BDD::delPeopletoProject(QString log, int idPro , QString nomPro)
 {
 
     QString idString = QString::number(idPro);
@@ -329,6 +334,11 @@ bool BDD::delPeopletoProject(QString log, int idPro)
     {
         while (query.next()) {
            if(query.value(0).toInt() == 1){
+
+
+               QString Message = login + " a supprmé "+ log +" au projet : projet " + nomPro ;
+               query.exec("select add_journal( '"+ login +"' , '"+ log +"' , '"+ idString +"' , '"+ Message +"' )");
+
                return true;
            }
            else {
@@ -461,6 +471,14 @@ bool BDD::add_ticket(QString title , QString descr , QString userToAssign, QStri
     {
         while (query.next()) {
            if(query.value(0).toInt() == 1){
+
+               QString Message = login + " a ajouté le ticket " + title ;
+
+               if(userToAssign == "")
+                   query.exec("select add_journal( '"+ login +"' , '"+ login +"' , '"+ idString +"' , '"+ Message +"' )");
+               else
+                   query.exec("select add_journal( '"+ login +"' , '"+ userToAssign +"' , '"+ idString +"' , '"+ Message +"' )");
+
                return true;
            }
            else {
@@ -486,6 +504,11 @@ bool BDD::del_ticket(QString idTk , int idPro)
     {
         while (query.next()) {
            if(query.value(0).toInt() == 1){
+
+
+               QString Message = login + " a supprmé le ticket " + idTk ;
+               query.exec("select add_journal( '"+ login +"' , '"+ login +"' , '"+ idString +"' , '"+ Message +"' )");
+
                return true;
            }
            else {
@@ -501,14 +524,21 @@ bool BDD::del_ticket(QString idTk , int idPro)
 
 }
 
-bool BDD::upd_ticket(Ticket source)
+bool BDD::upd_ticket(Ticket source , int id)
 {
+
+    QString idString = QString::number(id);
     QSqlQuery query;
 
     if(query.exec("select upd_ticket('"+ login +"' ,'"+ source.getCreateName()  +"' , '"+ source.getNameTicket() +"' , '"+ source.getDescrTicket() +"' , '"+ source.getDev() +"' , '"+ source.getEtat() +"' , '"+ source.getIdTicket()+"')"))
     {
         while (query.next()) {
            if(query.value(0).toInt() == 1){
+
+
+               QString Message = login + " a mise à jour le ticket " + source.getNameTicket() ;
+               query.exec("select add_journal( '"+ login +"' , '"+ source.getDev() +"' , '"+ idString +"' , '"+ Message +"' )");
+
                return true;
            }
            else {
@@ -570,6 +600,11 @@ bool BDD::delTask(QString idTk, int idPro)
     {
         while (query.next()) {
            if(query.value(0).toInt() == 1){
+
+
+               QString Message = login + " a supprimé la tâche " + idTk ;
+               query.exec("select add_journal( '"+ login +"' , '"+ login +"' , '"+ idString +"' , '"+ Message +"' )");
+
                return true;
            }
            else {
@@ -595,6 +630,13 @@ bool BDD::add_task(QString title, QString descr, QString userToAssign, QString a
     {
         while (query.next()) {
            if(query.value(0).toInt() == 1){
+
+
+
+               QString Message = login + " a ajouté la tâche " + title ;
+               query.exec("select add_journal( '"+ login +"' , '"+ userToAssign +"' , '"+ idString +"' , '"+ Message +"' )");
+
+
                return true;
            }
            else {
@@ -664,15 +706,21 @@ Task BDD::load_task_Detail(QString idTk, QString assign)
 
 }
 
-bool BDD::upd_task(Task source)
+bool BDD::upd_task(Task source, int idPro)
 {
 
+    QString idString = QString::number(idPro);
     QSqlQuery query;
 
     if(query.exec("select upd_task('"+ login +"' ,'"+ source.getCreateur()  +"' , '"+ source.getTitre() +"' , '"+ source.getDescr() +"' , '"+ source.getDev() +"' , '"+ source.getEtat() +"' , '"+ source.getIdTask()+"')"))
     {
         while (query.next()) {
            if(query.value(0).toInt() == 1){
+
+
+               QString Message = login + " a mis à jour la tâche " + source.getIdTask() ;
+               query.exec("select add_journal( '"+ login +"' , '"+ source.getDev() +"' , '"+ idString +"' , '"+ Message +"' )");
+
                return true;
            }
            else {
@@ -736,6 +784,11 @@ bool BDD::delTest(QString idTk, int idPro)
     {
         while (query.next()) {
            if(query.value(0).toInt() == 1){
+
+
+               QString Message = login + " a supprimé un test du projet : " + idPro  ;
+               query.exec("select add_journal( '"+ login +"' , '"+ login +"' , '"+ idString +"' , '"+ Message +"' )");
+
                return true;
            }
            else {
@@ -757,6 +810,43 @@ bool BDD::add_test(QString title, QString descr, QString in, QString out, int id
     QSqlQuery query;
 
     if(query.exec("select add_test('"+ login +"', '"+ title +"' , '"+ descr +"', '"+ in +"' , '"+ out +"', '"+ idString +"' )"))
+    {
+        while (query.next()) {
+           if(query.value(0).toInt() == 1){
+
+               QString Message = login + " a ajouté un test : " + title ;
+               query.exec("select add_journal( '"+ login +"' , '"+ login +"' , '"+ idString +"' , '"+ Message +"' )");
+
+               return true;
+           }
+           else {
+               return false;
+           }
+        }
+
+    }else
+    {
+        qDebug() << query.lastError().text();
+    }
+    return false;
+}
+
+bool BDD::upd_test(QString title, QString descr, QString in, QString out, int validate, int idTest,  int idPro)
+{
+    QString idString = QString::number(idPro);
+    QString idTestString = QString::number(idTest);
+    QString validateString = QString::number(validate);
+
+    if(validate == 0){
+        validateString = "0";
+    }
+    else {
+        validateString = "1";
+    }
+
+    QSqlQuery query;
+
+    if(query.exec("select upd_test('"+ login +"', '"+ title +"' , '"+ descr +"', '"+ in +"' , '"+ out +"', '"+ validateString +"' , '"+ idTestString +"' , '"+ idString +"' )"))
     {
         while (query.next()) {
            if(query.value(0).toInt() == 1){
@@ -807,6 +897,10 @@ bool BDD::add_Message(int idPro, QString msg, QString usr)
     {
         while (query.next()) {
            if(query.value(0).toInt() == 1){
+
+               QString Message = login + " a envoyé un message à : " + usr ;
+               query.exec("select add_journal( '"+ login +"' , '"+ usr +"' , '"+ idString +"' , '"+ Message +"' )");
+
                return true;
            }
            else {
@@ -820,6 +914,23 @@ bool BDD::add_Message(int idPro, QString msg, QString usr)
     }
 
     return false;
+}
+
+vector<cJournal> BDD::select_journal(int idPro)
+{
+    journal.clear();
+
+    QSqlQuery query;
+    if(query.exec(QString("SELECT j.id , u1.login , u2.login , j.date , j.action FROM `journal` j INNER JOIN user u1 ON u1.id = j.idUser INNER JOIN user u2 ON u2.id = j.idUserToContact WHERE `idProjet` = %1 ORDER BY j.date DESC ;").arg(idPro)))
+    {
+        while(query.next())
+        {
+           QDateTime date = QDateTime::fromString(query.value(3).toString(),"yyyy-MM-ddTHH:mm:ss");
+           journal.push_back(cJournal(query.value(0).toInt() , query.value(1).toString() , query.value(2).toString()  ,  query.value(4).toString() , date ));
+        }
+    }
+
+    return journal;
 }
 
 //

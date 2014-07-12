@@ -44,6 +44,8 @@ private slots:
 
     void on_confirmDel_clicked();
 
+    void on_journal_clicked();
+
 signals:
     void notifiactionNewProject(QString, QString);
     void sigLoadTable();
@@ -51,6 +53,7 @@ signals:
     void sigDelPro(CProjet);
     void sigSelectCurrentPro(CProjet);
     void sigGetParticipant();
+    void displayJournal();
 
 
 };

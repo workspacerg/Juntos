@@ -23,6 +23,8 @@ INPUT(
 ./debug\share.o
 ./debug\uimessage.o
 ./debug\cmessage.o
+./debug\uijournal.o
+./debug\cjournal.o
 ./debug\qrc_Images.o
 ./debug\moc_mainwindow.o
 ./debug\moc_uiacceuil.o
@@ -37,4 +39,5 @@ INPUT(
 ./debug\moc_formupdtodo.o
 ./debug\moc_uitestunitaire.o
 ./debug\moc_uimessage.o
+./debug\moc_uijournal.o
 );

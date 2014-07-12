@@ -19,6 +19,7 @@
 #include "formupdtodo.h"
 #include "test.h"
 #include "share.h"
+#include "uijournal.h"
 
 namespace Ui {
 class MainWindow;
@@ -52,6 +53,7 @@ public:
     uiMessage   *PageMessage    ;
 
     addPeopleDialog *pagePeople ;
+    uiJournal * journal;
 
     formAddBug *pageAddBug ;
     formUpdBug *pageUpdBug ;
@@ -66,6 +68,8 @@ public slots:
     // BDD ------------------------------------------------------------------------------------------------------------------------------
     void connectBDD();
     void loadCurrentUser();
+
+    // PRO ------------------------------------------------------------------------------------------------------------------------------
     void loadTableProject();
     void addProject(CProjet);
     void delProject(CProjet source);
@@ -73,6 +77,7 @@ public slots:
     void getParticipant();
     void addPeopletoProject(QString);
     void delPeopleToProject(QString);
+    void displayJournal();
 
     //  Ticket ------------------------------------------------------------------------------------------------------------------------------
     void displayFormAddBug();
@@ -90,7 +95,7 @@ public slots:
     // Test ------------------------------------------------------------------------------------------------------------------------------
     void add_test(QString _titre, QString _in, QString _out, QString _descr);
     void del_test(QString id);
-    void upd_to_dataBase_test(QString,QString,QString,QString,QString );
+    void upd_to_dataBase_test(QString, QString, QString, QString, QString , int validate);
 
     // Share ------------------------------------------------------------------------------------------------------------------------------
     void add_share(std::string,QByteArray);

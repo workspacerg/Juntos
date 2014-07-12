@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_uiAcceuil_t {
-    QByteArrayData data[18];
-    char stringdata[305];
+    QByteArrayData data[20];
+    char stringdata[339];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -38,24 +38,27 @@ QT_MOC_LITERAL(5, 57, 7),
 QT_MOC_LITERAL(6, 65, 9),
 QT_MOC_LITERAL(7, 75, 19),
 QT_MOC_LITERAL(8, 95, 17),
-QT_MOC_LITERAL(9, 113, 21),
-QT_MOC_LITERAL(10, 135, 19),
-QT_MOC_LITERAL(11, 155, 23),
-QT_MOC_LITERAL(12, 179, 19),
-QT_MOC_LITERAL(13, 199, 39),
-QT_MOC_LITERAL(14, 239, 17),
-QT_MOC_LITERAL(15, 257, 4),
-QT_MOC_LITERAL(16, 262, 20),
-QT_MOC_LITERAL(17, 283, 21)
+QT_MOC_LITERAL(9, 113, 14),
+QT_MOC_LITERAL(10, 128, 21),
+QT_MOC_LITERAL(11, 150, 19),
+QT_MOC_LITERAL(12, 170, 23),
+QT_MOC_LITERAL(13, 194, 19),
+QT_MOC_LITERAL(14, 214, 39),
+QT_MOC_LITERAL(15, 254, 17),
+QT_MOC_LITERAL(16, 272, 4),
+QT_MOC_LITERAL(17, 277, 20),
+QT_MOC_LITERAL(18, 298, 21),
+QT_MOC_LITERAL(19, 320, 18)
     },
     "uiAcceuil\0notifiactionNewProject\0\0"
     "sigLoadTable\0sigAddPro\0CProjet\0sigDelPro\0"
     "sigSelectCurrentPro\0sigGetParticipant\0"
-    "on_addProject_clicked\0on_PBCreate_clicked\0"
-    "on_PBDelProject_clicked\0on_updTable_clicked\0"
+    "displayJournal\0on_addProject_clicked\0"
+    "on_PBCreate_clicked\0on_PBDelProject_clicked\0"
+    "on_updTable_clicked\0"
     "on_tableWidgetPtoject_itemDoubleClicked\0"
     "QTableWidgetItem*\0item\0on_addPeople_clicked\0"
-    "on_confirmDel_clicked"
+    "on_confirmDel_clicked\0on_journal_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -65,29 +68,31 @@ static const uint qt_meta_data_uiAcceuil[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      13,   14, // methods
+      15,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       6,       // signalCount
+       7,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    2,   79,    2, 0x06 /* Public */,
-       3,    0,   84,    2, 0x06 /* Public */,
-       4,    1,   85,    2, 0x06 /* Public */,
-       6,    1,   88,    2, 0x06 /* Public */,
-       7,    1,   91,    2, 0x06 /* Public */,
-       8,    0,   94,    2, 0x06 /* Public */,
+       1,    2,   89,    2, 0x06 /* Public */,
+       3,    0,   94,    2, 0x06 /* Public */,
+       4,    1,   95,    2, 0x06 /* Public */,
+       6,    1,   98,    2, 0x06 /* Public */,
+       7,    1,  101,    2, 0x06 /* Public */,
+       8,    0,  104,    2, 0x06 /* Public */,
+       9,    0,  105,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       9,    0,   95,    2, 0x08 /* Private */,
-      10,    0,   96,    2, 0x08 /* Private */,
-      11,    0,   97,    2, 0x08 /* Private */,
-      12,    0,   98,    2, 0x08 /* Private */,
-      13,    1,   99,    2, 0x08 /* Private */,
-      16,    0,  102,    2, 0x08 /* Private */,
-      17,    0,  103,    2, 0x08 /* Private */,
+      10,    0,  106,    2, 0x08 /* Private */,
+      11,    0,  107,    2, 0x08 /* Private */,
+      12,    0,  108,    2, 0x08 /* Private */,
+      13,    0,  109,    2, 0x08 /* Private */,
+      14,    1,  110,    2, 0x08 /* Private */,
+      17,    0,  113,    2, 0x08 /* Private */,
+      18,    0,  114,    2, 0x08 /* Private */,
+      19,    0,  115,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString,    2,    2,
@@ -96,13 +101,15 @@ static const uint qt_meta_data_uiAcceuil[] = {
     QMetaType::Void, 0x80000000 | 5,    2,
     QMetaType::Void, 0x80000000 | 5,    2,
     QMetaType::Void,
+    QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 14,   15,
+    QMetaType::Void, 0x80000000 | 15,   16,
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -120,13 +127,15 @@ void uiAcceuil::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
         case 3: _t->sigDelPro((*reinterpret_cast< CProjet(*)>(_a[1]))); break;
         case 4: _t->sigSelectCurrentPro((*reinterpret_cast< CProjet(*)>(_a[1]))); break;
         case 5: _t->sigGetParticipant(); break;
-        case 6: _t->on_addProject_clicked(); break;
-        case 7: _t->on_PBCreate_clicked(); break;
-        case 8: _t->on_PBDelProject_clicked(); break;
-        case 9: _t->on_updTable_clicked(); break;
-        case 10: _t->on_tableWidgetPtoject_itemDoubleClicked((*reinterpret_cast< QTableWidgetItem*(*)>(_a[1]))); break;
-        case 11: _t->on_addPeople_clicked(); break;
-        case 12: _t->on_confirmDel_clicked(); break;
+        case 6: _t->displayJournal(); break;
+        case 7: _t->on_addProject_clicked(); break;
+        case 8: _t->on_PBCreate_clicked(); break;
+        case 9: _t->on_PBDelProject_clicked(); break;
+        case 10: _t->on_updTable_clicked(); break;
+        case 11: _t->on_tableWidgetPtoject_itemDoubleClicked((*reinterpret_cast< QTableWidgetItem*(*)>(_a[1]))); break;
+        case 12: _t->on_addPeople_clicked(); break;
+        case 13: _t->on_confirmDel_clicked(); break;
+        case 14: _t->on_journal_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -168,6 +177,12 @@ void uiAcceuil::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, v
                 *result = 5;
             }
         }
+        {
+            typedef void (uiAcceuil::*_t)();
+            if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&uiAcceuil::displayJournal)) {
+                *result = 6;
+            }
+        }
     }
 }
 
@@ -196,13 +211,13 @@ int uiAcceuil::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 13)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 13;
+        _id -= 15;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 13)
+        if (_id < 15)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 13;
+        _id -= 15;
     }
     return _id;
 }
@@ -245,5 +260,11 @@ void uiAcceuil::sigSelectCurrentPro(CProjet _t1)
 void uiAcceuil::sigGetParticipant()
 {
     QMetaObject::activate(this, &staticMetaObject, 5, 0);
+}
+
+// SIGNAL 6
+void uiAcceuil::displayJournal()
+{
+    QMetaObject::activate(this, &staticMetaObject, 6, 0);
 }
 QT_END_MOC_NAMESPACE

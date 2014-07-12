@@ -23,6 +23,8 @@ INPUT(
 ./release\share.o
 ./release\uimessage.o
 ./release\cmessage.o
+./release\uijournal.o
+./release\cjournal.o
 ./release\qrc_Images.o
 ./release\moc_mainwindow.o
 ./release\moc_uiacceuil.o
@@ -37,4 +39,5 @@ INPUT(
 ./release\moc_formupdtodo.o
 ./release\moc_uitestunitaire.o
 ./release\moc_uimessage.o
+./release\moc_uijournal.o
 );

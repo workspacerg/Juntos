@@ -36,6 +36,7 @@ public:
     QSpacerItem *horizontalSpacer;
     QPushButton *updTable;
     QPushButton *addPeople;
+    QPushButton *journal;
     QPushButton *addProject;
     QPushButton *PBDelProject;
     QWidget *BoiteDeCreation;
@@ -99,11 +100,21 @@ public:
 
         horizontalLayout->addWidget(addPeople);
 
+        journal = new QPushButton(widget);
+        journal->setObjectName(QStringLiteral("journal"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/dossier-512.png"), QSize(), QIcon::Normal, QIcon::Off);
+        journal->setIcon(icon2);
+        journal->setIconSize(QSize(25, 25));
+        journal->setFlat(true);
+
+        horizontalLayout->addWidget(journal);
+
         addProject = new QPushButton(widget);
         addProject->setObjectName(QStringLiteral("addProject"));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/add_database-512.png"), QSize(), QIcon::Normal, QIcon::Off);
-        addProject->setIcon(icon2);
+        QIcon icon3;
+        icon3.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/add_database-512.png"), QSize(), QIcon::Normal, QIcon::Off);
+        addProject->setIcon(icon3);
         addProject->setIconSize(QSize(25, 25));
         addProject->setFlat(true);
 
@@ -111,9 +122,9 @@ public:
 
         PBDelProject = new QPushButton(widget);
         PBDelProject->setObjectName(QStringLiteral("PBDelProject"));
-        QIcon icon3;
-        icon3.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/delete_database-512.png"), QSize(), QIcon::Normal, QIcon::Off);
-        PBDelProject->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/delete_database-512.png"), QSize(), QIcon::Normal, QIcon::Off);
+        PBDelProject->setIcon(icon4);
         PBDelProject->setIconSize(QSize(25, 25));
         PBDelProject->setFlat(true);
 
@@ -159,9 +170,9 @@ public:
 
         PBCreate = new QPushButton(BoiteDeCreation);
         PBCreate->setObjectName(QStringLiteral("PBCreate"));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/plus-512.png"), QSize(), QIcon::Normal, QIcon::Off);
-        PBCreate->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/plus-512.png"), QSize(), QIcon::Normal, QIcon::Off);
+        PBCreate->setIcon(icon5);
         PBCreate->setIconSize(QSize(25, 25));
         PBCreate->setFlat(true);
 
@@ -202,9 +213,9 @@ public:
 
         confirmDel = new QPushButton(delBox);
         confirmDel->setObjectName(QStringLiteral("confirmDel"));
-        QIcon icon5;
-        icon5.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/dnd-512.png"), QSize(), QIcon::Normal, QIcon::Off);
-        confirmDel->setIcon(icon5);
+        QIcon icon6;
+        icon6.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/dnd-512.png"), QSize(), QIcon::Normal, QIcon::Off);
+        confirmDel->setIcon(icon6);
         confirmDel->setIconSize(QSize(40, 40));
         confirmDel->setFlat(true);
 
@@ -242,6 +253,7 @@ public:
         label->setText(QApplication::translate("uiAcceuil", "Sur quel projet travaillez vous ? : ", 0));
         updTable->setText(QString());
         addPeople->setText(QString());
+        journal->setText(QString());
         addProject->setText(QString());
         PBDelProject->setText(QString());
         LNom->setText(QApplication::translate("uiAcceuil", "Nom Projet : ", 0));

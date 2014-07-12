@@ -80,26 +80,26 @@ static const uint qt_meta_data_UiTestUnitaire[] = {
  // signals: name, argc, parameters, tag, flags
        1,    4,   89,    2, 0x06 /* Public */,
        3,    1,   98,    2, 0x06 /* Public */,
-       5,    5,  101,    2, 0x06 /* Public */,
+       5,    6,  101,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       6,    0,  112,    2, 0x08 /* Private */,
-       7,    0,  113,    2, 0x08 /* Private */,
-       8,    1,  114,    2, 0x08 /* Private */,
-      11,    0,  117,    2, 0x08 /* Private */,
-      12,    0,  118,    2, 0x08 /* Private */,
-      13,    0,  119,    2, 0x08 /* Private */,
-      14,    1,  120,    2, 0x08 /* Private */,
-      15,    1,  123,    2, 0x08 /* Private */,
-      16,    0,  126,    2, 0x08 /* Private */,
-      17,    0,  127,    2, 0x08 /* Private */,
-      18,    0,  128,    2, 0x08 /* Private */,
-      19,    1,  129,    2, 0x08 /* Private */,
+       6,    0,  114,    2, 0x08 /* Private */,
+       7,    0,  115,    2, 0x08 /* Private */,
+       8,    1,  116,    2, 0x08 /* Private */,
+      11,    0,  119,    2, 0x08 /* Private */,
+      12,    0,  120,    2, 0x08 /* Private */,
+      13,    0,  121,    2, 0x08 /* Private */,
+      14,    1,  122,    2, 0x08 /* Private */,
+      15,    1,  125,    2, 0x08 /* Private */,
+      16,    0,  128,    2, 0x08 /* Private */,
+      17,    0,  129,    2, 0x08 /* Private */,
+      18,    0,  130,    2, 0x08 /* Private */,
+      19,    1,  131,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,    2,    2,    2,    2,
     QMetaType::Void, QMetaType::QString,    4,
-    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,    2,    2,    2,    2,    2,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::Int,    2,    2,    2,    2,    2,    2,
 
  // slots: parameters
     QMetaType::Void,
@@ -125,7 +125,7 @@ void UiTestUnitaire::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
         switch (_id) {
         case 0: _t->add_test((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4]))); break;
         case 1: _t->del_test((*reinterpret_cast< QString(*)>(_a[1]))); break;
-        case 2: _t->upd_test((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5]))); break;
+        case 2: _t->upd_test((*reinterpret_cast< QString(*)>(_a[1])),(*reinterpret_cast< QString(*)>(_a[2])),(*reinterpret_cast< QString(*)>(_a[3])),(*reinterpret_cast< QString(*)>(_a[4])),(*reinterpret_cast< QString(*)>(_a[5])),(*reinterpret_cast< int(*)>(_a[6]))); break;
         case 3: _t->on_addTest_clicked(); break;
         case 4: _t->on_DelTest_clicked(); break;
         case 5: _t->on_tableWidgetTest_itemDoubleClicked((*reinterpret_cast< QTableWidgetItem*(*)>(_a[1]))); break;
@@ -156,7 +156,7 @@ void UiTestUnitaire::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _
             }
         }
         {
-            typedef void (UiTestUnitaire::*_t)(QString , QString , QString , QString , QString );
+            typedef void (UiTestUnitaire::*_t)(QString , QString , QString , QString , QString , int );
             if (*reinterpret_cast<_t *>(func) == static_cast<_t>(&UiTestUnitaire::upd_test)) {
                 *result = 2;
             }
@@ -215,9 +215,9 @@ void UiTestUnitaire::del_test(QString _t1)
 }
 
 // SIGNAL 2
-void UiTestUnitaire::upd_test(QString _t1, QString _t2, QString _t3, QString _t4, QString _t5)
+void UiTestUnitaire::upd_test(QString _t1, QString _t2, QString _t3, QString _t4, QString _t5, int _t6)
 {
-    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)), const_cast<void*>(reinterpret_cast<const void*>(&_t5)) };
+    void *_a[] = { 0, const_cast<void*>(reinterpret_cast<const void*>(&_t1)), const_cast<void*>(reinterpret_cast<const void*>(&_t2)), const_cast<void*>(reinterpret_cast<const void*>(&_t3)), const_cast<void*>(reinterpret_cast<const void*>(&_t4)), const_cast<void*>(reinterpret_cast<const void*>(&_t5)), const_cast<void*>(reinterpret_cast<const void*>(&_t6)) };
     QMetaObject::activate(this, &staticMetaObject, 2, _a);
 }
 QT_END_MOC_NAMESPACE

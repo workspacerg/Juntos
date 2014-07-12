@@ -80,6 +80,10 @@ public:
         sendMessage = new QPushButton(uiMessage);
         sendMessage->setObjectName(QStringLiteral("sendMessage"));
         sendMessage->setMinimumSize(QSize(0, 40));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/rocket-512.png"), QSize(), QIcon::Normal, QIcon::Off);
+        sendMessage->setIcon(icon);
+        sendMessage->setIconSize(QSize(30, 30));
         sendMessage->setAutoDefault(false);
         sendMessage->setFlat(true);
 
@@ -101,7 +105,7 @@ public:
     {
         uiMessage->setWindowTitle(QApplication::translate("uiMessage", "Dialog", 0));
         myMessage->setPlaceholderText(QApplication::translate("uiMessage", "Votre message ...", 0));
-        sendMessage->setText(QApplication::translate("uiMessage", "Send", 0));
+        sendMessage->setText(QString());
     } // retranslateUi
 
 };

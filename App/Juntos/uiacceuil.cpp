@@ -23,6 +23,7 @@ uiAcceuil::uiAcceuil(QWidget *parent) :
     ui->tableWidgetPtoject->setShowGrid(false);
 
     ui->addPeople->hide();
+    ui->journal->hide();
 
     QStringList test            ;
     test <<"Nom"<<"Description"  ;
@@ -115,6 +116,8 @@ void uiAcceuil::on_updTable_clicked()
 void uiAcceuil::on_tableWidgetPtoject_itemDoubleClicked(QTableWidgetItem *item)
 {
     ui->addPeople->show();
+    ui->journal->show();
+
     emit sigSelectCurrentPro(CProjet(ui->tableWidgetPtoject->item( item->row() , 0)->text() , ui->tableWidgetPtoject->item( item->row() , 1)->text() ));
 
 }
@@ -137,4 +140,11 @@ void uiAcceuil::on_confirmDel_clicked()
     boiteDel = false;
     ui->delBox->hide();
     ui->delLine->setText("");
+}
+
+void uiAcceuil::on_journal_clicked()
+{
+
+    emit displayJournal();
+
 }
