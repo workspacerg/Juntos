@@ -58,8 +58,8 @@ public:
     int count_Change();
     int cout_messageWith(QString id , QString idPro);
     cMessage getLastMessage(QString id, QString idPro);
-    int cout_Event(int idPro);
-    cMessage getLastEvent(QString id, QString idPro);
+    int cout_Event( QString idUser, QString idPro );
+    cJournal getLastEvent(QString idUser , QString idPro);
 
     // Projet
     vector<CProjet> loadProject();

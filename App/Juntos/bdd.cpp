@@ -318,10 +318,10 @@ cMessage BDD::getLastMessage(QString id ,  QString idPro)
 
 
 
-int BDD::cout_Event(int idPro)
+int BDD::cout_Event( QString idUser, QString idPro )
 {
     QSqlQuery query;
-    if(query.exec(" SELECT count(*) FROM `journal` WHERE `idProjet` = 1 AND `idUserToContact` = 1 AND NOT `idUser` = 1 "))
+    if(query.exec(" SELECT count(*) FROM `journal` WHERE `idProjet` = '"+idPro+"' AND `idUserToContact` = '"+idUser+"' AND NOT `idUser` = '"+idUser+"' "))
     {
         while(query.next())
         {
@@ -333,10 +333,20 @@ int BDD::cout_Event(int idPro)
     return 0;
 }
 
-cMessage BDD::getLastEvent(QString id, QString idPro)
+cJournal BDD::getLastEvent(QString idUser , QString idPro)
 {
+    QSqlQuery query;
+    if(query.exec("SELECT j.id , u1.login , u2.login , j.date , j.action FROM `journal` j INNER JOIN user u1 ON u1.id = j.idUser INNER JOIN user u2 ON u2.id = j.idUserToContact WHERE `idProjet` = 1 AND `idUserToContact` = 1 AND NOT `idUser` = 1 ORDER BY date DESC LIMIT 1 "))
+    {
+        while(query.next())
+        {
 
+             QDateTime date = QDateTime::fromString(query.value(3).toString(),"yyyy-MM-ddTHH:mm:ss");
+             return cJournal(query.value(0).toInt() , query.value(1).toString() , query.value(2).toString()  ,  query.value(4).toString() , date );
+        }
 
+    }
+    return cJournal();
 }
 
 bool BDD::addPeopleToProject(QString log, int idPro, QString nomPro)

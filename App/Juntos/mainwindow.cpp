@@ -126,12 +126,13 @@ void MainWindow::verifMessage()
 
         }
 
-        tmp = myBDD->cout_Event(currentProject->getId());
+        tmp = myBDD->cout_Event(QString::number(currentUser->getIdUser()), QString::number(currentProject->getId()));
 
        // cJournal jr = myBDD->
         if(tmp > nbEvent){
             nbEvent = tmp ;
-            displayNotification("new event", "new event");
+            cJournal jr = myBDD->getLastEvent(QString::number(currentUser->getIdUser()), QString::number(currentProject->getId()));
+            displayNotification("Journal", jr.getMsg());
         }
 
         QThread::sleep(10);
@@ -187,7 +188,7 @@ void MainWindow::selCurrentProject(CProjet source)
     PageTicket->setLogin(login);
     PageMessage->setLogin(login);
 
-    nbEvent = myBDD->cout_Event(currentProject->getId());
+    nbEvent = myBDD->cout_Event(QString::number(currentUser->getIdUser()), QString::number(currentProject->getId()));
     nbMsg = myBDD->cout_messageWith(QString::number(currentUser->getIdUser()), QString::number(currentProject->getId()));
 
     QFuture<void> f1 = QtConcurrent::run(this, &MainWindow::verifMessage);
