@@ -2,10 +2,17 @@
 #include "ui_mainwindow.h"
 #include <QSettings>
 
+#include <QtConcurrent/QtConcurrent>
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
+   //  QFuture<void> f1 = QtConcurrent::run(this, &MainWindow::increase_number);
+
+
     ui->setupUi(this);
 
     currentUser = new cUser ;
@@ -70,6 +77,8 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+
 void MainWindow::connectBDD()
 {
 
@@ -80,7 +89,7 @@ void MainWindow::connectBDD()
 
 
       loadCurrentUser();
-
+      msgCurrentUser = currentUser->getLogin();
 
        emit on_mAccueil_clicked();
        emit loadTableProject();
@@ -94,6 +103,42 @@ void MainWindow::connectBDD()
     }
 
 }
+
+void MainWindow::verifMessage()
+{
+    while(1){
+
+        int tmp = myBDD->cout_messageWith(QString::number(currentUser->getIdUser()) , QString::number(currentProject->getId()));
+
+        if(tmp > nbMsg){
+            cMessage ms = myBDD->getLastMessage(QString::number(currentUser->getIdUser()), QString::number(currentProject->getId()));
+            nbMsg = tmp ;
+
+            if(PageMessage->getCurrentUserFocus() != ms.getSender()){
+                PageMessage->redColor(ms.getSender());
+            }
+
+            if(focusOnMessage){
+                PageMessage->loadMessage(myBDD->loadMessage(currentProject->getId() ,PageMessage->getCurrentUserFocus()));
+            }
+
+            displayNotification("Message " + ms.getSender(), ms.getMessage());
+
+        }
+
+        tmp = myBDD->cout_Event(currentProject->getId());
+
+       // cJournal jr = myBDD->
+        if(tmp > nbEvent){
+            nbEvent = tmp ;
+            displayNotification("new event", "new event");
+        }
+
+        QThread::sleep(10);
+
+    }
+}
+
 
 void MainWindow::loadCurrentUser()
 {
@@ -142,6 +187,10 @@ void MainWindow::selCurrentProject(CProjet source)
     PageTicket->setLogin(login);
     PageMessage->setLogin(login);
 
+    nbEvent = myBDD->cout_Event(currentProject->getId());
+    nbMsg = myBDD->cout_messageWith(QString::number(currentUser->getIdUser()), QString::number(currentProject->getId()));
+
+    QFuture<void> f1 = QtConcurrent::run(this, &MainWindow::verifMessage);
 
 }
 
@@ -387,6 +436,7 @@ void MainWindow::add_share(string filename, QByteArray filecontent){
 
 void MainWindow::selectMessageFor(QString usr)
 {
+    msgCurrentUser = usr;
     PageMessage->loadMessage(myBDD->loadMessage(currentProject->getId() , usr));
 }
 
@@ -439,6 +489,8 @@ void MainWindow::hideAll()
     ui->cTest->hide()    ;
     ui->cFile->hide()    ;
     ui->cMessage->hide() ;
+
+    focusOnMessage = false ;
 
 }
 
@@ -495,6 +547,8 @@ void MainWindow::on_mMessages_clicked()
     ui->cMessage->layout()->addWidget(PageMessage);
     ui->cMessage->show();
 
+    focusOnMessage = true;
+
 }
 
 
@@ -518,3 +572,8 @@ void MainWindow::on_mFile_clicked()
     ui->cFile->layout()->addWidget(PageFile);
     ui->cFile->show();
 }
+
+
+// THREAD
+
+

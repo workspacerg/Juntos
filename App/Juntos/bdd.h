@@ -54,6 +54,13 @@ public:
     cUser getInfoUser(QString _log);
     cUser getInfoUserById(int id);
 
+    // Thread
+    int count_Change();
+    int cout_messageWith(QString id , QString idPro);
+    cMessage getLastMessage(QString id, QString idPro);
+    int cout_Event(int idPro);
+    cMessage getLastEvent(QString id, QString idPro);
+
     // Projet
     vector<CProjet> loadProject();
     bool addProject(CProjet source);

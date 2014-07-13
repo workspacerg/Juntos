@@ -18,6 +18,7 @@ class uiMessage : public QDialog
     Q_OBJECT
 
     QString login;
+    QString currentUserFocus;
 
 public:
     explicit uiMessage(QWidget *parent = 0);
@@ -25,9 +26,13 @@ public:
 
     void loadParticipant(vector<cUser>);
     void loadMessage(vector<cMessage>);
+    void redColor(QString user);
 
     QString getLogin() const;
     void setLogin(const QString &value);
+
+    QString getCurrentUserFocus() const;
+    void setCurrentUserFocus(const QString &value);
 
 private slots:
     void on_User_itemDoubleClicked(QListWidgetItem *item);

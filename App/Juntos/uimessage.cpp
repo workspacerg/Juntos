@@ -16,6 +16,16 @@ void uiMessage::setLogin(const QString &value)
 {
     login = value;
 }
+
+QString uiMessage::getCurrentUserFocus() const
+{
+    return currentUserFocus;
+}
+
+void uiMessage::setCurrentUserFocus(const QString &value)
+{
+    currentUserFocus = value;
+}
 uiMessage::uiMessage(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::uiMessage)
@@ -50,6 +60,8 @@ void uiMessage::loadParticipant(vector<cUser> usr)
 
 void uiMessage::loadMessage(vector<cMessage> msg)
 {
+
+    ui->Messages->clear();
 
     for(cMessage item : msg)
     {
@@ -86,15 +98,35 @@ void uiMessage::loadMessage(vector<cMessage> msg)
     ui->Messages->scrollToBottom();
 }
 
+void uiMessage::redColor(QString user)
+{
+    for (int i = 0 ; i < ui->User->count() ; i++ )
+    {
+        if(ui->User->item(i)->text() == user){
+            ui->User->item(i)->setBackgroundColor(Qt::red);
+        }
+    }
+
+}
+
 void uiMessage::on_User_itemDoubleClicked(QListWidgetItem *item)
 {
     ui->Messages->clear();
+
+    for (int i = 0 ; i < ui->User->count() ; i++ )
+    {
+        if(ui->User->item(i)->text() == item->text()){
+            ui->User->item(i)->setBackgroundColor(Qt::white);
+        }
+    }
 
     ui->Messages->addItem(item->text());
     int LastRow = ui->Messages->count()-1;
     ui->Messages->item(LastRow)->setTextAlignment(Qt::AlignCenter);
 
     emit changeListMessage(item->text());
+
+    currentUserFocus = item->text();
 
 }
 
