@@ -29,6 +29,7 @@ private slots:
 
 private:
     Ui::formAddTodo *ui;
+    void closeEvent(QCloseEvent *event);
 
 signals:
     void savetodatabase( QString, QString, QString, QString, QString );

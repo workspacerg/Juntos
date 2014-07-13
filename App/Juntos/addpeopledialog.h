@@ -32,6 +32,7 @@ void on_dell_clicked();
 
 private:
     vector<cUser> users;
+    void closeEvent(QCloseEvent *event);
 
 signals:
     void sigAddUserToProject(QString);

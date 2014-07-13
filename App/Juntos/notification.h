@@ -12,6 +12,7 @@ public:
 
     notification();
     void sendNotification(QString titre, QString texte, int temps);
+    void close();
 
 };
 

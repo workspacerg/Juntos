@@ -22,6 +22,8 @@
 #include "share.h"
 #include "uijournal.h"
 
+#include <QtConcurrent/QtConcurrent>
+
 namespace Ui {
 class MainWindow;
 }
@@ -35,12 +37,14 @@ private:
     CProjet * currentProject ;
     cUser * currentUser ;
     notification *Notif ;
+    QFuture<void> f1 ;
 
     QString login;
     Ui::MainWindow *ui;
     void hideAll();
     void enableAllFunction();
     void disableAllFunction();
+    void closeEvent(QCloseEvent *event);
 
 
 public:
@@ -69,6 +73,7 @@ public:
     int nbMsg;
     void verifMessage();
     void verifJournal();
+    bool stopThread;
 
     QString msgCurrentUser;
     bool focusOnMessage;

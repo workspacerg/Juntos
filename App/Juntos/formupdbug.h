@@ -30,6 +30,7 @@ private slots:
 
 private:
     Ui::formUpdBug *ui;
+   void closeEvent(QCloseEvent *event);
 
 signals:
     void save_upd_ticket(Ticket);

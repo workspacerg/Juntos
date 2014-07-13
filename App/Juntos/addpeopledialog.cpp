@@ -72,3 +72,8 @@ void addPeopleDialog::on_dell_clicked()
     }
 
 }
+
+void addPeopleDialog::closeEvent(QCloseEvent *event)
+{
+    delete this;
+}

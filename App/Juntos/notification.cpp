@@ -13,3 +13,8 @@ void notification::sendNotification(QString titre, QString texte, int temps)
     notifyIcon->showMessage(titre, texte, QSystemTrayIcon::Information, temps);
 
 }
+
+void notification::close()
+{
+    notifyIcon->hide();
+}

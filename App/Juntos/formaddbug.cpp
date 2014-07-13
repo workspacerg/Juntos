@@ -29,3 +29,8 @@ void formAddBug::on_save_clicked()
 
     emit savetodatabase( ui->titleTicket->text() , ui->description->toPlainText() , ui->usrComboBox->currentText() , ui->etatComboBox->currentText() );
 }
+
+void formAddBug::closeEvent(QCloseEvent *event)
+{
+    delete this;
+}

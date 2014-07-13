@@ -36,3 +36,8 @@ void formAddTodo::on_save_clicked()
     emit savetodatabase( ui->titleTicket->text() , ui->description->toPlainText() , ui->usrComboBox->currentText() , ui->etatComboBox->currentText() , ui->dateTimeEdit->dateTime().toString("yyyy-MM-dd HH:mm:ss") );
 
 }
+
+void formAddTodo::closeEvent(QCloseEvent *event)
+{
+    delete this;
+}

@@ -23,12 +23,14 @@ public:
 
 private:
     Ui::formAddBug *ui;
+    void closeEvent(QCloseEvent *event);
 
 signals:
     void savetodatabase( QString, QString, QString, QString );
 
 private slots:
     void on_save_clicked();
+
 };
 
 #endif // FORMADDBUG_H

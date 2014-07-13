@@ -60,6 +60,11 @@ void formUpdBug::on_save_clicked()
 
 }
 
+void formUpdBug::closeEvent(QCloseEvent *event)
+{
+    delete this;
+}
+
 
 
 

@@ -30,6 +30,7 @@ public:
 
 private slots:
     void on_save_clicked();
+    void closeEvent(QCloseEvent *event);
 
 private:
     Ui::FormUpdTodo *ui;

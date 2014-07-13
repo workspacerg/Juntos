@@ -64,3 +64,8 @@ void FormUpdTodo::on_save_clicked()
 
     emit save_data(todo);
 }
+
+void FormUpdTodo::closeEvent(QCloseEvent *event)
+{
+    delete this;
+}

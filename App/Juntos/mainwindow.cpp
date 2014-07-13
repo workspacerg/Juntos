@@ -10,9 +10,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
 
-   //  QFuture<void> f1 = QtConcurrent::run(this, &MainWindow::increase_number);
-
-
     ui->setupUi(this);
 
     currentUser = new cUser ;
@@ -108,6 +105,9 @@ void MainWindow::verifMessage()
 {
     while(1){
 
+        if(stopThread)
+            return ;
+
         int tmp = myBDD->cout_messageWith(QString::number(currentUser->getIdUser()) , QString::number(currentProject->getId()));
 
         if(tmp > nbMsg){
@@ -191,7 +191,8 @@ void MainWindow::selCurrentProject(CProjet source)
     nbEvent = myBDD->cout_Event(QString::number(currentUser->getIdUser()), QString::number(currentProject->getId()));
     nbMsg = myBDD->cout_messageWith(QString::number(currentUser->getIdUser()), QString::number(currentProject->getId()));
 
-    QFuture<void> f1 = QtConcurrent::run(this, &MainWindow::verifMessage);
+    f1 = QtConcurrent::run(this, &MainWindow::verifMessage);
+    stopThread = false;
 
 }
 
@@ -470,6 +471,14 @@ void MainWindow::disableAllFunction(){
     ui->mTicket->setEnabled(false);
     ui->mMessages->setEnabled(false);
     ui->mFile->setEnabled(false);
+
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+
+ stopThread = true ;
+ Notif->close();
 
 }
 
