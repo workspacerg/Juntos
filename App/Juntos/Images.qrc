@@ -21,5 +21,8 @@
         <file>Ressouces/dnd-512.png</file>
         <file>Ressouces/rocket-512.png</file>
         <file>Ressouces/dossier-512.png</file>
+        <file>Ressouces/downloads-512.png</file>
+        <file>Ressouces/upload-512.png</file>
+        <file>Ressouces/add_list-512.png</file>
     </qresource>
 </RCC>

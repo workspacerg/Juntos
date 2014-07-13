@@ -18,11 +18,11 @@ uiFile::uiFile(QWidget *parent) :
     ui->tableWidgetShare->setShowGrid(false);
 
     QStringList test ;
-    test <<"id"<<"Fichier"<<"Posté par"  ;
+    test <<"id"<<"Posté par"<<"Fichier"  ;
     ui->tableWidgetShare->setColumnCount(3);
     ui->tableWidgetShare->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->tableWidgetShare->setColumnHidden(0,true);
-    ui->tableWidgetShare->setColumnWidth(0, 200);
+    ui->tableWidgetShare->setColumnWidth(1, 200);
     ui->tableWidgetShare->setHorizontalHeaderLabels(test);
     ui->tableWidgetShare->horizontalHeader()->setStretchLastSection(true);
     ui->tableWidgetShare->setStyleSheet("QTableView {selection-Background-color: rgb(45, 186, 166); }");
@@ -47,8 +47,8 @@ void uiFile::loadTable(std::map<Share, QString> Source)
         int LastRow = ui->tableWidgetShare->rowCount();
         ui->tableWidgetShare->insertRow(LastRow);
         ui->tableWidgetShare->setItem(LastRow,0,new QTableWidgetItem(QString::number(it->first.getId())));
-        ui->tableWidgetShare->setItem(LastRow, 1, new QTableWidgetItem(QString::fromStdString(it->first.getFilename())));
-        ui->tableWidgetShare->setItem(LastRow, 2, new QTableWidgetItem(it->second));
+        ui->tableWidgetShare->setItem(LastRow, 2, new QTableWidgetItem(QString::fromStdString(it->first.getFilename())));
+        ui->tableWidgetShare->setItem(LastRow, 1, new QTableWidgetItem(it->second));
     }
 
     ui->DownloadButton->setEnabled(false);
