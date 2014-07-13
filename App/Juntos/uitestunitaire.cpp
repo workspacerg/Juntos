@@ -30,7 +30,7 @@ UiTestUnitaire::UiTestUnitaire(QWidget *parent) :
 
     ui->tableWidgetTest->verticalHeader()->setVisible(false);
     ui->tableWidgetTest->setShowGrid(false);
-
+    ui->tableWidgetTest->setColumnHidden(0,true);
     ui->tableWidgetTest->setColumnWidth(0, 50);
     ui->tableWidgetTest->setColumnWidth(1, 250);
     ui->tableWidgetTest->setColumnWidth(2, 250);

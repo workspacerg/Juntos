@@ -31,8 +31,9 @@ uiTicket::uiTicket(QWidget *parent) :
 
     ui->tableWidgetTicket->verticalHeader()->setVisible(false);
     ui->tableWidgetTicket->setShowGrid(false);
-
+    ui->tableWidgetTicket->setColumnHidden(0,true);
     ui->tableWidgetTicket->setColumnWidth(0, 50);
+        ui->tableWidgetTicket->setColumnWidth(1, 200);
     ui->tableWidgetTicket->setColumnWidth(3, 200);
     ui->tableWidgetTicket->setColumnWidth(4, 200);
 

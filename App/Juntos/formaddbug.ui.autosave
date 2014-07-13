@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>formAddTodo</class>
- <widget class="QDialog" name="formAddTodo">
+ <class>formAddBug</class>
+ <widget class="QDialog" name="formAddBug">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>845</width>
-    <height>833</height>
+    <width>721</width>
+    <height>698</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,7 +29,7 @@
       </font>
      </property>
      <property name="text">
-      <string>Création d'une tâche</string>
+      <string>Création d'un ticket</string>
      </property>
      <property name="alignment">
       <set>Qt::AlignCenter</set>
@@ -37,7 +37,7 @@
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
+    <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
       <widget class="QLabel" name="label_2">
        <property name="font">
@@ -64,7 +64,7 @@
     </layout>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout">
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
       <widget class="QLabel" name="label_5">
        <property name="font">
@@ -79,22 +79,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="usrComboBox">
-       <property name="minimumSize">
-        <size>
-         <width>250</width>
-         <height>35</height>
-        </size>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>11</pointsize>
-        </font>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_4">
+      <spacer name="horizontalSpacer">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -107,20 +92,7 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="label_7">
-       <property name="font">
-        <font>
-         <family>Microsoft Yi Baiti</family>
-         <pointsize>18</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>Pour le : </string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QDateTimeEdit" name="dateTimeEdit">
+      <widget class="QComboBox" name="usrComboBox">
        <property name="minimumSize">
         <size>
          <width>250</width>
@@ -147,9 +119,22 @@
         </font>
        </property>
        <property name="text">
-        <string>Avancement :</string>
+        <string>Etat d'avancement :</string>
        </property>
       </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_2">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
      </item>
      <item>
       <widget class="QComboBox" name="etatComboBox">
@@ -167,20 +152,42 @@
        <property name="frame">
         <bool>true</bool>
        </property>
+       <item>
+        <property name="text">
+         <string>ouvert</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>accepté</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>confirmé</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>affecté</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>résolu</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>fermé</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>rejeté</string>
+        </property>
+       </item>
       </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_3">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
      </item>
     </layout>
    </item>
@@ -201,9 +208,9 @@
     <widget class="QTextEdit" name="description"/>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_2">
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <spacer name="horizontalSpacer">
+      <spacer name="horizontalSpacer_3">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -226,12 +233,9 @@
        </property>
        <property name="iconSize">
         <size>
-         <width>30</width>
+         <width>40</width>
          <height>30</height>
         </size>
-       </property>
-       <property name="autoDefault">
-        <bool>false</bool>
        </property>
        <property name="flat">
         <bool>true</bool>
@@ -239,7 +243,7 @@
       </widget>
      </item>
      <item>
-      <spacer name="horizontalSpacer_2">
+      <spacer name="horizontalSpacer_4">
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>

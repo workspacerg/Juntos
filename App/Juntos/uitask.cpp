@@ -30,9 +30,11 @@ uiTask::uiTask(QWidget *parent) :
 
     ui->tableWidgetTask->verticalHeader()->setVisible(false);
     ui->tableWidgetTask->setShowGrid(false);
+    ui->tableWidgetTask->setColumnHidden(0,true);
 
 
     ui->tableWidgetTask->setColumnWidth(0, 50);
+    ui->tableWidgetTask->setColumnWidth(1, 200);
     ui->tableWidgetTask->setColumnWidth(5, 150);
     ui->tableWidgetTask->setColumnWidth(6, 150);
     ui->tableWidgetTask->setColumnWidth(7, 150);
