@@ -255,7 +255,7 @@ bool BDD::checkAdmin(int idPro)
 cUser BDD::getInfoUser(QString _log)
 {
 
-    QSqlQuery query;
+   QSqlQuery query;
    if(query.exec("Select * FROM user where login ='"+ _log +"'"))
    {
        while(query.next())
@@ -266,6 +266,58 @@ cUser BDD::getInfoUser(QString _log)
    }
 
      return cUser();
+
+}
+
+int BDD::cout_messageWith(QString id , QString idPro)
+{
+    QSqlQuery query;
+    if(query.exec("SELECT count(*) FROM `message` WHERE `receiverId`= '"+id+"' AND projectID = '"+idPro+"'  "))
+    {
+        while(query.next())
+        {
+             return query.value(0).toInt() ;
+        }
+
+    }
+
+    return 0;
+}
+
+cMessage BDD::getLastMessage(QString id ,  QString idPro)
+{
+    QSqlQuery query;
+    if(query.exec("SELECT u1.login , u2.login , message , date FROM `message` INNER JOIN user u1 ON u1.id = senderId INNER JOIN user u2 ON u2.id = receiverId WHERE `receiverId`= '"+id+"' AND projectID = '"+idPro+"'  ORDER BY date DESC LIMIT 1 "))
+    {
+        while(query.next())
+        {
+
+             QDateTime date = QDateTime::fromString(query.value(3).toString(),"yyyy-MM-ddTHH:mm:ss");
+             return cMessage(query.value(0).toString() , query.value(1).toString(), query.value(2).toString(), date ) ;
+        }
+
+    }
+
+    return cMessage();
+}
+
+int BDD::cout_Event(int idPro)
+{
+    QSqlQuery query;
+    if(query.exec(" SELECT count(*) FROM `journal` WHERE `idProjet` = 1 AND `idUserToContact` = 1 AND NOT `idUser` = 1 "))
+    {
+        while(query.next())
+        {
+             return query.value(0).toInt() ;
+        }
+
+    }
+
+    return 0;
+}
+
+cMessage BDD::getLastEvent(QString id, QString idPro)
+{
 
 }
 
@@ -882,9 +934,6 @@ bool BDD::add_Message(int idPro, QString msg, QString usr)
     {
         while (query.next()) {
            if(query.value(0).toInt() == 1){
-
-               QString Message = login + " a envoyé un message à : " + usr ;
-               query.exec("select add_journal( '"+ login +"' , '"+ usr +"' , '"+ idString +"' , '"+ Message +"' )");
 
                return true;
            }

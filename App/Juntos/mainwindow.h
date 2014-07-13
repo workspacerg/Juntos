@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QDebug>
+#include <QThread>
 #include "uiacceuil.h"
 #include "uitask.h"
 #include "uipref.h"
@@ -61,6 +62,15 @@ public:
     FormUpdTodo *pageUpdTask;
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+    // THREAD
+    int nbEvent;
+    int nbMsg;
+    void verifMessage();
+    void verifJournal();
+
+    QString msgCurrentUser;
+    bool focusOnMessage;
 
 public slots:
     void displayNotification(QString, QString);
