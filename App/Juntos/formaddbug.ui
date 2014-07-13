@@ -225,14 +225,20 @@
      <item>
       <widget class="QPushButton" name="save">
        <property name="text">
-        <string>Sauvegarder</string>
+        <string/>
        </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="cancel">
-       <property name="text">
-        <string>Annuler</string>
+       <property name="icon">
+        <iconset resource="Images.qrc">
+         <normaloff>:/new/MenuInterface/Ressouces/add_database-512.png</normaloff>:/new/MenuInterface/Ressouces/add_database-512.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>40</width>
+         <height>30</height>
+        </size>
+       </property>
+       <property name="flat">
+        <bool>true</bool>
        </property>
       </widget>
      </item>
@@ -253,6 +259,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="Images.qrc"/>
+ </resources>
  <connections/>
 </ui>

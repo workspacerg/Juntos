@@ -328,11 +328,7 @@ void MainWindow::display_Form_Add_Task()
         currentProject->addUser(item);
     }
 
-    vector<QString> avc ;
-
-    avc.push_back("Crée");
-    avc.push_back("Assigné");
-    avc.push_back("En cours");
+    vector<QString> avc = myBDD->selectAvancement();
 
     pageAddTask = new formAddTodo;
         QObject::connect(pageAddTask, SIGNAL(savetodatabase(QString,QString,QString,QString,QString)), this, SLOT(save_To_Database(QString,QString,QString,QString,QString)));
@@ -354,11 +350,8 @@ void MainWindow::display_Form_upd_task(QString idTk, QString dev)
         currentProject->addUser(item);
     }
 
-    vector<QString> avc ;
 
-    avc.push_back("crée");
-    avc.push_back("assigné");
-    avc.push_back("en cours");
+    vector<QString> avc = myBDD->selectAvancement();
 
     pageUpdTask = new FormUpdTodo ;
     QObject::connect(pageUpdTask, SIGNAL(save_data(Task)), this, SLOT(upd_task_to_database(Task)));

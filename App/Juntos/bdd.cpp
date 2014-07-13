@@ -799,6 +799,24 @@ bool BDD::upd_task(Task source, int idPro)
     return false;
 }
 
+vector<QString> BDD::selectAvancement()
+{
+
+            vector<QString> myList;
+
+            QSqlQuery query;
+            if(query.exec("SELECT nom FROM `avancementtodo` "))
+            {
+                while(query.next())
+                {
+                     myList.push_back(query.value(0).toString());
+                }
+
+            }
+
+            return myList;
+}
+
 //
 // Test unitaire
 //
