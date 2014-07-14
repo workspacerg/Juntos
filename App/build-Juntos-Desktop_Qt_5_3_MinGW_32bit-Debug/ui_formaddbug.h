@@ -47,7 +47,6 @@ public:
     QHBoxLayout *horizontalLayout_4;
     QSpacerItem *horizontalSpacer_3;
     QPushButton *save;
-    QPushButton *cancel;
     QSpacerItem *horizontalSpacer_4;
 
     void setupUi(QDialog *formAddBug)
@@ -154,13 +153,13 @@ public:
 
         save = new QPushButton(formAddBug);
         save->setObjectName(QStringLiteral("save"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/add_database-512.png"), QSize(), QIcon::Normal, QIcon::Off);
+        save->setIcon(icon);
+        save->setIconSize(QSize(40, 30));
+        save->setFlat(true);
 
         horizontalLayout_4->addWidget(save);
-
-        cancel = new QPushButton(formAddBug);
-        cancel->setObjectName(QStringLiteral("cancel"));
-
-        horizontalLayout_4->addWidget(cancel);
 
         horizontalSpacer_4 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -193,8 +192,7 @@ public:
          << QApplication::translate("formAddBug", "rejet\303\251", 0)
         );
         label_3->setText(QApplication::translate("formAddBug", "Description", 0));
-        save->setText(QApplication::translate("formAddBug", "Sauvegarder", 0));
-        cancel->setText(QApplication::translate("formAddBug", "Annuler", 0));
+        save->setText(QString());
     } // retranslateUi
 
 };

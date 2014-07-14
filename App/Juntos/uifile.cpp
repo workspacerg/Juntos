@@ -47,8 +47,8 @@ void uiFile::loadTable(std::map<Share, QString> Source)
         int LastRow = ui->tableWidgetShare->rowCount();
         ui->tableWidgetShare->insertRow(LastRow);
         ui->tableWidgetShare->setItem(LastRow,0,new QTableWidgetItem(QString::number(it->first.getId())));
-        ui->tableWidgetShare->setItem(LastRow, 2, new QTableWidgetItem(QString::fromStdString(it->first.getFilename())));
         ui->tableWidgetShare->setItem(LastRow, 1, new QTableWidgetItem(it->second));
+        ui->tableWidgetShare->setItem(LastRow, 2, new QTableWidgetItem(QString::fromStdString(it->first.getFilename())));
     }
 
     ui->DownloadButton->setEnabled(false);
@@ -75,7 +75,7 @@ void uiFile::on_uploadButton_clicked()
 void uiFile::on_DownloadButton_clicked()
 {
     int id = ui->tableWidgetShare->item( current_item->row() , 0)->text().toInt();
-    QString filename = ui->tableWidgetShare->item( current_item->row() , 1)->text();
+    QString filename = ui->tableWidgetShare->item( current_item->row() , 2)->text();
     QString extension = QFileInfo(filename).suffix();
     QByteArray content;
     for (std::map<Share,QString>::iterator it=map.begin(); it!=map.end(); ++it)
@@ -110,10 +110,7 @@ void uiFile::uploadFile(const std::string& filepath){
     inputFile.read(&fileContents[0], length);
     inputFile.close();
 
-
-
     QByteArray array = QByteArray(fileContents.c_str(),length);
-    qDebug() << array.data();
     QFileInfo fi(QString::fromStdString(filepath));
     emit add_share(fi.fileName().toStdString(),array);
 }

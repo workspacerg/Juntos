@@ -14,42 +14,85 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
 #include <QtWidgets/QDialog>
+#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QTableWidget>
+#include <QtWidgets/QVBoxLayout>
 
 QT_BEGIN_NAMESPACE
 
 class Ui_uiFile
 {
 public:
-    QPushButton *BrowseButton;
-    QPushButton *DownloadButton;
+    QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout;
     QLineEdit *lineEdit;
+    QPushButton *BrowseButton;
     QPushButton *uploadButton;
     QTableWidget *tableWidgetShare;
+    QPushButton *DownloadButton;
 
     void setupUi(QDialog *uiFile)
     {
         if (uiFile->objectName().isEmpty())
             uiFile->setObjectName(QStringLiteral("uiFile"));
         uiFile->resize(984, 601);
-        BrowseButton = new QPushButton(uiFile);
-        BrowseButton->setObjectName(QStringLiteral("BrowseButton"));
-        BrowseButton->setGeometry(QRect(690, 140, 75, 21));
-        DownloadButton = new QPushButton(uiFile);
-        DownloadButton->setObjectName(QStringLiteral("DownloadButton"));
-        DownloadButton->setGeometry(QRect(80, 10, 75, 23));
+        verticalLayout = new QVBoxLayout(uiFile);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         lineEdit = new QLineEdit(uiFile);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(540, 140, 141, 20));
+        lineEdit->setMinimumSize(QSize(0, 40));
+        QFont font;
+        font.setPointSize(11);
+        lineEdit->setFont(font);
+
+        horizontalLayout->addWidget(lineEdit);
+
+        BrowseButton = new QPushButton(uiFile);
+        BrowseButton->setObjectName(QStringLiteral("BrowseButton"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/add_list-512.png"), QSize(), QIcon::Normal, QIcon::Off);
+        BrowseButton->setIcon(icon);
+        BrowseButton->setIconSize(QSize(40, 40));
+        BrowseButton->setAutoDefault(false);
+        BrowseButton->setFlat(true);
+
+        horizontalLayout->addWidget(BrowseButton);
+
         uploadButton = new QPushButton(uiFile);
         uploadButton->setObjectName(QStringLiteral("uploadButton"));
-        uploadButton->setGeometry(QRect(580, 170, 75, 21));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/upload-512.png"), QSize(), QIcon::Normal, QIcon::Off);
+        uploadButton->setIcon(icon1);
+        uploadButton->setIconSize(QSize(40, 40));
+        uploadButton->setAutoDefault(false);
+        uploadButton->setFlat(true);
+
+        horizontalLayout->addWidget(uploadButton);
+
+
+        verticalLayout->addLayout(horizontalLayout);
+
         tableWidgetShare = new QTableWidget(uiFile);
         tableWidgetShare->setObjectName(QStringLiteral("tableWidgetShare"));
-        tableWidgetShare->setGeometry(QRect(80, 40, 401, 271));
+
+        verticalLayout->addWidget(tableWidgetShare);
+
+        DownloadButton = new QPushButton(uiFile);
+        DownloadButton->setObjectName(QStringLiteral("DownloadButton"));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/downloads-512.png"), QSize(), QIcon::Normal, QIcon::Off);
+        DownloadButton->setIcon(icon2);
+        DownloadButton->setIconSize(QSize(40, 40));
+        DownloadButton->setAutoDefault(false);
+        DownloadButton->setFlat(true);
+
+        verticalLayout->addWidget(DownloadButton);
+
 
         retranslateUi(uiFile);
 
@@ -59,9 +102,9 @@ public:
     void retranslateUi(QDialog *uiFile)
     {
         uiFile->setWindowTitle(QApplication::translate("uiFile", "Dialog", 0));
-        BrowseButton->setText(QApplication::translate("uiFile", "Browse", 0));
-        DownloadButton->setText(QApplication::translate("uiFile", "Download", 0));
-        uploadButton->setText(QApplication::translate("uiFile", "Upload", 0));
+        BrowseButton->setText(QString());
+        uploadButton->setText(QString());
+        DownloadButton->setText(QString());
     } // retranslateUi
 
 };

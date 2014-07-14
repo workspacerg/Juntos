@@ -232,6 +232,12 @@ public:
 
         save = new QPushButton(FormUpdTodo);
         save->setObjectName(QStringLiteral("save"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/available_updates-512.png"), QSize(), QIcon::Normal, QIcon::Off);
+        save->setIcon(icon);
+        save->setIconSize(QSize(30, 30));
+        save->setAutoDefault(false);
+        save->setFlat(true);
 
         horizontalLayout_4->addWidget(save);
 
@@ -260,7 +266,7 @@ public:
         label_8->setText(QApplication::translate("FormUpdTodo", "Modification", 0));
         label_9->setText(QApplication::translate("FormUpdTodo", "Date de fin", 0));
         label_3->setText(QApplication::translate("FormUpdTodo", "Description", 0));
-        save->setText(QApplication::translate("FormUpdTodo", "Sauvegarder", 0));
+        save->setText(QString());
     } // retranslateUi
 
 };
