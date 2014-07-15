@@ -225,6 +225,12 @@ public:
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         save = new QPushButton(formUpdBug);
         save->setObjectName(QStringLiteral("save"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/available_updates-512.png"), QSize(), QIcon::Normal, QIcon::Off);
+        save->setIcon(icon);
+        save->setIconSize(QSize(30, 30));
+        save->setAutoDefault(false);
+        save->setFlat(true);
 
         horizontalLayout_4->addWidget(save);
 
@@ -259,7 +265,7 @@ public:
         label_9->setText(QApplication::translate("formUpdBug", "Fermeture", 0));
         label_8->setText(QApplication::translate("formUpdBug", "Assignation", 0));
         label_3->setText(QApplication::translate("formUpdBug", "Description", 0));
-        save->setText(QApplication::translate("formUpdBug", "Sauvegarder", 0));
+        save->setText(QString());
     } // retranslateUi
 
 };

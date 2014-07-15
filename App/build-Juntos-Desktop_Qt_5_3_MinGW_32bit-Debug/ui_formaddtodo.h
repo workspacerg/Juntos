@@ -169,6 +169,12 @@ public:
 
         save = new QPushButton(formAddTodo);
         save->setObjectName(QStringLiteral("save"));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/new/MenuInterface/Ressouces/add_database-512.png"), QSize(), QIcon::Normal, QIcon::Off);
+        save->setIcon(icon);
+        save->setIconSize(QSize(30, 30));
+        save->setAutoDefault(false);
+        save->setFlat(true);
 
         horizontalLayout_2->addWidget(save);
 
@@ -194,7 +200,7 @@ public:
         label_7->setText(QApplication::translate("formAddTodo", "Pour le : ", 0));
         label_6->setText(QApplication::translate("formAddTodo", "Avancement :", 0));
         label_3->setText(QApplication::translate("formAddTodo", "Description", 0));
-        save->setText(QApplication::translate("formAddTodo", "Sauvegarder", 0));
+        save->setText(QString());
     } // retranslateUi
 
 };
