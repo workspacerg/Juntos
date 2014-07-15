@@ -535,7 +535,7 @@ void MainWindow::on_mTicket_clicked()
 void MainWindow::on_mPreference_clicked()
 {
     this->hideAll();
-    ui->TitreBody->setText("Préférence");
+    ui->TitreBody->setText("Préférences");
     ui->cPref->layout()->addWidget(PagePref);
     ui->cPref->show();
 }

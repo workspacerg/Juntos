@@ -73,16 +73,6 @@ bool BDD::verifUser()
 
         return false;
 
-        //        if(query.exec("SELECT * FROM `user` WHERE `login` = '"+login+"' AND `keypass` ='"+password+"'"))
-        //        {
-        //            while(query.next())
-        //            {
-        //                return true;
-        //            }
-        //        }
-
-        //        return false;
-
 }
 
 
@@ -138,18 +128,6 @@ bool BDD::addProject(CProjet source)
     }
      return false;
 
-//    if(query.exec("INSERT INTO `project` (`id`, `name`, `description`) VALUES (NULL, '"+source.getNomProjet()+"', '"+source.getDescProjet()+"')"))
-//    {
-//        if(query.exec("INSERT INTO `userinproject` (`id`, `idUser`, `idProject`, `admin`) VALUES (NULL, (SELECT id FROM `user` WHERE `login` = '"+login+"'), (SELECT id FROM `project` ORDER BY `id` DESC LIMIT 1 ) , 1 )"))
-//        {
-
-
-//            return true ;
-//        }
-//    }
-
-//    return false;
-
 }
 
 bool BDD::delProject(CProjet source)
@@ -180,10 +158,6 @@ bool BDD::delProject(CProjet source)
     }
      return false;
 
-
-//    if( query.exec("DELETE FROM `project` WHERE `name` = '"+source.getNomProjet()+"'") )
-//    {
-//    }
 }
 
 CProjet  BDD::getInfoProjet(CProjet  source)
@@ -224,8 +198,6 @@ vector<cUser> BDD::getParticipant(int idPro)
     {
         while(query.next())
         {
-           qDebug() << query.value(0).toString() ;
-           qDebug() << query.value(1).toString() ;
            usr.push_back(cUser(query.value(0).toString(),query.value(1).toString()));
 
         }
