@@ -1,0 +1,28 @@
+<RCC>
+    <qresource prefix="/new/MenuInterface">
+        <file>Ressouces/settings2-512.png</file>
+        <file>Ressouces/comments-512.png</file>
+        <file>Ressouces/F-512.png</file>
+        <file>Ressouces/list-512.png</file>
+        <file>Ressouces/outline-512.png</file>
+        <file>Ressouces/settings-512.png</file>
+        <file>Ressouces/J-512.png</file>
+        <file>Ressouces/add_database-512.png</file>
+        <file>Ressouces/delete_database-512.png</file>
+        <file>Ressouces/plus-512.png</file>
+        <file>Ressouces/box-minus@2x.png</file>
+        <file>Ressouces/box-plus@2x.png</file>
+        <file>Ressouces/cloud-minus@2x.png</file>
+        <file>Ressouces/air_force-64.png</file>
+        <file>Ressouces/folder-64.png</file>
+        <file>Ressouces/ai-512.png</file>
+        <file>Ressouces/available_updates-512.png</file>
+        <file>Ressouces/add_user-512.png</file>
+        <file>Ressouces/dnd-512.png</file>
+        <file>Ressouces/rocket-512.png</file>
+        <file>Ressouces/dossier-512.png</file>
+        <file>Ressouces/downloads-512.png</file>
+        <file>Ressouces/upload-512.png</file>
+        <file>Ressouces/add_list-512.png</file>
+    </qresource>
+</RCC>
