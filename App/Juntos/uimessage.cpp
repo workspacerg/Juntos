@@ -33,6 +33,7 @@ uiMessage::uiMessage(QWidget *parent) :
     ui->setupUi(this);
     ui->User->setStyleSheet("QListView {selection-Background-color: rgb(45, 186, 166); }");
 
+    ui->sendMessage->setEnabled(false);
 
 }
 
@@ -141,4 +142,12 @@ void uiMessage::on_sendMessage_clicked()
     emit on_User_itemDoubleClicked(ui->User->currentItem());
     ui->myMessage->setText("");
 
+}
+
+void uiMessage::on_User_itemSelectionChanged()
+{
+    if(ui->User->selectedItems().size()==0)
+        ui->sendMessage->setEnabled(false);
+    else
+        ui->sendMessage->setEnabled(true);
 }

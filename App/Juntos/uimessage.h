@@ -41,6 +41,8 @@ private slots:
 
     void on_sendMessage_clicked();
 
+    void on_User_itemSelectionChanged();
+
 private:
     Ui::uiMessage *ui;
 
