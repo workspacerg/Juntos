@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Sam 12 Juillet 2014 à 21:00
+-- Généré le :  Mer 16 Juillet 2014 à 00:12
 -- Version du serveur :  5.6.17
 -- Version de PHP :  5.5.12
 
@@ -996,23 +996,42 @@ CREATE TABLE IF NOT EXISTS `journal` (
   KEY `idUser_2` (`idUser`),
   KEY `idProjet` (`idProjet`),
   KEY `idUserToContact` (`idUserToContact`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=15 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=102 ;
 
 --
 -- Contenu de la table `journal`
 --
 
 INSERT INTO `journal` (`id`, `idUser`, `idProjet`, `idUserToContact`, `date`, `action`) VALUES
-(5, 1, 1, 2, '2014-07-11 21:50:25', 'rgabela envoyé un message à : ray'),
-(6, 1, 1, 3, '2014-07-11 21:52:46', 'rgabel a envoyé un message à : andy'),
-(7, 1, 1, 1, '2014-07-11 22:17:40', 'rgabel a mise à jour la tâche 14'),
-(8, 1, 1, 1, '2014-07-11 22:23:33', 'rgabel a ajouté un test : newOne'),
-(9, 1, 1, 3, '2014-07-11 22:25:18', 'rgabel a ajouté la tâche ne task'),
-(10, 1, 1, 1, '2014-07-11 22:37:57', 'rgabel a supprimé la tâche 13'),
-(11, 1, 1, 2, '2014-07-11 23:30:57', 'rgabel a mise à jour le ticket mon titre'),
-(12, 1, 1, 1, '2014-07-11 23:34:33', 'rgabel a ajouté le ticket test'),
-(13, 2, 1, 2, '2014-07-12 15:35:25', 'ray a mis à jour la tâche 16'),
-(14, 2, 1, 1, '2014-07-12 15:36:35', 'ray a ajouté la tâche new');
+(73, 1, 28, 2, '2014-07-15 22:09:00', 'rgabel a ajouté ray au projet :Juntos Test'),
+(74, 2, 28, 1, '2014-07-15 22:11:41', 'ray a ajouté la tâche Exportation de la base de donnée'),
+(75, 2, 28, 1, '2014-07-15 22:24:40', 'ray a ajouté le ticket ticket'),
+(76, 2, 28, 2, '2014-07-15 22:25:36', 'ray a ajouté le ticket ERR 001'),
+(77, 2, 28, 2, '2014-07-15 22:25:55', 'ray a supprmé le ticket 51'),
+(78, 2, 28, 2, '2014-07-15 22:26:11', 'ray a mise à jour le ticket ERR 001'),
+(79, 2, 28, 2, '2014-07-15 22:31:14', 'ray a ajouté le ticket ERR OO3'),
+(80, 2, 28, 2, '2014-07-15 22:32:04', 'ray a ajouté le ticket ERR 004'),
+(81, 2, 28, 2, '2014-07-15 22:34:25', 'ray a ajouté le ticket ERR 005'),
+(82, 2, 28, 1, '2014-07-15 22:35:10', 'ray a ajouté le ticket ERR 004'),
+(83, 2, 28, 1, '2014-07-15 22:35:29', 'ray a mise à jour le ticket ERR OO3'),
+(84, 2, 28, 2, '2014-07-15 22:36:10', 'ray a supprmé le ticket 52'),
+(85, 1, 28, 1, '2014-07-15 22:44:22', 'rgabel a supprimé un test du projet : '),
+(86, 1, 28, 1, '2014-07-15 22:45:59', 'rgabel a ajouté un test : tt'),
+(87, 1, 28, 1, '2014-07-15 22:47:55', 'rgabel a ajouté un test : test égalité'),
+(88, 2, 28, 2, '2014-07-15 22:55:04', 'ray a ajouté un test : azeaezaaze'),
+(89, 2, 28, 2, '2014-07-15 22:56:32', 'ray a ajouté un test : test'),
+(90, 2, 28, 2, '2014-07-15 23:16:01', 'ray a ajouté un test : re'),
+(91, 2, 28, 2, '2014-07-15 23:18:32', 'ray a ajouté un test : rgb'),
+(92, 2, 28, 2, '2014-07-15 23:18:47', 'ray a ajouté un test : tes''t'),
+(93, 2, 28, 2, '2014-07-15 23:21:11', 'ray a ajouté un test : l''égalité'),
+(94, 2, 28, 2, '2014-07-15 23:24:01', 'ray a ajouté un test : test d''égalité'),
+(95, 2, 28, 1, '2014-07-15 23:38:39', 'ray a ajouté le ticket ERR 006'),
+(96, 2, 28, 2, '2014-07-15 23:39:41', 'ray a ajouté le ticket ERR 07'),
+(97, 2, 28, 2, '2014-07-15 23:40:20', 'ray a ajouté le ticket ff''r'),
+(98, 2, 28, 2, '2014-07-15 23:41:08', 'ray a supprmé le ticket 59'),
+(99, 2, 28, 1, '2014-07-15 23:46:03', 'ray a mis à jour la tâche 25'),
+(100, 2, 28, 2, '2014-07-15 23:55:02', 'ray a ajouté un test : nouveau t''estaze'),
+(101, 2, 28, 2, '2014-07-15 23:55:21', 'ray a supprimé un test du projet : ');
 
 -- --------------------------------------------------------
 
@@ -1026,21 +1045,25 @@ CREATE TABLE IF NOT EXISTS `log` (
   `title` varchar(255) CHARACTER SET utf8 NOT NULL,
   `message` text CHARACTER SET utf8 NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
 
 --
 -- Contenu de la table `log`
 --
 
 INSERT INTO `log` (`id`, `login`, `title`, `message`) VALUES
-(1, 'rgabel', 'Utilisateur', 'Vient de supprimer le test unitaire n° '),
-(2, 'rgabel', 'Utilisateur', 'Vient de supprimer le test unitaire n° '),
-(3, 'rgabel', 'Utilisateur', 'Vient de supprimer le test unitaire n° '),
-(4, 'login', 'log n''existe pas', 'Le compte cherchant à crée un projet n''existe pas'),
-(5, 'rgabel', 'Utilisateur', 'Vient de supprimer le test unitaire n° '),
-(6, 'rgabel', 'Titre déjà présent', 'try to duplicate name values'),
-(7, 'rgabel', 'Le ticket n''éxiste pas', 'l''idTicket es inexistant'),
-(8, 'rgabel', 'user n''existe pas', 'user n''existe pas');
+(10, 'ray', 'user n''existe pas', 'user n''existe pas'),
+(11, 'rgabel', 'Utilisateur', 'Vient de supprimer le test unitaire n° '),
+(12, 'ray', 'Titre déjà présent', 'try to duplicate name values'),
+(13, 'ray', 'user n''existe pas', 'user n''existe pas'),
+(14, 'ray', 'user n''existe pas', 'user n''existe pas'),
+(15, 'ray', 'user n''existe pas', 'user n''existe pas'),
+(16, 'ray', 'user n''existe pas', 'user n''existe pas'),
+(17, 'ray', 'Suppression impossible ', 'Vous êtes ni admin du projet, ni créateur de la tâche '),
+(18, 'ray', 'Suppression impossible ', 'Vous êtes ni admin du projet, ni créateur de la tâche '),
+(19, 'ray', 'Suppression impossible ', 'Vous êtes ni admin du projet, ni créateur de la tâche '),
+(20, 'ray', 'Suppression impossible ', 'Vous êtes ni admin du projet, ni créateur de la tâche '),
+(21, 'ray', 'Utilisateur', 'Vient de supprimer le test unitaire n° ');
 
 -- --------------------------------------------------------
 
@@ -1059,37 +1082,16 @@ CREATE TABLE IF NOT EXISTS `message` (
   KEY `projectID` (`projectID`),
   KEY `receiverId` (`receiverId`),
   KEY `senderId` (`senderId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=25 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=85 ;
 
 --
 -- Contenu de la table `message`
 --
 
 INSERT INTO `message` (`id`, `senderId`, `receiverId`, `message`, `projectID`, `date`) VALUES
-(1, 2, 1, 'Message de 2 à 1', 1, '2014-07-09 22:09:15'),
-(2, 1, 2, 'Message de 1 à 2', 1, '2014-07-09 22:09:15'),
-(3, 2, 1, 'Mon Message', 1, '2014-07-10 15:19:50'),
-(4, 2, 1, 'hey', 1, '2014-07-10 15:56:06'),
-(5, 2, 1, 'test', 1, '2014-07-10 15:58:23'),
-(6, 2, 1, 'test', 1, '2014-07-10 15:58:29'),
-(7, 1, 2, 'rgabel send message to ', 1, '2014-07-10 15:59:44'),
-(8, 1, 2, 'Tu vas bien ?', 1, '2014-07-10 16:08:56'),
-(9, 2, 1, 'oui oui e toi ?', 1, '2014-07-10 16:09:56'),
-(10, 2, 1, 'test', 1, '2014-07-10 16:12:14'),
-(11, 2, 1, '', 1, '2014-07-10 16:12:20'),
-(12, 2, 1, 'ok', 1, '2014-07-10 16:19:25'),
-(13, 2, 1, 'ok', 1, '2014-07-10 16:19:29'),
-(14, 2, 1, 'ok', 1, '2014-07-10 16:19:33'),
-(15, 2, 1, 'test', 1, '2014-07-10 16:19:48'),
-(16, 2, 1, 'encor', 1, '2014-07-10 18:33:21'),
-(17, 2, 3, 'TEST', 1, '2014-07-10 18:33:36'),
-(18, 2, 1, 'test', 1, '2014-07-10 19:16:06'),
-(19, 1, 2, 'Yo', 1, '2014-07-10 23:53:16'),
-(20, 1, 2, 'ts', 1, '2014-07-11 16:30:08'),
-(21, 2, 1, 'hello', 1, '2014-07-11 16:32:35'),
-(22, 1, 3, 'hey andy', 1, '2014-07-11 16:40:11'),
-(23, 1, 2, 'test', 1, '2014-07-11 21:50:25'),
-(24, 1, 3, 'ok', 1, '2014-07-11 21:52:46');
+(82, 2, 1, 'Envoie de message', 28, '2014-07-15 23:55:54'),
+(83, 1, 2, 'c', 28, '2014-07-15 23:56:18'),
+(84, 2, 1, 'c''est', 28, '2014-07-15 23:56:31');
 
 -- --------------------------------------------------------
 
@@ -1103,15 +1105,14 @@ CREATE TABLE IF NOT EXISTS `project` (
   `description` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=31 ;
 
 --
 -- Contenu de la table `project`
 --
 
 INSERT INTO `project` (`id`, `name`, `description`) VALUES
-(1, 'First', 'mon premier projet'),
-(27, 'Projet de andy', '...');
+(28, 'Juntos Test', 'Projet de test de notre projet Juntos');
 
 -- --------------------------------------------------------
 
@@ -1126,7 +1127,14 @@ CREATE TABLE IF NOT EXISTS `sharefiles` (
   `filecontent` longblob,
   `userId` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Contenu de la table `sharefiles`
+--
+
+INSERT INTO `sharefiles` (`id`, `projectId`, `filename`, `filecontent`, `userId`) VALUES
+(3, 28, 'juntos_first.sql', 0x0a0a435245415445205441424c452060757365726020280a6069646020696e7420554e5349474e4544204e4f54204e554c4c204155544f5f494e4352454d454e542c0a606c6f67696e6020766172636861722832353529204e554c4c2c0a606d61696c6020766172636861722832353529204e554c4c2c0a606b6579706173736020766172636861722832353529204e554c4c2c0a5052494d415259204b45592028606964602c20606c6f67696e602c20606d61696c6029200a293b0a0a435245415445205441424c45206070726f6a6563746020280a6069646020696e7420554e5349474e4544204e4f54204e554c4c204155544f5f494e4352454d454e542c0a606e616d656020766172636861722832353529204e4f54204e554c4c2c0a606465736372697074696f6e6020766172636861722832353529204e554c4c2c0a6064617465426567696e60206461746574696d65204e554c4c2c0a6064617465456e6460206461746574696d65204e554c4c2c0a5052494d415259204b455920286069646029200a293b0a0a435245415445205441424c45206075736572496e50726f6a6563746020280a6069646020696e7420554e5349474e4544204e4f54204e554c4c204155544f5f494e4352454d454e542c0a606964557365726020696e7420554e5349474e4544204e554c4c2c0a60696450726f6a6563746020696e7420554e5349474e4544204e554c4c2c0a5052494d415259204b455920286069646029200a293b0a0a435245415445205441424c4520606d6573736167656020280a6069646020696e7420554e5349474e4544204e4f54204e554c4c204155544f5f494e4352454d454e542c0a6073656e64657249646020696e7420554e5349474e4544204e554c4c2c0a60726563656976657249646020696e7420554e5349474e4544204e554c4c2c0a606d657373616765602074657874204e554c4c2c0a6070726f6a65637449446020696e7420554e5349474e4544204e554c4c2c0a5052494d415259204b455920286069646029200a293b0a0a435245415445205441424c452060747970656020280a6069646020696e7420554e5349474e4544204e4f54204e554c4c204155544f5f494e4352454d454e542c0a606e6f6d6020766172636861722832353529204e554c4c2c0a5052494d415259204b455920286069646029200a293b0a0a435245415445205441424c4520607461736b6020280a6069646020696e7420554e5349474e4544204e4f54204e554c4c204155544f5f494e4352454d454e542c0a60696450726f6a6563746020696e7420554e5349474e4544204e554c4c2c0a606e616d656020766172636861722832353529204e4f54204e554c4c202c0a606465736372697074696f6e602074657874204e554c4c2c0a60646174654c6f6760206461746574696d65204e554c4c2c0a6064617465446f6e6560206461746574696d65204e554c4c2c0a606461746541737369676e546f60206461746574696d65204e554c4c2c0a6061737369676e546f557365726020696e74204e554c4c2c0a606964547970656020766172636861722832353529204e554c4c2c0a5052494d415259204b455920286069646029200a293b0a0a435245415445205441424c45206074657374556e6974616972656020280a6069646020696e7420554e5349474e4544204e4f54204e554c4c204155544f5f494e4352454d454e542c0a606e616d656020766172636861722832353529204e554c4c2c0a6070726f6a65637449646020696e7420554e5349474e4544204e4f54204e554c4c2c0a6064657363697074696f6e6020766172636861722832353529204e554c4c2c0a60706172616d496e6020766172636861722832353529204e554c4c2c0a60706172616d4f75746020766172636861722832353529204e554c4c2c0a5052494d415259204b455920286069646029200a293b0a0a0a414c544552205441424c45206075736572496e50726f6a656374602041444420434f4e53545241494e542060666b5f75736572496e50726f6a6563745f757365725f316020464f524549474e204b45592028606964557365726029205245464552454e43455320607573657260202860696460293b0a414c544552205441424c45206075736572496e50726f6a656374602041444420434f4e53545241494e542060666b5f75736572496e50726f6a6563745f70726f6a6563745f316020464f524549474e204b4559202860696450726f6a6563746029205245464552454e434553206070726f6a65637460202860696460293b0a414c544552205441424c4520607461736b602041444420434f4e53545241494e542060666b5f7461736b5f747970655f316020464f524549474e204b45592028606964547970656029205245464552454e43455320607479706560202860696460293b0a414c544552205441424c4520607461736b602041444420434f4e53545241494e542060666b5f7461736b5f70726f6a6563745f316020464f524549474e204b4559202860696450726f6a6563746029205245464552454e434553206070726f6a65637460202860696460293b0a414c544552205441424c4520606d657373616765602041444420434f4e53545241494e542060666b5f6d6573736167655f757365725f316020464f524549474e204b455920286073656e64657249646029205245464552454e43455320607573657260202860696460293b0a414c544552205441424c4520606d657373616765602041444420434f4e53545241494e542060666b5f6d6573736167655f757365725f326020464f524549474e204b4559202860726563656976657249646029205245464552454e43455320607573657260202860696460293b0a414c544552205441424c4520606d657373616765602041444420434f4e53545241494e542060666b5f6d6573736167655f70726f6a6563745f316020464f524549474e204b455920286070726f6a65637449446029205245464552454e434553206070726f6a65637460202860696460293b0a414c544552205441424c45206074657374556e697461697265602041444420434f4e53545241494e542060666b5f74657374556e6974616972655f70726f6a6563745f316020464f524549474e204b455920286070726f6a65637449646029205245464552454e434553206070726f6a65637460202860696460293b0a0a, 2);
 
 -- --------------------------------------------------------
 
@@ -1152,17 +1160,19 @@ CREATE TABLE IF NOT EXISTS `task` (
   KEY `Etat` (`Etat`),
   KEY `createBy` (`createBy`),
   KEY `assignToUser` (`assignToUser`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=48 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=60 ;
 
 --
 -- Contenu de la table `task`
 --
 
 INSERT INTO `task` (`id`, `idProject`, `name`, `description`, `createBy`, `dateLog`, `dateDone`, `dateAssignTo`, `assignToUser`, `idType`, `Etat`) VALUES
-(41, 1, 'bonjour', 'com', 1, '2014-06-26 15:29:40', NULL, '2014-06-26 17:29:40', 1, 1, 1),
-(42, 1, 'Bonsoir', 'non ', 1, '2014-06-26 15:30:03', NULL, '2014-07-11 22:48:24', 1, 1, 1),
-(44, 1, 'mon titre', 'madescr z hhhhh', 1, '2014-07-08 17:28:47', '2014-07-08 20:49:32', '2014-07-11 23:30:57', 2, 1, 5),
-(47, 1, 'test', 'jj', 1, '2014-07-11 21:34:33', NULL, '2014-07-11 23:34:33', 1, 1, 1);
+(53, 28, 'ERR OO3', 'test', 2, '2014-07-15 20:31:10', NULL, '2014-07-15 22:35:29', 1, 1, 4),
+(54, 28, 'ERR 004', 'test', 2, '2014-07-15 20:31:59', NULL, NULL, NULL, 1, 2),
+(55, 28, 'ERR 005', 'Bug interface', 2, '2014-07-15 20:34:23', '2014-07-15 22:34:23', '2014-07-15 22:34:23', 2, 1, 6),
+(56, 28, 'ERR 004', 'ticket', 2, '2014-07-15 20:35:06', NULL, '2014-07-15 22:35:06', 1, 1, 1),
+(57, 28, 'ERR 006', 'blah', 2, '2014-07-15 21:38:39', NULL, '2014-07-15 23:38:39', 1, 1, 4),
+(58, 28, 'ERR 07', 'blad''hjh qdxs''rr', 2, '2014-07-15 21:39:41', NULL, '2014-07-15 23:39:55', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -1183,18 +1193,14 @@ CREATE TABLE IF NOT EXISTS `testunitaire` (
   UNIQUE KEY `name` (`name`),
   KEY `projectId` (`projectId`),
   KEY `valideur` (`valideur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Contenu de la table `testunitaire`
 --
 
 INSERT INTO `testunitaire` (`id`, `name`, `projectId`, `desciption`, `paramIn`, `paramOut`, `resultat`, `valideur`) VALUES
-(2, 'titre', 1, 'descr', 'int a', 'int b ', 1, 1),
-(3, 'add', 1, 'test aze', 'int 2 , int 3', 'bool false', 0, 1),
-(5, 'titre 3', 1, 'descrqsd', 'pIn', 'pOut 2', 1, 1),
-(6, 'one more', 1, 'test', 'int 2, int 3', 'bool false', 0, NULL),
-(7, 'newOne', 1, 'azertyuu', 'a', 'b', 0, NULL);
+(24, 'test d''égalité', 28, 'test l''égalité des deux partie', 'int 2 , int 3', 'bool false', 0, NULL);
 
 -- --------------------------------------------------------
 
@@ -1220,21 +1226,15 @@ CREATE TABLE IF NOT EXISTS `todo` (
   KEY `idCreateur` (`idCreateur`),
   KEY `idDeveloppeur` (`idDeveloppeur`),
   KEY `idCreateur_2` (`idCreateur`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Contenu de la table `todo`
 --
 
 INSERT INTO `todo` (`id`, `titre`, `description`, `idProjet`, `idCreateur`, `idDeveloppeur`, `dateCreation`, `dateModification`, `dateFinalisation`, `idAvancement`) VALUES
-(2, 'Titre du projet.', 'dercr', 1, 1, NULL, '2014-06-27 10:35:43', '2014-07-08 21:40:56', '2016-01-23 00:00:00', 1),
-(5, 'Titre du projet.3', 'jkhlkjhlkhj', 1, 1, 1, '2014-06-27 11:42:43', '2014-07-08 21:48:09', '2016-01-23 00:00:00', 1),
-(7, 'Test de titre', 'Test insert by ui', 1, 2, 1, '2014-06-27 12:22:49', '2014-07-08 15:23:30', '2016-01-23 00:00:00', 2),
-(11, 'Test ui ', '...', 1, 2, 2, '2014-06-27 15:35:28', '2014-07-08 15:21:33', '2016-01-23 00:00:00', 4),
-(14, 'new task', 'bla2', 1, 1, 1, '2014-07-11 22:16:42', '2014-07-11 22:17:40', '2016-01-23 00:00:00', 2),
-(15, 'ne task', 'aaa', 1, 1, 3, '2014-07-11 22:25:18', '2014-07-11 22:25:18', '2000-01-01 00:00:00', 2),
-(16, 'Faire le test 13', 'Vite uu', 1, 2, 2, '2014-07-12 15:26:09', '2014-07-12 15:35:25', '2016-01-23 00:00:00', 2),
-(17, 'new', 'jj', 1, 2, 1, '2014-07-12 15:36:35', '2014-07-12 15:36:35', '2000-01-01 00:00:00', 2);
+(23, 'Exportation de la base de donnée', 'Faire un export de la base pour la soutenance.', 28, 2, 1, '2014-07-15 22:11:41', '2014-07-15 22:11:41', '2014-07-15 22:00:00', 2),
+(24, 'Création du document soutenance', 'Voir le document soutenance pour les détails.', 28, 2, NULL, '2014-07-15 22:13:23', '2014-07-15 22:13:23', '2014-07-15 22:00:00', 1);
 
 -- --------------------------------------------------------
 
@@ -1293,18 +1293,15 @@ CREATE TABLE IF NOT EXISTS `userinproject` (
   PRIMARY KEY (`id`),
   KEY `fk_userInProject_user_1` (`idUser`),
   KEY `fk_userInProject_project_1` (`idProject`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=54 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=58 ;
 
 --
 -- Contenu de la table `userinproject`
 --
 
 INSERT INTO `userinproject` (`id`, `idUser`, `idProject`, `admin`) VALUES
-(1, 1, 1, 1),
-(43, 2, 1, 0),
-(50, 3, 27, 1),
-(51, 1, 27, 0),
-(53, 3, 1, 0);
+(54, 1, 28, 1),
+(55, 2, 28, 0);
 
 --
 -- Contraintes pour les tables exportées
@@ -1333,8 +1330,8 @@ ALTER TABLE `task`
 -- Contraintes pour la table `testunitaire`
 --
 ALTER TABLE `testunitaire`
-  ADD CONSTRAINT `testunitaire_ibfk_1` FOREIGN KEY (`projectId`) REFERENCES `etat` (`id`),
-  ADD CONSTRAINT `testunitaire_ibfk_2` FOREIGN KEY (`projectId`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `testunitaire_ibfk_2` FOREIGN KEY (`projectId`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `testunitaire_ibfk_1` FOREIGN KEY (`projectId`) REFERENCES `project` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `testunitaire_ibfk_3` FOREIGN KEY (`valideur`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE CASCADE;
 
 --
