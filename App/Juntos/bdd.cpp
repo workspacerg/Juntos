@@ -91,7 +91,6 @@ vector<CProjet> BDD::loadProject()
 {
     projects.clear();
 
-
     // Chargement des projet
 
     QSqlQuery query;
@@ -111,9 +110,17 @@ vector<CProjet> BDD::loadProject()
 bool BDD::addProject(CProjet source)
 {
 
+    QString nomPro = source.getNomProjet();
+    QString Descr= source.getDescProjet();
+
+    QRegExp rx( "([^\\\\])'" );
+    nomPro.replace( rx, "\\1\\'" );
+    Descr.replace( rx, "\\1\\'" );
+
+
     QSqlQuery query;
 
-    if(query.exec("select insert_new_project('"+ source.getNomProjet() +"', '"+source.getDescProjet()+"' , '" + login + "')"))
+    if(query.exec("select insert_new_project('"+ nomPro +"', '"+ Descr +"' , '" + login + "')"))
     {
 
         while (query.next()) {
@@ -149,7 +156,14 @@ bool BDD::delProject(CProjet source)
 {
     QSqlQuery query;
 
-    if(query.exec("select del_project('"+login+"','" + source.getNomProjet() +"')"))
+    QString nomPro = source.getNomProjet();
+    QString Descr= source.getDescProjet();
+
+    QRegExp rx( "([^\\\\])'" );
+    nomPro.replace( rx, "\\1\\'" );
+    Descr.replace( rx, "\\1\\'" );
+
+    if(query.exec("select del_project('"+login+"','" + nomPro +"')"))
     {
         while (query.next()) {
            if(query.value(0).toInt() == 1){
@@ -176,8 +190,16 @@ CProjet  BDD::getInfoProjet(CProjet  source)
 {
 
 
+    QString nomPro = source.getNomProjet();
+    QString Descr= source.getDescProjet();
+
+    QRegExp rx( "([^\\\\])'" );
+    nomPro.replace( rx, "\\1\\'" );
+    Descr.replace( rx, "\\1\\'" );
+
+
     QSqlQuery query;
-   if(query.exec("Select * FROM project where name='"+ source.getNomProjet() +"'"))
+   if(query.exec("Select * FROM project where name='"+ nomPro +"'"))
    {
        while(query.next())
        {
@@ -236,19 +258,6 @@ bool BDD::checkAdmin(int idPro)
         qDebug() << query.lastError().text();
     }
      return false;
-
-//   if(query.exec("SELECT *  FROM `user`  Inner join `userinproject` up on `user`.id = up.idUser   inner join `project` pr on up.idProject = pr.id  where pr.id = '"+ idString +"' and  up.admin = 1  and user.login = '"+login+"' "))
-//   {
-
-//       while (query.next()) {
-//            return true;
-//       }
-
-//   }
-//   else
-//       qDebug() << "error sql : " << query.lastError().text();
-
-//   return false;
 
 }
 
@@ -377,16 +386,6 @@ bool BDD::addPeopleToProject(QString log, int idPro, QString nomPro)
     }
      return false;
 
-//    if(query.exec("INSERT INTO `userinproject` (`id`, `idUser`, `idProject`, `admin`) VALUES (NULL, (select id from user where login = '" + log + "' ), '"+ idString +"', '0')"))
-//    {
-
-//    }
-//    else
-//    {
-//        qDebug() << "Erreur insert new people in project";
-//    }
-
-
 }
 
 bool BDD::delPeopletoProject(QString log, int idPro , QString nomPro)
@@ -416,16 +415,6 @@ bool BDD::delPeopletoProject(QString log, int idPro , QString nomPro)
         qDebug() << query.lastError().text();
     }
      return false;
-
-//    if(query.exec("DELETE FROM `userinproject` WHERE `idProject` =  '"+ idString +"' and `idUser` = (select id from user where login =  '" + log + "' )" ))
-//    {
-
-//    }
-//    else
-//    {
-//        qDebug() << "Erreur delete people in project";
-//    }
-
 }
 
 
@@ -518,16 +507,16 @@ Ticket BDD::loadTicketDetail(QString idTk , QString assign )
     }
 
 
-
-
-
-
     return bug;
 
 }
 
 bool BDD::add_ticket(QString title , QString descr , QString userToAssign, QString avancement , int idPro )
 {
+
+    QRegExp rx( "([^\\\\])'" );
+    title.replace( rx, "\\1\\'" );
+    descr.replace( rx, "\\1\\'" );
 
     QString idString = QString::number(idPro);
     QSqlQuery query;
@@ -595,7 +584,18 @@ bool BDD::upd_ticket(Ticket source , int id)
     QString idString = QString::number(id);
     QSqlQuery query;
 
-    if(query.exec("select upd_ticket('"+ login +"' ,'"+ source.getCreateName()  +"' , '"+ source.getNameTicket() +"' , '"+ source.getDescrTicket() +"' , '"+ source.getDev() +"' , '"+ source.getEtat() +"' , '"+ source.getIdTicket()+"')"))
+    QString createName = source.getCreateName();
+    QString nameTicket = source.getNameTicket();
+    QString descrTK = source.getDescrTicket();
+    QString dev = source.getDev();
+
+    QRegExp rx( "([^\\\\])'" );
+    createName.replace( rx, "\\1\\'" );
+    nameTicket.replace( rx, "\\1\\'" );
+    descrTK.replace( rx, "\\1\\'" );
+    dev.replace( rx, "\\1\\'" );
+
+    if(query.exec("select upd_ticket('"+ login +"' ,'"+ createName  +"' , '"+ nameTicket +"' , '"+ descrTK +"' , '"+ dev +"' , '"+ source.getEtat() +"' , '"+ source.getIdTicket()+"')"))
     {
         while (query.next()) {
            if(query.value(0).toInt() == 1){
@@ -691,6 +691,10 @@ bool BDD::add_task(QString title, QString descr, QString userToAssign, QString a
     QString idString = QString::number(idPro);
     QSqlQuery query;
 
+    QRegExp rx( "([^\\\\])'" );
+    title.replace( rx, "\\1\\'" );
+    descr.replace( rx, "\\1\\'" );
+
     if(query.exec("select add_task('"+ login +"', '"+ title +"' , '"+ descr +"', '"+ userToAssign +"' , '"+ avancement +"',  '"+ date +"', '"+ idString +"' )"))
     {
         while (query.next()) {
@@ -774,10 +778,17 @@ Task BDD::load_task_Detail(QString idTk, QString assign)
 bool BDD::upd_task(Task source, int idPro)
 {
 
+    QString title = source.getTitre();
+    QString descr = source.getDescr();
+
+    QRegExp rx( "([^\\\\])'" );
+    title.replace( rx, "\\1\\'" );
+    descr.replace( rx, "\\1\\'" );
+
     QString idString = QString::number(idPro);
     QSqlQuery query;
 
-    if(query.exec("select upd_task('"+ login +"' ,'"+ source.getCreateur()  +"' , '"+ source.getTitre() +"' , '"+ source.getDescr() +"' , '"+ source.getDev() +"' , '"+ source.getEtat() +"' , '"+ source.getIdTask()+"')"))
+    if(query.exec("select upd_task('"+ login +"' ,'"+ source.getCreateur()  +"' , '"+ title +"' , '"+ descr +"' , '"+ source.getDev() +"' , '"+ source.getEtat() +"' , '"+ source.getIdTask()+"')"))
     {
         while (query.next()) {
            if(query.value(0).toInt() == 1){
@@ -892,6 +903,13 @@ bool BDD::add_test(QString title, QString descr, QString in, QString out, int id
     QString idString = QString::number(idPro);
     QSqlQuery query;
 
+
+    QRegExp rx( "([^\\\\])'" );
+    title.replace( rx, "\\1\\'" );
+    descr.replace( rx, "\\1\\'" );
+    in.replace( rx, "\\1\\'" );
+    out.replace( rx, "\\1\\'" );
+
     if(query.exec("select add_test('"+ login +"', '"+ title +"' , '"+ descr +"', '"+ in +"' , '"+ out +"', '"+ idString +"' )"))
     {
         while (query.next()) {
@@ -916,6 +934,12 @@ bool BDD::add_test(QString title, QString descr, QString in, QString out, int id
 
 bool BDD::upd_test(QString title, QString descr, QString in, QString out, int validate, int idTest,  int idPro)
 {
+    QRegExp rx( "([^\\\\])'" );
+    title.replace( rx, "\\1\\'" );
+    descr.replace( rx, "\\1\\'" );
+    in.replace( rx, "\\1\\'" );
+    out.replace( rx, "\\1\\'" );
+
     QString idString = QString::number(idPro);
     QString idTestString = QString::number(idTest);
     QString validateString = QString::number(validate);
@@ -975,6 +999,11 @@ bool BDD::add_Message(int idPro, QString msg, QString usr)
 {
     QString idString = QString::number(idPro);
     QSqlQuery query;
+
+    QRegExp rx( "([^\\\\])'" );
+    msg.replace( rx, "\\1\\'" );
+    usr.replace( rx, "\\1\\'" );
+
 
     if(query.exec("select add_Message( '"+ login +"' , '"+ msg +"' , '"+ usr +"' , '"+ idString +"' )"))
     {
